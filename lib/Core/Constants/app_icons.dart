@@ -1,0 +1,39 @@
+import 'package:flutter/material.dart';
+
+class AppIcons {
+  AppIcons._();
+
+  // Navigation
+  static const IconData home = Icons.home_rounded;
+  static const IconData checker = Icons.fact_check_rounded;
+  static const IconData explore = Icons.explore_rounded;
+  static const IconData profile = Icons.person_rounded;
+
+  // Actions
+  static const IconData arrowForward = Icons.arrow_forward_rounded;
+  static const IconData checkCircle = Icons.check_circle_rounded;
+  
+  // Spec categories
+  static const IconData memory = Icons.memory_rounded;
+  static const IconData processor = Icons.developer_board_rounded;
+  static const IconData storage = Icons.storage_rounded;
+  static const IconData graphics = Icons.gamepad_rounded;
+
+  // UI elements
+  static const IconData info = Icons.info_outline_rounded;
+  static const IconData warning = Icons.warning_amber_rounded;
+  
+  // Additional audit icons
+  static const IconData search = Icons.search_rounded;
+  static const IconData add = Icons.add_rounded;
+  static const IconData edit = Icons.edit_rounded;
+  static const IconData delete = Icons.delete_outline_rounded;
+  static const IconData bookmark = Icons.bookmark_border_rounded;
+  static const IconData favorite = Icons.favorite_border_rounded;
+  static const IconData notification = Icons.notifications_none_rounded;
+  static const IconData menu = Icons.menu_rounded;
+  static const IconData close = Icons.close_rounded;
+  static const IconData chevronRight = Icons.chevron_right_rounded;
+  static const IconData chevronLeft = Icons.chevron_left_rounded;
+  static const IconData arrowBack = Icons.arrow_back_rounded;
+}
