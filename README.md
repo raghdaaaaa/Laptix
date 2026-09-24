@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+ HEAD
 # laptix
 
 A new Flutter project.
@@ -18,4 +18,4 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 =======
 # Laptix
->>>>>>> 577dfbc88bc076f36a3ada7aa7dc97b026dac1f5
+577dfbc88bc076f36a3ada7aa7dc97b026dac1f5
