@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # laptix
 
 A new Flutter project.
@@ -15,3 +16,6 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+=======
+# Laptix
+>>>>>>> 577dfbc88bc076f36a3ada7aa7dc97b026dac1f5
