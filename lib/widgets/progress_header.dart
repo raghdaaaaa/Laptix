@@ -16,39 +16,47 @@ class StepHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final titleStyle = GoogleFonts.urbanist(
-      fontSize: 28,
-      height: 1.2,
+    final highlightStyle = GoogleFonts.inter(
+      fontSize: 40,
+      height: 44 / 40,
+      letterSpacing: -0.025 * 40,
       fontWeight: FontWeight.w800,
-      color: AppColors.primaryColor,
+      color: const Color(0xFF1E3A8A),
     );
+
+    final titleStyle = GoogleFonts.inter(
+      fontSize: 40,
+      height: 44 / 40,
+      letterSpacing: -0.025 * 40,
+      fontWeight: FontWeight.w800,
+      color: const Color(0xFF1F2937),
+    );
+
+    final words = title.split(highlight);
+    final spans = <TextSpan>[];
+    
+    for (int i = 0; i < words.length; i++) {
+      spans.add(TextSpan(text: words[i], style: titleStyle));
+      if (i < words.length - 1) {
+        spans.add(TextSpan(text: highlight, style: highlightStyle));
+      }
+    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text.rich(
-          TextSpan(
-            style: titleStyle,
-            children: [
-              TextSpan(text: '$title '),
-              TextSpan(
-                text: highlight,
-                style: titleStyle.copyWith(
-                  color: AppColors.primaryColor,
-                ),
-              ),
-            ],
-          ),
+          TextSpan(children: spans),
         ),
         if (subtitle != null) ...[
-          const SizedBox(height: 8),
+          const SizedBox(height: 24),
           Text(
             subtitle!,
-            style: GoogleFonts.urbanist(
-              fontSize: 15,
-              height: 1.4,
+            style: GoogleFonts.inter(
+              fontSize: 18,
+              height: 29.25 / 18,
               fontWeight: FontWeight.w500,
-              color: Colors.grey.shade600,
+              color: const Color(0xFF6B7280),
             ),
           ),
         ],

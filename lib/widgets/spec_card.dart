@@ -58,7 +58,7 @@ class SpecificationCard extends StatelessWidget {
             style: GoogleFonts.urbanist(
               fontSize: 15,
               fontWeight: FontWeight.w800,
-              color: AppColor.charcoal,
+              color: AppColors.charcoal,
             ),
           ),
           const SizedBox(height: 4),

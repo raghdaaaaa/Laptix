@@ -1,6 +1,4 @@
-```dart
 import '../data/requirements_data.dart';
-import '../models/laptop_requirements.dart';
 import '../models/recommendation_result.dart';
 
 class RecommendationEngine {
@@ -96,4 +94,3 @@ class RecommendationEngine {
     );
   }
 }
-```

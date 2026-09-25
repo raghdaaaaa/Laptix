@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:laptix/Core/Constants/app_colors.dart';
-import 'package:laptix/constants/app_icons.dart';
+import 'package:laptix/Core/Constants/app_icons.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
   final int currentIndex;
@@ -17,29 +17,32 @@ class CustomBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 72,
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      decoration: BoxDecoration(
-        color: AppColors.backgroundLight,
-        borderRadius: BorderRadius.circular(24),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 8,
-            offset: const Offset(0, -2),
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          _NavIcon(icon: AppIcons.home, label: 'Home', isActive: currentIndex == 0, onTap: () => onTap(0)),
-          _NavIcon(icon: AppIcons.checker, label: 'Checker', isActive: currentIndex == 1, onTap: () => onTap(1)),
-          _CenterButton(onTap: onCenterTap),
-          _NavIcon(icon: AppIcons.explore, label: 'Explore', isActive: currentIndex == 2, onTap: () => onTap(2)),
-          _NavIcon(icon: AppIcons.profile, label: 'Profile', isActive: currentIndex == 3, onTap: () => onTap(3)),
-        ],
+    return Padding(
+      padding: const EdgeInsets.all(9.0),
+      child: Container(
+        height: 72,
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        decoration: BoxDecoration(
+          color: AppColors.backgroundLight,
+          borderRadius: BorderRadius.circular(30),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.1),
+              blurRadius: 8,
+              offset: const Offset(0, -2),
+            ),
+          ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            _NavIcon(icon: AppIcons.home, label: 'Home', isActive: currentIndex == 0, onTap: () => onTap(0)),
+            _NavIcon(icon: AppIcons.checker, label: 'Checker', isActive: currentIndex == 1, onTap: () => onTap(1)),
+            _CenterButton(onTap: onCenterTap),
+            _NavIcon(icon: AppIcons.explore, label: 'Explore', isActive: currentIndex == 2, onTap: () => onTap(2)),
+            _NavIcon(icon: AppIcons.profile, label: 'Profile', isActive: currentIndex == 3, onTap: () => onTap(3)),
+          ],
+        ),
       ),
     );
   }
@@ -70,7 +73,7 @@ class _NavIcon extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon, color: color, size: 22),
+            Icon(icon, color: color, size: 24),
             const SizedBox(height: 4),
             Text(
               label,

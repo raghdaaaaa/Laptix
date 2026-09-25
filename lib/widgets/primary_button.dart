@@ -19,37 +19,60 @@ class PrimaryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 52,
       child: ElevatedButton(
         onPressed: onTap,
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.primaryColor,
+          backgroundColor: const Color(0xFF1E3A8A),
           foregroundColor: Colors.white,
           elevation: 0,
+          padding: const EdgeInsets.symmetric(vertical: 20),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(16),
           ),
+          shadowColor: Colors.transparent,
+        ).copyWith(
+          // For adding drop shadow to elevated button:
+          elevation: const WidgetStatePropertyAll(0),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              text,
-              style: GoogleFonts.urbanist(
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-                color: Colors.white,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: const [
+               BoxShadow(
+                color: Color.fromRGBO(30, 58, 138, 0.3),
+                offset: Offset(0, 8),
+                blurRadius: 10,
+                spreadRadius: -6,
               ),
-            ),
-            if (trailingIcon != null) ...[
-              const SizedBox(width: 8),
-              Icon(
-                trailingIcon,
-                size: 18,
-                color: Colors.white,
+              BoxShadow(
+                color: Color.fromRGBO(30, 58, 138, 0.3),
+                offset: Offset(0, 20),
+                blurRadius: 25,
+                spreadRadius: -5,
               ),
             ],
-          ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                text,
+                style: GoogleFonts.inter(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white,
+                ),
+              ),
+              if (trailingIcon != null) ...[
+                const SizedBox(width: 12),
+                Icon(
+                  trailingIcon,
+                  size: 18,
+                  color: Colors.white,
+                ),
+              ],
+            ],
+          ),
         ),
       ),
     );

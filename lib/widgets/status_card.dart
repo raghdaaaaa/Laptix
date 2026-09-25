@@ -59,7 +59,7 @@ class LabeledDropdown<T> extends StatelessWidget {
                               style: GoogleFonts.urbanist(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w700,
-                                color: AppColor.charcoal,
+                                color: AppColors.charcoal,
                               ),
                             ),
                           ],

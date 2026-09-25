@@ -39,7 +39,7 @@ class SpecStatusRow extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Row(
         children: [
-          StatusIconBox(icon: icon, color: AppColors.primaryColor, size: 36),
+          Icon(icon, color: AppColors.primaryColor, size: 36),
           const SizedBox(width: 12),
           Expanded(
             child: Column(
@@ -59,7 +59,7 @@ class SpecStatusRow extends StatelessWidget {
                   style: GoogleFonts.urbanist(
                     fontSize: 14,
                     fontWeight: FontWeight.w700,
-                    color: AppColor.charcoal,
+                    color: AppColors.charcoal,
                   ),
                 ),
               ],

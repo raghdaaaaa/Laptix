@@ -36,7 +36,7 @@ class BigResultCard extends StatelessWidget {
           style: GoogleFonts.urbanist(
             fontSize: 24,
             fontWeight: FontWeight.w800,
-            color: AppColor.charcoal,
+            color: AppColors.charcoal,
           ),
           textAlign: TextAlign.center,
           child: title,

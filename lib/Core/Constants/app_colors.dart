@@ -9,6 +9,7 @@ class AppColors {
 
   // Background & Surface Colors
   static const Color backgroundColor = Color(0xFFF3F4F6); // Gray 100
+  static const Color backgroundLight = Color(0xFFF9FAFB); // Gray 50
   static const Color cardColor = Color(0xFFFFFFFF); // White
   static const Color inputBackgroundColor = Color(0xFFF9FAFB); // Gray 50
 
@@ -16,6 +17,7 @@ class AppColors {
   static const Color primaryTextColor = Color(0xFF1F2937); // Gray 800
   static const Color secondaryTextColor = Color(0xFF6B7280); // Gray 500
   static const Color hintTextColor = Color(0xFF9CA3AF); // Gray 400
+  static const Color charcoal = Color(0xFF1F2937); // Dark gray
 
   // Border & Divider Colors
   static const Color borderColor = Color(0xFFE5E7EB); // Gray 200

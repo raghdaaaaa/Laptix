@@ -16,11 +16,19 @@ class LaptopImagePlaceholder extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(24),
-        boxShadow: [
+        border: Border.all(color: const Color.fromRGBO(255, 255, 255, 0.5), width: 1),
+        boxShadow: const [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.04),
-            blurRadius: 16,
-            offset: const Offset(0, 6),
+            color: Color.fromRGBO(30, 58, 138, 0.05),
+            offset: Offset(0, 8),
+            blurRadius: 10,
+            spreadRadius: -6,
+          ),
+          BoxShadow(
+            color: Color.fromRGBO(30, 58, 138, 0.05),
+            offset: Offset(0, 20),
+            blurRadius: 25,
+            spreadRadius: -5,
           ),
         ],
       ),

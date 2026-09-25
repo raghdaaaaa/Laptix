@@ -18,30 +18,30 @@ class SecondaryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 52,
       child: OutlinedButton(
         onPressed: onTap,
         style: OutlinedButton.styleFrom(
           backgroundColor: Colors.white,
-          foregroundColor: AppColors.primaryColor,
-          side: BorderSide(color: AppColors.primaryColor.withValues(alpha: 0.15)),
+          foregroundColor: const Color(0xFF1E3A8A),
+          padding: const EdgeInsets.symmetric(vertical: 20),
+          side: const BorderSide(color: Color.fromRGBO(30, 58, 138, 0.1), width: 2),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(16),
           ),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             if (leadingIcon != null) ...[
-              Icon(leadingIcon, size: 18, color: AppColors.primaryColor),
-              const SizedBox(width: 8),
+              Icon(leadingIcon, size: 18, color: const Color(0xFF1E3A8A)),
+              const SizedBox(width: 12),
             ],
             Text(
               text,
-              style: GoogleFonts.urbanist(
-                fontSize: 16,
+              style: GoogleFonts.inter(
+                fontSize: 18,
                 fontWeight: FontWeight.w700,
-                color: AppColors.primaryColor,
+                color: const Color(0xFF1E3A8A),
               ),
             ),
           ],

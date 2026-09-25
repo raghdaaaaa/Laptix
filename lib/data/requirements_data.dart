@@ -1,4 +1,3 @@
-```dart
 import '../models/laptop_requirements.dart';
 
 final Map<String, LaptopRequirements> requirements = {
@@ -72,4 +71,3 @@ final Map<String, LaptopRequirements> requirements = {
     gpu: 'Dedicated',
   ),
 };
-```
