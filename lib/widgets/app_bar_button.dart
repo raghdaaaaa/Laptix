@@ -22,7 +22,7 @@ class AppBarButton extends StatelessWidget {
             BoxShadow(color: Color(0x14000000), blurRadius: 8),
           ],
         ),
-        child: Icon(icon, size: 20, color: AppColors.primaryColor),
+        child: Icon(icon, size: 20, color: AppColors.primaryTextColor),
       ),
     );
   }

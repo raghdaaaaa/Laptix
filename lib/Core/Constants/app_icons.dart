@@ -11,7 +11,29 @@ class AppIcons {
 
   // Actions
   static const IconData arrowForward = Icons.arrow_forward_rounded;
+  static const IconData arrowForwardSharp = Icons.arrow_forward;
+  static const IconData arrowBackIos = Icons.arrow_back_ios;
   static const IconData checkCircle = Icons.check_circle_rounded;
+
+  // Major selection
+  static const IconData majorEngineering = Icons.settings;
+  static const IconData majorMedia = Icons.movie_rounded;
+  static const IconData majorOther = Icons.category_rounded;
+
+  // Usage selection
+  static const IconData usageAndroidDev = Icons.code_rounded;
+  static const IconData usageGaming = Icons.sports_esports_rounded;
+  static const IconData usageGraphicDesign = Icons.palette_rounded;
+  static const IconData usageVideoEditing = Icons.videocam_rounded;
+  static const IconData usage3DCAD = Icons.architecture_rounded;
+  static const IconData usageStudy = Icons.menu_book_rounded;
+
+  // Budget selection
+  static const IconData budgetEntry = Icons.savings_outlined;
+  static const IconData budgetMid = Icons.account_balance_wallet_outlined;
+  static const IconData budgetHigh = Icons.diamond_outlined;
+  static const IconData budgetPro = Icons.workspace_premium_outlined;
+  
   
   // Spec categories
   static const IconData memory = Icons.memory_rounded;

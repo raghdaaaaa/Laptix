@@ -7,12 +7,18 @@ class PrimaryButton extends StatelessWidget {
   final String text;
   final VoidCallback? onTap;
   final IconData? trailingIcon;
+  final double? height;
+  final double trailingIconSize;
+  final Color? trailingIconColor;
 
   const PrimaryButton({
     super.key,
     required this.text,
     required this.onTap,
     this.trailingIcon,
+    this.height,
+    this.trailingIconSize = 18,
+    this.trailingIconColor,
   });
 
   @override
@@ -22,10 +28,13 @@ class PrimaryButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onTap,
         style: ElevatedButton.styleFrom(
-          backgroundColor: const Color(0xFF1E3A8A),
+          backgroundColor: AppColors.primaryColor,
           foregroundColor: Colors.white,
           elevation: 0,
-          padding: const EdgeInsets.symmetric(vertical: 20),
+          fixedSize: height != null ? Size.fromHeight(height!) : null,
+          padding: height != null
+              ? EdgeInsets.zero
+              : const EdgeInsets.symmetric(vertical: 20),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),
@@ -67,8 +76,8 @@ class PrimaryButton extends StatelessWidget {
                 const SizedBox(width: 12),
                 Icon(
                   trailingIcon,
-                  size: 18,
-                  color: Colors.white,
+                  size: trailingIconSize,
+                  color: trailingIconColor ?? Colors.white,
                 ),
               ],
             ],

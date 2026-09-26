@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:laptix/Core/Constants/app_colors.dart';
 
 class SecondaryButton extends StatelessWidget {
   final String text;

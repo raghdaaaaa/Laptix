@@ -16,20 +16,20 @@ class StepHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final highlightStyle = GoogleFonts.inter(
-      fontSize: 40,
-      height: 44 / 40,
-      letterSpacing: -0.025 * 40,
+    final highlightStyle = GoogleFonts.interTight(
+      fontSize: 30,
+      height: 35.5 / 30,
+      letterSpacing: -0.3,
       fontWeight: FontWeight.w800,
-      color: const Color(0xFF1E3A8A),
+      color: AppColors.primaryColor,
     );
 
-    final titleStyle = GoogleFonts.inter(
-      fontSize: 40,
-      height: 44 / 40,
-      letterSpacing: -0.025 * 40,
+    final titleStyle = GoogleFonts.interTight(
+      fontSize: 30,
+      height: 35.5 / 30,
+      letterSpacing: -0.3,
       fontWeight: FontWeight.w800,
-      color: const Color(0xFF1F2937),
+      color: AppColors.primaryTextColor,
     );
 
     final words = title.split(highlight);
@@ -49,14 +49,14 @@ class StepHeader extends StatelessWidget {
           TextSpan(children: spans),
         ),
         if (subtitle != null) ...[
-          const SizedBox(height: 24),
+          const SizedBox(height: 16),
           Text(
             subtitle!,
             style: GoogleFonts.inter(
-              fontSize: 18,
-              height: 29.25 / 18,
+              fontSize: 16,
+              height: 1.5,
               fontWeight: FontWeight.w500,
-              color: const Color(0xFF6B7280),
+              color: AppColors.secondaryTextColor,
             ),
           ),
         ],

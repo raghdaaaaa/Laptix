@@ -19,6 +19,7 @@ class AppStrings {
   // Step 1: Major
   static const String step1Title = 'What\'s your\nmajor?';
   static const String step1Subtitle = 'Select your field of study to help us\nunderstand your daily software needs.';
+  static const String majorComputerScience = 'Computer Science';
   static const String majorEngineering = 'Engineering';
   static const String majorBusiness = 'Business';
   static const String majorDesign = 'Design';
@@ -28,7 +29,7 @@ class AppStrings {
   // Step 2: Usage
   static const String step2Title = 'What will you use your\nlaptop for?';
   static const String step2Subtitle = 'Select all that apply.';
-  static const String usageAndroidDev = 'Android Dev';
+  static const String usageAndroidDev = 'Android Development';
   static const String usageGaming = 'Gaming';
   static const String usageGraphicDesign = 'Graphic Design';
   static const String usageVideoEditing = 'Video Editing';
@@ -79,4 +80,19 @@ class AppStrings {
   static const String checkerCalculationComplete = 'Calculation Complete';
   static const String checkerHighlySuitable = 'Highly Suitable';
   static const String checkerExpertTip = 'Expert Tip';
+  static const String checkerTitle = 'Check a Laptop';
+  static const String checkerSubtitle = 'Enter specs to see compatibility';
+  static const String checkerDescription = 'Select the specifications of the laptop you\'re considering';
+  static const String checkerSpecsHeader = 'Specifications';
+  static const String checkerSuitableFor = 'Suitable for';
+  static const String checkerNotSuitableFor = 'Not suitable for';
+
+  // Recommendation Result Additional
+  static const String recResultPerfectMatchTitle = 'Perfect Match';
+  static const String recResultBasedOn = 'Based on your major, usage, and budget';
+  static const String recResultRecommendedSpecs = 'Recommended Specs';
+  static const String recResultFindLaptops = 'Find Laptops';
+
+  // Home Screen
+  static const String homeFindMyLaptop = 'Find My Laptop';
 }

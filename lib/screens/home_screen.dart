@@ -11,21 +11,24 @@ import 'package:laptix/widgets/bottom_nav_bar.dart';
 
 import 'package:laptix/Core/Constants/app_icons.dart';
 import 'package:laptix/Core/Constants/app_strings.dart';
-import 'package:laptix/Core/Constants/app_colors.dart';
-
+import 'package:laptix/Core/Constants/app_routes.dart';
+ 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF3F4F6),
-      appBar: CustomAppBar(
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(72),
+        child: Padding(padding: EdgeInsets.only(top: 30),
+        child: CustomAppBar(
         leadingWidth: 150,
         leading: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Container(
+             Container(
               width: 40,
               height: 40,
               decoration: BoxDecoration(
@@ -86,16 +89,18 @@ class HomeScreen extends StatelessWidget {
           ),
           child: const Center(child: Icon(AppIcons.menu, color: Colors.black)),
         ),
+      )
       ),
-
+      ),
+ 
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(top: 48, left: 24, right: 24, bottom: 96),
         child: Column(
           children: [
             const StepHeader(
-              title: 'Find the right\nlaptop for\nyour needs.',
+              title: AppStrings.welcomeTitle,
               highlight: 'laptop',
-              subtitle: 'Personalized laptop\nrecommendations based on your\nmajor, usage, and budget.',
+              subtitle: AppStrings.welcomeSubtitle,
             ),
             const SizedBox(height: 48),
             const LaptopImagePlaceholder(
@@ -127,15 +132,16 @@ class HomeScreen extends StatelessWidget {
             ),
             const SizedBox(height: 48),
             PrimaryButton(
-              text: 'Find My Laptop',
-              onTap: () {},
+              text: AppStrings.homeFindMyLaptop,
+              onTap: () => Navigator.pushNamed(context, AppRoutes.major),
                trailingIcon: AppIcons.arrowForward,
             ),
             const SizedBox(height: 16),
             SecondaryButton(
-              text: 'Check a Laptop',
-              onTap: () {},
-               leadingIcon: Icons.search, 
+              text: AppStrings.btnCheckLaptop,
+              onTap: () =>
+                  Navigator.pushNamed(context, AppRoutes.laptopChecker),
+               leadingIcon: AppIcons.search, 
             ),
           ],
         ),
@@ -144,7 +150,15 @@ class HomeScreen extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 25),
         child: CustomBottomNavBar(
           currentIndex: 0,
-          onTap: (index) {},
+          onTap: (index) {
+            if (index == 0) return; // already on Home
+            if (index == 1) {
+              Navigator.pushNamed(context, AppRoutes.laptopChecker);
+              return;
+            }
+            // Explore (2) and Profile (3) don't have screens yet.
+          },
+          onCenterTap: () => Navigator.pushNamed(context, AppRoutes.major),
         ),
       ),
     );
