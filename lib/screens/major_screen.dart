@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:laptix/widgets/step_screen.dart';
-import 'package:laptix/widgets/major_icons.dart';
+import 'package:laptix/widgets/option_card.dart';
 
-import 'package:laptix/Core/Constants/app_icons.dart';
+import 'package:laptix/Core/Constants/app_assets.dart';
 import 'package:laptix/Core/Constants/app_strings.dart';
 import 'package:laptix/Core/Constants/app_routes.dart';
 
@@ -20,15 +21,51 @@ class _MajorScreenState extends State<MajorScreen> {
   String? _selectedMajor;
 
   static final List<StepOption> _majorOptions = [
-    StepOption(icon: const CodeSlashIcon(), label: AppStrings.majorComputerScience),
-    StepOption(icon: const Icon(AppIcons.majorEngineering, size: 30), label: AppStrings.majorEngineering),
-    StepOption(icon: const BusinessChartIcon(), label: AppStrings.majorBusiness),
-    StepOption(icon: const DesignNodesIcon(), label: AppStrings.majorDesign),
-    StepOption(icon: const Icon(AppIcons.majorMedia, size: 30), label: AppStrings.majorMedia),
     StepOption(
-      icon: Transform.flip(
-        flipX: true,
-        child: const Icon(AppIcons.majorOther, size: 30),
+      icon: SvgPicture.asset(
+        AppAssets.majorComputerScience,
+        width: 48,
+        height: 48,
+      ),
+      label: AppStrings.majorComputerScience,
+    ),
+    StepOption(
+      icon: SvgPicture.asset(
+        AppAssets.majorEngineering,
+        width: 48,
+        height: 48,
+      ),
+      label: AppStrings.majorEngineering,
+    ),
+    StepOption(
+      icon: SvgPicture.asset(
+        AppAssets.majorBusiness,
+        width: 48,
+        height: 48,
+      ),
+      label: AppStrings.majorBusiness,
+    ),
+    StepOption(
+      icon: SvgPicture.asset(
+        AppAssets.majorDesign,
+        width: 48,
+        height: 48,
+      ),
+      label: AppStrings.majorDesign,
+    ),
+    StepOption(
+      icon: SvgPicture.asset(
+        AppAssets.majorMedia,
+        width: 48,
+        height: 48,
+      ),
+      label: AppStrings.majorMedia,
+    ),
+    StepOption(
+      icon: SvgPicture.asset(
+        AppAssets.majorOther,
+        width: 48,
+        height: 48,
       ),
       label: AppStrings.majorOther,
     ),
@@ -61,6 +98,8 @@ class _MajorScreenState extends State<MajorScreen> {
                 ),
               ),
       onSelectionChanged: _onSelectionChanged,
+      cardHeight: 180,
+      variant: OptionCardVariant.major,
     );
   }
 }

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:laptix/widgets/step_screen.dart';
+import 'package:laptix/widgets/option_card.dart';
 
-import 'package:laptix/Core/Constants/app_icons.dart';
+import 'package:laptix/Core/Constants/app_assets.dart';
 import 'package:laptix/Core/Constants/app_strings.dart';
 import 'package:laptix/Core/Constants/app_routes.dart';
 
@@ -24,12 +26,78 @@ class _UsageScreenState extends State<UsageScreen> {
   final Set<int> _selectedIndices = {};
 
   static final List<StepOption> _usageOptions = [
-    StepOption(icon: Icon(AppIcons.usageAndroidDev, size: 30), label: AppStrings.usageAndroidDev),
-    StepOption(icon: Icon(AppIcons.usageGaming, size: 30), label: AppStrings.usageGaming),
-    StepOption(icon: Icon(AppIcons.usageGraphicDesign, size: 30), label: AppStrings.usageGraphicDesign),
-    StepOption(icon: Icon(AppIcons.usageVideoEditing, size: 30), label: AppStrings.usageVideoEditing),
-    StepOption(icon: Icon(AppIcons.usage3DCAD, size: 30), label: AppStrings.usage3DCAD),
-    StepOption(icon: Icon(AppIcons.usageStudy, size: 30), label: AppStrings.usageStudy),
+    StepOption(
+      icon: SvgPicture.asset(
+        AppAssets.usageAndroidDev,
+        width: 48,
+        height: 48,
+      ),
+      label: AppStrings.usageAndroidDev,
+    ),
+    StepOption(
+      icon: SvgPicture.asset(
+        AppAssets.usageGaming,
+        width: 48,
+        height: 48,
+      ),
+      label: AppStrings.usageGaming,
+    ),
+    StepOption(
+      icon: SvgPicture.asset(
+        AppAssets.usageGraphicDesign,
+        width: 48,
+        height: 48,
+      ),
+      label: AppStrings.usageGraphicDesign,
+    ),
+    StepOption(
+      icon: SvgPicture.asset(
+        AppAssets.usageVideoEditing,
+        width: 48,
+        height: 48,
+      ),
+      label: AppStrings.usageVideoEditing,
+    ),
+    StepOption(
+      icon: SvgPicture.asset(
+        AppAssets.usage3DCAD,
+        width: 48,
+        height: 48,
+      ),
+      label: AppStrings.usage3DCAD,
+    ),
+    StepOption(
+      icon: SvgPicture.asset(
+        AppAssets.usageStudy,
+        width: 48,
+        height: 48,
+      ),
+      label: AppStrings.usageStudy,
+    ),
+    StepOption(
+      icon: SvgPicture.asset(
+        AppAssets.usageProgramming,
+        width: 48,
+        height: 48,
+      ),
+      label: AppStrings.usageProgramming,
+    ),
+    StepOption(
+      icon: SvgPicture.asset(
+        AppAssets.usageWebDev,
+        width: 48,
+        height: 48,
+      ),
+      label: AppStrings.usageWebDev,
+    ),
+    StepOption(
+      icon: SvgPicture.asset(
+        AppAssets.usageAIML,
+        width: 48,
+        height: 48,
+      ),
+      label: AppStrings.usageAIML,
+    ),
   ];
 
   void _onSelectionChanged(int index) {
@@ -66,6 +134,9 @@ class _UsageScreenState extends State<UsageScreen> {
                 ),
               ),
       onSelectionChanged: _onSelectionChanged,
+      cardHeight: 160,
+      columns: 3,
+      variant: OptionCardVariant.usage,
     );
   }
 }

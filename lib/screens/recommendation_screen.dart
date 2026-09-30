@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:laptix/widgets/big_result_card.dart';
 import 'package:laptix/widgets/bottom_nav_bar.dart';
@@ -9,7 +10,7 @@ import 'package:laptix/widgets/secondary_button.dart';
 import 'package:laptix/widgets/spec_card.dart';
 import 'package:laptix/widgets/spec_status_row.dart';
 
-import 'package:laptix/Core/Constants/app_icons.dart';
+import 'package:laptix/Core/Constants/app_assets.dart';
 import 'package:laptix/Core/Constants/app_strings.dart';
 import 'package:laptix/Core/Constants/app_colors.dart';
 import 'package:laptix/Core/Constants/app_routes.dart';
@@ -37,23 +38,22 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
   void initState() {
     super.initState();
     final engine = RecommendationEngine();
-    _result = engine.recommend(widget.profile.usages);
+    _result = engine.recommend(
+      usages: widget.profile.usages,
+      budget: widget.profile.budget,
+      major: widget.profile.major,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     if (!mounted) return const SizedBox.shrink();
-    
+
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(72),
-        child: CustomAppBar(
-          leading: IconButton(
-            icon: const Icon(AppIcons.arrowBack, color: AppColors.primaryTextColor),
-            onPressed: () => Navigator.of(context).maybePop(),
-          ),
-        ),
+      appBar: const CustomAppBar.recommendation(
+        title: '',
+        showBackButton: true,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
@@ -63,7 +63,7 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
             // Header
             Text(
               AppStrings.recResultYourMatch,
-              style: GoogleFonts.urbanist(
+              style: GoogleFonts.inter(
                 fontSize: 11,
                 fontWeight: FontWeight.w700,
                 letterSpacing: 1,
@@ -73,8 +73,8 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
             const SizedBox(height: 4),
             Text(
               AppStrings.recResultPerfectMatch,
-              style: GoogleFonts.urbanist(
-                fontSize: 32,
+              style: GoogleFonts.inter(
+                fontSize: 30,
                 fontWeight: FontWeight.w800,
                 color: AppColors.charcoal,
                 letterSpacing: -0.5,
@@ -83,19 +83,19 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
             const SizedBox(height: 8),
             Text(
               AppStrings.recResultSubtitle,
-              style: GoogleFonts.urbanist(
-                fontSize: 15,
-                height: 1.4,
-                color: Colors.grey.shade600,
+              style: GoogleFonts.inter(
+                fontSize: 16,
+                height: 1.5,
+                color: AppColors.secondaryTextColor,
               ),
             ),
             const SizedBox(height: 32),
 
             // Big Result Card
             BigResultCard(
-              icon: AppIcons.checkCircle,
+              iconPath: AppAssets.iconCheckCircle,
               color: AppColors.successColor,
-              title: const Text(AppStrings.recResultPerfectMatchTitle),
+              title: Text(AppStrings.recResultPerfectMatchTitle),
               subtitle: AppStrings.recResultBasedOn,
               filled: true,
             ),
@@ -104,27 +104,123 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
             // Specification Cards Grid
             Text(
               AppStrings.recResultRecommendedSpecs,
-              style: GoogleFonts.urbanist(
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
+              style: GoogleFonts.inter(
+                fontSize: 20,
+                fontWeight: FontWeight.w800,
                 color: AppColors.charcoal,
+                letterSpacing: -0.3,
               ),
             ),
             const SizedBox(height: 16),
             _buildSpecGrid(),
             const SizedBox(height: 32),
 
+            // Budget warning (if applicable)
+            if (_result.budgetWarning != null) ...[
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: AppColors.warningBackgroundColor,
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: AppColors.warningBorderColor),
+                ),
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                      AppAssets.iconWarning,
+                      width: 24,
+                      height: 24,
+                      colorFilter: const ColorFilter.mode(AppColors.warningColor, BlendMode.srcIn),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Text(
+                        _result.budgetWarning!,
+                        style: GoogleFonts.inter(
+                          fontSize: 13,
+                          height: 1.4,
+                          color: AppColors.warningTextColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 16),
+            ],
+
             // Why this recommendation section
             Text(
               AppStrings.recResultWhyTitle,
-              style: GoogleFonts.urbanist(
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
+              style: GoogleFonts.inter(
+                fontSize: 20,
+                fontWeight: FontWeight.w800,
                 color: AppColors.charcoal,
+                letterSpacing: -0.3,
               ),
             ),
             const SizedBox(height: 16),
             _buildWhySection(),
+            const SizedBox(height: 32),
+
+            // Expert Tip
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: AppColors.primaryColor.withValues(alpha: 0.05),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: AppColors.primaryColor.withValues(alpha: 0.1)),
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: 36,
+                    height: 36,
+                    decoration: BoxDecoration(
+                      color: AppColors.primaryColor.withValues(alpha: 0.12),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center(
+                      child: SvgPicture.asset(
+                        AppAssets.iconStar,
+                        width: 18,
+                        height: 18,
+                        colorFilter: const ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 14),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          AppStrings.expertTipTitle,
+                          style: GoogleFonts.inter(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w700,
+                            letterSpacing: 0.8,
+                            color: AppColors.primaryColor,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          AppStrings.expertTipContent,
+                          style: GoogleFonts.inter(
+                            fontSize: 14,
+                            height: 1.5,
+                            color: AppColors.primaryTextColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
             const SizedBox(height: 32),
 
             // Action Buttons
@@ -135,11 +231,10 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                 AppRoutes.home,
                 (route) => false,
               ),
-              trailingIcon: AppIcons.arrowForward,
             ),
             const SizedBox(height: 16),
             SecondaryButton(
-              text: 'Start Over',
+              text: AppStrings.btnStartOver,
               onTap: () => Navigator.pushNamedAndRemoveUntil(
                 context,
                 AppRoutes.major,
@@ -150,22 +245,19 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(bottom: 25),
-        child: CustomBottomNavBar(
-          currentIndex: 0,
-          onTap: (index) {
-            if (index == 0) return;
-            if (index == 1) {
-              Navigator.pushNamed(context, AppRoutes.laptopChecker);
-              return;
-            }
-          },
-          onCenterTap: () => Navigator.pushNamedAndRemoveUntil(
-            context,
-            AppRoutes.major,
-            (route) => false,
-          ),
+      bottomNavigationBar: CustomBottomNavBar(
+        currentIndex: 0,
+        onTap: (index) {
+          if (index == 0) return;
+          if (index == 1) {
+            Navigator.pushNamed(context, AppRoutes.laptopChecker);
+            return;
+          }
+        },
+        onCenterTap: () => Navigator.pushNamedAndRemoveUntil(
+          context,
+          AppRoutes.major,
+          (route) => false,
         ),
       ),
     );
@@ -175,29 +267,29 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
     final specs = [
       _SpecData(
         label: AppStrings.specProcessor,
-        icon: AppIcons.processor,
+        iconPath: AppAssets.specProcessor,
         iconColor: AppColors.primaryColor,
         title: _result.cpu,
         description: _result.cpuReason,
       ),
       _SpecData(
         label: AppStrings.specMemory,
-        icon: AppIcons.memory,
+        iconPath: AppAssets.specMemory,
         iconColor: AppColors.secondaryColor,
         title: '${_result.ram} GB',
         description: _result.ramReason,
       ),
       _SpecData(
         label: AppStrings.specStorage,
-        icon: AppIcons.storage,
-        iconColor: const Color(0xFF8B5CF6),
+        iconPath: AppAssets.specStorage,
+        iconColor: AppColors.purpleAccent,
         title: '${_result.storage} GB',
         description: _result.storageReason,
       ),
       _SpecData(
         label: AppStrings.specGraphics,
-        icon: AppIcons.graphics,
-        iconColor: const Color(0xFFF59E0B),
+        iconPath: AppAssets.specGraphics,
+        iconColor: AppColors.orangeAccent,
         title: _result.gpu,
         description: _result.gpuReason,
       ),
@@ -217,7 +309,7 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
         final spec = specs[index];
         return SpecificationCard(
           label: spec.label,
-          icon: spec.icon,
+          iconPath: spec.iconPath,
           iconColor: spec.iconColor,
           title: spec.title,
           description: spec.description,
@@ -230,28 +322,32 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
     return Column(
       children: [
         SpecStatusRow(
-          icon: AppIcons.processor,
+          iconPath: AppAssets.specProcessor,
           label: AppStrings.specProcessor,
           value: _result.cpu,
           status: _getStatusForCpu(_result.cpu),
+          reason: _result.cpuReason,
         ),
         SpecStatusRow(
-          icon: AppIcons.memory,
+          iconPath: AppAssets.specMemory,
           label: AppStrings.specMemory,
           value: '${_result.ram} GB',
           status: _getStatusForRam(_result.ram),
+          reason: _result.ramReason,
         ),
         SpecStatusRow(
-          icon: AppIcons.storage,
+          iconPath: AppAssets.specStorage,
           label: AppStrings.specStorage,
           value: '${_result.storage} GB',
           status: _getStatusForStorage(_result.storage),
+          reason: _result.storageReason,
         ),
         SpecStatusRow(
-          icon: AppIcons.graphics,
+          iconPath: AppAssets.specGraphics,
           label: AppStrings.specGraphics,
           value: _result.gpu,
           status: _getStatusForGpu(_result.gpu),
+          reason: _result.gpuReason,
         ),
       ],
     );
@@ -294,14 +390,14 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
 
 class _SpecData {
   final String label;
-  final IconData icon;
+  final String iconPath;
   final Color iconColor;
   final String title;
   final String description;
 
   const _SpecData({
     required this.label,
-    required this.icon,
+    required this.iconPath,
     required this.iconColor,
     required this.title,
     required this.description,

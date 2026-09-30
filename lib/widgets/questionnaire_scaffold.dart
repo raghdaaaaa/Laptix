@@ -44,13 +44,13 @@ class QuestionnaireScaffold extends StatelessWidget {
   Widget _buildAppBar(BuildContext context) {
     return Container(
       height: 100,
-      color: AppColors.backgroundLight,
+      color: AppColors.backgroundColor,
       padding: const EdgeInsets.only(left: 24, top: 40, right: 24),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           AppBarButton(
-            icon: AppIcons.arrowBackIos,
+            icon: AppIcons.arrowBackIos(size: 16),
             onTap: () => Navigator.of(context).maybePop(),
           ),
           Expanded(
@@ -81,7 +81,7 @@ class QuestionnaireScaffold extends StatelessWidget {
             ),
           ),
           AppBarButton(
-            icon: AppIcons.close,
+            icon: AppIcons.close(size: 14),
             onTap: () => Navigator.of(context).maybePop(),
           ),
         ],
@@ -122,7 +122,6 @@ class QuestionnaireScaffold extends StatelessWidget {
                       text: continueText,
                       onTap: onContinue,
                       height: 68,
-                      trailingIcon: AppIcons.arrowForwardSharp,
                       trailingIconSize: 17,
                       trailingIconColor: Colors.white.withValues(alpha: 0.7),
                     ),

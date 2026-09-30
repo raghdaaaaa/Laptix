@@ -9,6 +9,8 @@ class RecommendationResult {
   final String storageReason;
   final String gpuReason;
 
+  final String? budgetWarning;
+
   RecommendationResult({
     required this.cpu,
     required this.ram,
@@ -18,5 +20,6 @@ class RecommendationResult {
     required this.ramReason,
     required this.storageReason,
     required this.gpuReason,
+    this.budgetWarning,
   });
 }

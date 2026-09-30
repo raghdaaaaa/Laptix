@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'package:laptix/widgets/custom_app_bar.dart';
 import 'package:laptix/widgets/progress_header.dart';
@@ -9,92 +8,21 @@ import 'package:laptix/widgets/primary_button.dart';
 import 'package:laptix/widgets/secondary_button.dart';
 import 'package:laptix/widgets/bottom_nav_bar.dart';
 
-import 'package:laptix/Core/Constants/app_icons.dart';
+import 'package:laptix/Core/Constants/app_assets.dart';
 import 'package:laptix/Core/Constants/app_strings.dart';
 import 'package:laptix/Core/Constants/app_routes.dart';
- 
+import 'package:laptix/Core/Constants/app_colors.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
- 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF3F4F6),
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(72),
-        child: Padding(padding: EdgeInsets.only(top: 30),
-        child: CustomAppBar(
-        leadingWidth: 150,
-        leading: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-             Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                color: const Color(0xFF1E3A8A),
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Color.fromRGBO(30, 58, 138, 0.2),
-                    offset: Offset(0, 4),
-                    blurRadius: 6,
-                    spreadRadius: -4,
-                  ),
-                  BoxShadow(
-                    color: Color.fromRGBO(30, 58, 138, 0.2),
-                    offset: Offset(0, 10),
-                    blurRadius: 15,
-                    spreadRadius: -3,
-                  ),
-                ],
-              ),
-              child: Center(
-                child: Text(
-                  'L',
-                  style: GoogleFonts.inter(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w800,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(width: 10),
-            Text(
-              'Laptix',
-              style: GoogleFonts.inter(
-                fontSize: 24,
-                fontWeight: FontWeight.w800,
-                color: const Color(0xFF1E3A8A),
-                letterSpacing: -0.025 * 24,
-              ),
-            ),
-          ],
-        ),
-        trailing: Container(
-          width: 40,
-          height: 40,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            shape: BoxShape.circle,
-            border: Border.all(color: const Color(0xFFF3F4F6), width: 1),
-            boxShadow: const [
-              BoxShadow(
-                color: Color.fromRGBO(0, 0, 0, 0.05),
-                offset: Offset(0, 1),
-                blurRadius: 2,
-              ),
-            ],
-          ),
-          child: const Center(child: Icon(AppIcons.menu, color: Colors.black)),
-        ),
-      )
-      ),
-      ),
- 
+      backgroundColor: AppColors.backgroundColor,
+      appBar: const CustomAppBar.home(),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.only(top: 48, left: 24, right: 24, bottom: 96),
+        padding: const EdgeInsets.only(top: 24, left: 24, right: 24, bottom: 120),
         child: Column(
           children: [
             const StepHeader(
@@ -102,28 +30,28 @@ class HomeScreen extends StatelessWidget {
               highlight: 'laptop',
               subtitle: AppStrings.welcomeSubtitle,
             ),
-            const SizedBox(height: 48),
-            const LaptopImagePlaceholder(
-              imagePath: 'assets/images/laptop_hero.png', 
+            const SizedBox(height: 40),
+            LaptopImagePlaceholder(
+              imagePath: AppAssets.laptopHero,
               badges: [
                 Positioned(
-                  bottom: 10,
-                  left: -8, 
+                  bottom: 20,
+                  left: -12,
                   child: IconPillBadge(
-                     icon: Icons.star, 
+                    iconPath: AppAssets.iconStar,
                     text: 'Performance',
-                    backgroundColor: Colors.white,
-                    foregroundColor: Color(0xFF1F2937),
-                    borderColor: Color(0xFFF3F4F6),
+                    backgroundColor: AppColors.cardColor,
+                    foregroundColor: AppColors.charcoal,
+                    borderColor: AppColors.backgroundColor,
                   ),
                 ),
                 Positioned(
-                  top: 25,
-                  right: -8, 
+                  top: 30,
+                  right: -12,
                   child: IconPillBadge(
-                     icon: Icons.verified, 
+                    iconPath: AppAssets.iconVerified,
                     text: 'Student Life',
-                    backgroundColor: Color(0xFF06B6D4),
+                    backgroundColor: AppColors.secondaryColor,
                     foregroundColor: Colors.white,
                     borderColor: Colors.transparent,
                   ),
@@ -134,32 +62,25 @@ class HomeScreen extends StatelessWidget {
             PrimaryButton(
               text: AppStrings.homeFindMyLaptop,
               onTap: () => Navigator.pushNamed(context, AppRoutes.major),
-               trailingIcon: AppIcons.arrowForward,
             ),
             const SizedBox(height: 16),
             SecondaryButton(
               text: AppStrings.btnCheckLaptop,
-              onTap: () =>
-                  Navigator.pushNamed(context, AppRoutes.laptopChecker),
-               leadingIcon: AppIcons.search, 
+              onTap: () => Navigator.pushNamed(context, AppRoutes.laptopChecker),
             ),
           ],
         ),
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(bottom: 25),
-        child: CustomBottomNavBar(
-          currentIndex: 0,
-          onTap: (index) {
-            if (index == 0) return; // already on Home
-            if (index == 1) {
-              Navigator.pushNamed(context, AppRoutes.laptopChecker);
-              return;
-            }
-            // Explore (2) and Profile (3) don't have screens yet.
-          },
-          onCenterTap: () => Navigator.pushNamed(context, AppRoutes.major),
-        ),
+      bottomNavigationBar: CustomBottomNavBar(
+        currentIndex: 0,
+        onTap: (index) {
+          if (index == 0) return;
+          if (index == 1) {
+            Navigator.pushNamed(context, AppRoutes.laptopChecker);
+            return;
+          }
+        },
+        onCenterTap: () => Navigator.pushNamed(context, AppRoutes.major),
       ),
     );
   }

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'package:laptix/Core/Constants/app_colors.dart';
+import 'package:laptix/Core/Constants/app_icons.dart';
 
 class PrimaryButton extends StatelessWidget {
   final String text;
   final VoidCallback? onTap;
-  final IconData? trailingIcon;
   final double? height;
   final double trailingIconSize;
   final Color? trailingIconColor;
@@ -15,7 +14,6 @@ class PrimaryButton extends StatelessWidget {
     super.key,
     required this.text,
     required this.onTap,
-    this.trailingIcon,
     this.height,
     this.trailingIconSize = 18,
     this.trailingIconColor,
@@ -40,22 +38,21 @@ class PrimaryButton extends StatelessWidget {
           ),
           shadowColor: Colors.transparent,
         ).copyWith(
-          // For adding drop shadow to elevated button:
           elevation: const WidgetStatePropertyAll(0),
         ),
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
-            boxShadow: const [
-               BoxShadow(
-                color: Color.fromRGBO(30, 58, 138, 0.3),
-                offset: Offset(0, 8),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.shadowColorPrimary,
+                offset: const Offset(0, 8),
                 blurRadius: 10,
                 spreadRadius: -6,
               ),
               BoxShadow(
-                color: Color.fromRGBO(30, 58, 138, 0.3),
-                offset: Offset(0, 20),
+                color: AppColors.shadowColorPrimaryMedium,
+                offset: const Offset(0, 20),
                 blurRadius: 25,
                 spreadRadius: -5,
               ),
@@ -72,14 +69,11 @@ class PrimaryButton extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              if (trailingIcon != null) ...[
-                const SizedBox(width: 12),
-                Icon(
-                  trailingIcon,
-                  size: trailingIconSize,
-                  color: trailingIconColor ?? Colors.white,
-                ),
-              ],
+              const SizedBox(width: 12),
+              AppIcons.iconChevronRight(
+                color: trailingIconColor ?? Colors.white.withValues(alpha: 0.7),
+                size: trailingIconSize,
+              ),
             ],
           ),
         ),

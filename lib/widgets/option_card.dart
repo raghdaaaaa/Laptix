@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:laptix/Core/Constants/app_colors.dart';
 
+enum OptionCardVariant { major, usage }
+
 class OptionSelectionCard extends StatelessWidget {
   final Widget icon;
   final String label;
   final bool isSelected;
   final VoidCallback? onTap;
+  final OptionCardVariant variant;
 
   const OptionSelectionCard({
     super.key,
@@ -14,10 +17,13 @@ class OptionSelectionCard extends StatelessWidget {
     required this.label,
     required this.isSelected,
     required this.onTap,
+    this.variant = OptionCardVariant.major,
   });
 
   @override
   Widget build(BuildContext context) {
+    final isMajor = variant == OptionCardVariant.major;
+
     return GestureDetector(
       onTap: onTap,
       child: Stack(
@@ -27,47 +33,68 @@ class OptionSelectionCard extends StatelessWidget {
             duration: const Duration(milliseconds: 200),
             width: double.infinity,
             height: double.infinity,
-            padding: const EdgeInsets.symmetric(vertical: 26, horizontal: 16),
+            padding: EdgeInsets.symmetric(
+              vertical: isMajor ? 26 : 20,
+              horizontal: isMajor ? 16 : 12,
+            ),
             decoration: BoxDecoration(
               color: isSelected ? AppColors.primaryColor : AppColors.cardColor,
-              borderRadius: BorderRadius.circular(24),
+              borderRadius: BorderRadius.circular(16),
               border: isSelected
                   ? null
-                  : Border.all(color: AppColors.borderColor),
+                  : Border.all(color: AppColors.borderColor, width: 1.5),
+              boxShadow: isSelected
+                  ? [
+                      BoxShadow(
+                        color: AppColors.shadowColorPrimary,
+                        offset: const Offset(0, 8),
+                        blurRadius: 20,
+                        spreadRadius: -4,
+                      ),
+                      BoxShadow(
+                        color: AppColors.shadowColorPrimaryMedium,
+                        offset: const Offset(0, 4),
+                        blurRadius: 12,
+                        spreadRadius: -2,
+                      ),
+                    ]
+                  : null,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
-                  width: 56,
-                  height: 56,
+                  width: isMajor ? 56 : 48,
+                  height: isMajor ? 56 : 48,
                   decoration: BoxDecoration(
                     color: isSelected
-                        ? Colors.white.withValues(alpha: 0.10)
+                        ? Colors.white.withValues(alpha: 0.15)
                         : AppColors.backgroundColor,
-                    borderRadius: BorderRadius.circular(16),
+                    borderRadius: BorderRadius.circular(12),
                   ),
                   child: IconTheme(
                     data: IconThemeData(
                       color: isSelected
                           ? AppColors.secondaryColor
                           : AppColors.primaryColor,
+                      size: isMajor ? 28 : 24,
                     ),
                     child: Center(child: icon),
                   ),
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: isMajor ? 16 : 12),
                 Text(
                   label,
                   textAlign: TextAlign.center,
                   style: GoogleFonts.inter(
-                    fontSize: 16,
+                    fontSize: isMajor ? 16 : 14,
                     height: 1.5,
-                    fontWeight: FontWeight.w800,
+                    fontWeight: FontWeight.w700,
                     color: isSelected
                         ? Colors.white
                         : AppColors.primaryTextColor,
+                    letterSpacing: isMajor ? -0.2 : -0.1,
                   ),
                 ),
               ],
@@ -78,23 +105,23 @@ class OptionSelectionCard extends StatelessWidget {
               top: -8,
               right: -8,
               child: Container(
-                width: 31,
-                height: 31,
+                width: 28,
+                height: 28,
                 decoration: const BoxDecoration(
                   color: AppColors.backgroundColor,
                   shape: BoxShape.circle,
                 ),
                 child: Center(
                   child: Container(
-                    width: 25,
-                    height: 25,
+                    width: 22,
+                    height: 22,
                     decoration: const BoxDecoration(
                       color: AppColors.secondaryColor,
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(
                       Icons.check,
-                      size: 13,
+                      size: 12,
                       color: Colors.white,
                     ),
                   ),

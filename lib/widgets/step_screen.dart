@@ -25,6 +25,7 @@ class StepScreen extends StatefulWidget {
   final double cardHeight;
   final String continueText;
   final ValueChanged<int>? onSelectionChanged;
+  final OptionCardVariant variant;
 
   const StepScreen({
     super.key,
@@ -39,6 +40,7 @@ class StepScreen extends StatefulWidget {
     this.cardHeight = 180,
     this.continueText = 'Continue',
     this.onSelectionChanged,
+    this.variant = OptionCardVariant.major,
   });
 
   @override
@@ -77,6 +79,7 @@ class _StepScreenState extends State<StepScreen> {
                       label: option.label,
                       isSelected: _selectedIndex == idx,
                       onTap: () => _select(idx),
+                      variant: widget.variant,
                     ),
                   ),
                 );

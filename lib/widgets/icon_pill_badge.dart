@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:laptix/Core/Constants/app_colors.dart';
 
 class IconPillBadge extends StatelessWidget {
-  final IconData icon;
+  final String iconPath;
   final String text;
   final Color backgroundColor;
   final Color foregroundColor;
@@ -10,11 +12,11 @@ class IconPillBadge extends StatelessWidget {
 
   const IconPillBadge({
     super.key,
-    required this.icon,
+    required this.iconPath,
     required this.text,
-    this.backgroundColor = Colors.white,
-    this.foregroundColor = const Color(0xFF1F2937),
-    this.borderColor = const Color(0xFFF3F4F6),
+    this.backgroundColor = AppColors.cardColor,
+    this.foregroundColor = AppColors.primaryTextColor,
+    this.borderColor = AppColors.borderColor,
   });
 
   @override
@@ -28,16 +30,16 @@ class IconPillBadge extends StatelessWidget {
         color: backgroundColor,
         borderRadius: BorderRadius.circular(12),
         border: borderColor != Colors.transparent ? Border.all(color: borderColor, width: 1) : null,
-        boxShadow: const [
+        boxShadow: [
           BoxShadow(
-            color: Color.fromRGBO(0, 0, 0, 0.1),
-            offset: Offset(0, 4),
+            color: AppColors.shadowColorBlack,
+            offset: const Offset(0, 4),
             blurRadius: 6,
             spreadRadius: -4,
           ),
           BoxShadow(
-            color: Color.fromRGBO(0, 0, 0, 0.1),
-            offset: Offset(0, 10),
+            color: AppColors.shadowColorBlackMedium,
+            offset: const Offset(0, 10),
             blurRadius: 15,
             spreadRadius: -3,
           ),
@@ -46,10 +48,11 @@ class IconPillBadge extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(
-            icon,
-            size: 15,
-            color: foregroundColor,
+          SvgPicture.asset(
+            iconPath,
+            width: 15,
+            height: 15,
+            colorFilter: ColorFilter.mode(foregroundColor, BlendMode.srcIn),
           ),
           const SizedBox(width: 8),
           Text(

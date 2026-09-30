@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:laptix/Core/Constants/app_colors.dart';
 
 class AppBarButton extends StatelessWidget {
-  final IconData icon;
+  final Widget icon;
   final VoidCallback? onTap;
 
   const AppBarButton({super.key, required this.icon, this.onTap});
@@ -19,10 +19,10 @@ class AppBarButton extends StatelessWidget {
           color: Colors.white,
           shape: BoxShape.circle,
           boxShadow: [
-            BoxShadow(color: Color(0x14000000), blurRadius: 8),
+            BoxShadow(color: AppColors.shadowColorBlack, blurRadius: 8),
           ],
         ),
-        child: Icon(icon, size: 20, color: AppColors.primaryTextColor),
+        child: Center(child: icon),
       ),
     );
   }

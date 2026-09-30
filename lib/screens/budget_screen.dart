@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'package:laptix/widgets/budget_card.dart';
 import 'package:laptix/widgets/questionnaire_scaffold.dart';
 
-import 'package:laptix/Core/Constants/app_icons.dart';
+import 'package:laptix/Core/Constants/app_assets.dart';
 import 'package:laptix/Core/Constants/app_strings.dart';
 import 'package:laptix/Core/Constants/app_routes.dart';
 
@@ -26,23 +25,23 @@ class _BudgetScreenState extends State<BudgetScreen> {
 
   static final List<_BudgetOption> _options = [
     _BudgetOption(
-      icon: AppIcons.budgetEntry,
+      iconPath: AppAssets.budgetEntry,
       label: AppStrings.budgetEntryLevelTitle,
       price: AppStrings.budgetEntryLevelValue,
     ),
     _BudgetOption(
-      icon: AppIcons.budgetMid,
+      iconPath: AppAssets.budgetMid,
       label: AppStrings.budgetMidRangeTitle,
       price: AppStrings.budgetMidRangeValue,
       badge: AppStrings.budgetMidRangeBadge,
     ),
     _BudgetOption(
-      icon: AppIcons.budgetHigh,
+      iconPath: AppAssets.budgetHigh,
       label: AppStrings.budgetHighEndTitle,
       price: AppStrings.budgetHighEndValue,
     ),
     _BudgetOption(
-      icon: AppIcons.budgetPro,
+      iconPath: AppAssets.budgetPro,
       label: AppStrings.budgetProTitle,
       price: AppStrings.budgetProValue,
     ),
@@ -76,9 +75,9 @@ class _BudgetScreenState extends State<BudgetScreen> {
         children: List.generate(_options.length, (index) {
           final option = _options[index];
           return Padding(
-            padding: EdgeInsets.only(bottom: index < _options.length - 1 ? 12 : 0),
+            padding: EdgeInsets.only(bottom: index < _options.length - 1 ? 16 : 0),
             child: BudgetOptionCard(
-              icon: option.icon,
+              iconPath: option.iconPath,
               label: option.label,
               price: option.price,
               isSelected: _selectedIndex == index,
@@ -93,13 +92,13 @@ class _BudgetScreenState extends State<BudgetScreen> {
 }
 
 class _BudgetOption {
-  final IconData icon;
+  final String iconPath;
   final String label;
   final String price;
   final String? badge;
 
   const _BudgetOption({
-    required this.icon,
+    required this.iconPath,
     required this.label,
     required this.price,
     this.badge,

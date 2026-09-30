@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laptix/Core/Constants/app_colors.dart';
 
 class LaptopImagePlaceholder extends StatelessWidget {
   final String? imagePath;
@@ -14,19 +15,19 @@ class LaptopImagePlaceholder extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: const Color.fromRGBO(255, 255, 255, 0.5), width: 1),
-        boxShadow: const [
+        color: AppColors.cardColor,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: AppColors.borderColor, width: 1),
+        boxShadow: [
           BoxShadow(
-            color: Color.fromRGBO(30, 58, 138, 0.05),
-            offset: Offset(0, 8),
+            color: AppColors.shadowColorPrimary,
+            offset: const Offset(0, 8),
             blurRadius: 10,
             spreadRadius: -6,
           ),
           BoxShadow(
-            color: Color.fromRGBO(30, 58, 138, 0.05),
-            offset: Offset(0, 20),
+            color: AppColors.shadowColorPrimaryMedium,
+            offset: const Offset(0, 20),
             blurRadius: 25,
             spreadRadius: -5,
           ),
@@ -36,7 +37,7 @@ class LaptopImagePlaceholder extends StatelessWidget {
       child: Stack(
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(8),
             child: AspectRatio(
               aspectRatio: 1,
               child: imagePath == null

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:laptix/Core/Constants/app_colors.dart';
+import 'package:laptix/Core/Constants/app_assets.dart';
 
 class LabeledDropdown<T> extends StatelessWidget {
   final String label;
-  final IconData icon;
+  final String iconPath;
   final T value;
   final List<T> items;
   final String Function(T) itemText;
@@ -13,7 +16,7 @@ class LabeledDropdown<T> extends StatelessWidget {
   const LabeledDropdown({
     super.key,
     required this.label,
-    required this.icon,
+    required this.iconPath,
     required this.value,
     required this.items,
     required this.itemText,
@@ -27,37 +30,47 @@ class LabeledDropdown<T> extends StatelessWidget {
       children: [
         Text(
           label.toUpperCase(),
-          style: GoogleFonts.urbanist(
+          style: GoogleFonts.inter(
             fontSize: 11,
             fontWeight: FontWeight.w700,
             letterSpacing: 1,
-            color: Colors.grey.shade500,
+            color: AppColors.secondaryTextColor,
           ),
         ),
         const SizedBox(height: 8),
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 14),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(14),
-            border: Border.all(color: Colors.grey.shade200),
+            color: AppColors.cardColor,
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(color: AppColors.borderColor, width: 1.5),
           ),
           child: DropdownButtonHideUnderline(
             child: DropdownButton<T>(
               value: value,
               isExpanded: true,
-              icon: Icon(Icons.keyboard_arrow_down, color: AppColors.primaryColor),
+              icon: SvgPicture.asset(
+                AppAssets.iconChevronDown,
+                width: 20,
+                height: 20,
+                colorFilter: const ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn),
+              ),
               items: items
                   .map((item) => DropdownMenuItem<T>(
                         value: item,
                         child: Row(
                           children: [
-                            Icon(icon, size: 18, color: AppColors.primaryColor),
-                            const SizedBox(width: 10),
+                            SvgPicture.asset(
+                              iconPath,
+                              width: 20,
+                              height: 20,
+                              colorFilter: const ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn),
+                            ),
+                            const SizedBox(width: 12),
                             Text(
                               itemText(item),
-                              style: GoogleFonts.urbanist(
-                                fontSize: 14,
+                              style: GoogleFonts.inter(
+                                fontSize: 15,
                                 fontWeight: FontWeight.w700,
                                 color: AppColors.charcoal,
                               ),
@@ -67,6 +80,8 @@ class LabeledDropdown<T> extends StatelessWidget {
                       ))
                   .toList(),
               onChanged: onChanged,
+              dropdownColor: AppColors.cardColor,
+              borderRadius: BorderRadius.circular(16),
             ),
           ),
         ),

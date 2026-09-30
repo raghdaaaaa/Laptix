@@ -35,21 +35,24 @@ class AppStrings {
   static const String usageVideoEditing = 'Video Editing';
   static const String usage3DCAD = '3D / CAD';
   static const String usageStudy = 'Study';
+  static const String usageProgramming = 'Programming';
+  static const String usageWebDev = 'Web Development';
+  static const String usageAIML = 'AI / ML';
 
   // Step 3: Budget
   static const String step3Title = 'What\'s your\nbudget?';
   static const String step3Subtitle = 'We\'ll find the best performance for your\nprice range.';
-  
+
   static const String budgetEntryLevelTitle = 'Entry Level';
   static const String budgetEntryLevelValue = 'Under \$800';
-  
+
   static const String budgetMidRangeTitle = 'Mid-Range';
   static const String budgetMidRangeValue = '\$800 - \$1,200';
   static const String budgetMidRangeBadge = 'Most Popular';
-  
+
   static const String budgetHighEndTitle = 'High-End';
   static const String budgetHighEndValue = '\$1,200 - \$1,800';
-  
+
   static const String budgetProTitle = 'Pro Performance';
   static const String budgetProValue = '\$1,800+';
 
@@ -62,7 +65,7 @@ class AppStrings {
   static const String specStorage = 'Storage';
   static const String specGraphics = 'Graphics';
   static const String recResultWhyTitle = 'Why this recommendation?';
-  
+
   // Navigation / Common Actions
   static const String navHome = 'Home';
   static const String navChecker = 'Checker';
@@ -70,6 +73,7 @@ class AppStrings {
   static const String navProfile = 'Profile';
   static const String btnCheckLaptop = 'Check a Laptop';
   static const String btnStartOver = 'Start Over';
+  static const String btnFindLaptops = 'Find Laptops';
 
   // Laptop Checker
   static const String checkerLabelProcessor = 'Processor (CPU)';
@@ -95,4 +99,40 @@ class AppStrings {
 
   // Home Screen
   static const String homeFindMyLaptop = 'Find My Laptop';
+
+  // Expert Tip
+  static const String expertTipTitle = 'Expert Tip';
+  static const String expertTipContent = 'Consider future-proofing: selecting a tier above your current needs extends laptop lifespan by 2-3 years.';
+
+  // Budget warning
+  static const String budgetWarningTitle = 'Budget Alert';
+  static const String budgetWarningMessage = 'Your selected budget may be lower than what your usage needs require. Consider increasing your budget for better performance.';
+
+  // Status texts
+  static const String statusPerfect = 'Perfect';
+  static const String statusOptimal = 'Optimal';
+  static const String statusGood = 'Good';
+  static const String statusPoor = 'Poor';
+  static const String statusModeratelySuitable = 'Moderately Suitable';
+  static const String statusLimitedSuitability = 'Limited Suitability';
+
+  // Spec reasons (defaults)
+  static const String cpuReasonBasic = 'A Basic CPU is enough for the selected usages.';
+  static const String cpuReasonMedium = 'Medium CPU suitable for most development tasks.';
+  static const String cpuReasonHigh = 'High-performance CPU handles all workloads.';
+  static const String ramReasonBasic = '8 GB of RAM is enough for the selected usages.';
+  static const String ramReasonMedium = '16 GB recommended for development and design.';
+  static const String ramReasonHigh = '32+ GB ideal for video editing, 3D, and AI.';
+  static const String storageReasonBasic = '256 GB of storage is enough for the selected usages.';
+  static const String storageReasonMedium = '512 GB recommended for development and media.';
+  static const String storageReasonHigh = '1 TB+ ideal for video editing, 3D, and large datasets.';
+  static const String gpuReasonBasic = 'Integrated graphics only for basic tasks.';
+  static const String gpuReasonMedium = 'Entry-level GPU handles light creative work.';
+  static const String gpuReasonHigh = 'Dedicated GPU required for gaming, 3D, and video editing.';
+
+  // Dropdown placeholders
+  static const String dropdownSelect = 'Select';
+
+  // Empty states
+  static const String noSelection = 'No selection';
 }
