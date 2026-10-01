@@ -99,7 +99,7 @@ class _MajorScreenState extends State<MajorScreen> {
                 ),
               ),
       onSelectionChanged: _onSelectionChanged,
-      cardHeight: 172,
+      cardHeight: 184,
       variant: OptionCardVariant.major,
     );
   }

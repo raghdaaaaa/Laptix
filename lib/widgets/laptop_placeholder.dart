@@ -35,8 +35,10 @@ class LaptopImagePlaceholder extends StatelessWidget {
           ),
         ],
       ),
+      clipBehavior: Clip.none,
       padding: const EdgeInsets.all(16),
       child: Stack(
+        clipBehavior: Clip.none,
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
