@@ -138,6 +138,7 @@ class _UsageScreenState extends State<UsageScreen> {
       columns: 2,
       horizontalGap: 12,
       variant: OptionCardVariant.usage,
+      selectedIndices: _selectedIndices,
     );
   }
 }

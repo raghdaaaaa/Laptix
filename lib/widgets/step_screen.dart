@@ -15,7 +15,7 @@ class StepOption {
   });
 }
 
-class StepScreen extends StatefulWidget {
+class StepScreen extends StatelessWidget {
   final int stepNumber;
   final int totalSteps;
   final String title;
@@ -30,6 +30,7 @@ class StepScreen extends StatefulWidget {
   final ValueChanged<int>? onSelectionChanged;
   final OptionCardVariant variant;
   final String? Function(int index)? badgeBuilder;
+  final Set<int> selectedIndices;
 
   const StepScreen({
     super.key,
@@ -47,42 +48,31 @@ class StepScreen extends StatefulWidget {
     this.onSelectionChanged,
     this.variant = OptionCardVariant.major,
     this.badgeBuilder,
+    required this.selectedIndices,
   });
 
-  @override
-  State<StepScreen> createState() => _StepScreenState();
-}
-
-class _StepScreenState extends State<StepScreen> {
-  int _selectedIndex = -1;
-
-  void _select(int index) {
-    setState(() => _selectedIndex = index);
-    widget.onSelectionChanged?.call(index);
-  }
-
   Widget _buildOptionsGrid() {
-    final rows = (widget.options.length / widget.columns).ceil();
+    final rows = (options.length / columns).ceil();
     return Column(
       children: List.generate(rows, (rowIndex) {
-        final startIdx = rowIndex * widget.columns;
-        final endIdx = (startIdx + widget.columns).clamp(0, widget.options.length);
-        final rowOptions = widget.options.sublist(startIdx, endIdx);
+        final startIdx = rowIndex * columns;
+        final endIdx = (startIdx + columns).clamp(0, options.length);
+        final rowOptions = options.sublist(startIdx, endIdx);
 
         Widget row = Row(
           children: rowOptions.asMap().entries.map((entry) {
             final idx = startIdx + entry.key;
             final option = entry.value;
-            final badge = widget.badgeBuilder?.call(idx) ?? option.badge;
+            final badge = badgeBuilder?.call(idx) ?? option.badge;
             return Expanded(
               child: Padding(
-                padding: EdgeInsets.only(right: entry.key < rowOptions.length - 1 ? widget.horizontalGap : 0),
+                padding: EdgeInsets.only(right: entry.key < rowOptions.length - 1 ? horizontalGap : 0),
                 child: OptionSelectionCard(
                   icon: option.icon,
                   label: option.label,
-                  isSelected: _selectedIndex == idx,
-                  onTap: () => _select(idx),
-                  variant: widget.variant,
+                  isSelected: selectedIndices.contains(idx),
+                  onTap: () => onSelectionChanged?.call(idx),
+                  variant: variant,
                   badge: badge,
                 ),
               ),
@@ -90,8 +80,8 @@ class _StepScreenState extends State<StepScreen> {
           }).toList(),
         );
 
-        if (widget.cardHeight != null) {
-          row = SizedBox(height: widget.cardHeight, child: row);
+        if (cardHeight != null) {
+          row = SizedBox(height: cardHeight, child: row);
         }
 
         return Padding(
@@ -105,13 +95,13 @@ class _StepScreenState extends State<StepScreen> {
   @override
   Widget build(BuildContext context) {
     return QuestionnaireScaffold(
-      stepNumber: widget.stepNumber,
-      totalSteps: widget.totalSteps,
-      title: widget.title,
-      highlight: widget.highlight,
-      subtitle: widget.subtitle,
-      onContinue: widget.onContinue,
-      continueText: widget.continueText,
+      stepNumber: stepNumber,
+      totalSteps: totalSteps,
+      title: title,
+      highlight: highlight,
+      subtitle: subtitle,
+      onContinue: onContinue,
+      continueText: continueText,
       content: _buildOptionsGrid(),
     );
   }

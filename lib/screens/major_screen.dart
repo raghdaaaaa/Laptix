@@ -18,7 +18,7 @@ class MajorScreen extends StatefulWidget {
 }
 
 class _MajorScreenState extends State<MajorScreen> {
-  String? _selectedMajor;
+  int? _selectedIndex;
 
   static final List<StepOption> _majorOptions = [
     StepOption(
@@ -74,12 +74,13 @@ class _MajorScreenState extends State<MajorScreen> {
 
   void _onSelectionChanged(int index) {
     setState(() {
-      _selectedMajor = _majorOptions[index].label;
+      _selectedIndex = index;
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    final selectedIndices = _selectedIndex == null ? <int>{} : {_selectedIndex!};
     return StepScreen(
       stepNumber: 1,
       totalSteps: 3,
@@ -87,13 +88,13 @@ class _MajorScreenState extends State<MajorScreen> {
       highlight: 'major?',
       subtitle: AppStrings.step1Subtitle,
       options: _majorOptions,
-      onContinue: _selectedMajor == null
+      onContinue: _selectedIndex == null
           ? null
           : () => Navigator.pushNamed(
                 context,
                 AppRoutes.usage,
                 arguments: StudentProfile(
-                  major: _selectedMajor!,
+                  major: _majorOptions[_selectedIndex!].label,
                   usages: [],
                   budget: '',
                 ),
@@ -101,6 +102,7 @@ class _MajorScreenState extends State<MajorScreen> {
       onSelectionChanged: _onSelectionChanged,
       cardHeight: 184,
       variant: OptionCardVariant.major,
+      selectedIndices: selectedIndices,
     );
   }
 }

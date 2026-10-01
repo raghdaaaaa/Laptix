@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -142,12 +141,21 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: _CheckerAppBar(),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.fromLTRB(24, 24, 24, 140),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+      body: Column(
+        children: [
+          SafeArea(
+            bottom: false,
+            child: SizedBox(
+              height: 64,
+              child: _CheckerAppBar(),
+            ),
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.fromLTRB(24, 24, 24, 140),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
             Text(
               AppStrings.checkerTitle,
               style: GoogleFonts.inter(
@@ -222,6 +230,9 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
           ],
         ),
       ),
+    ),
+  ],
+),
       bottomNavigationBar: CustomBottomNavBar(
         currentIndex: 1,
         onTap: (index) {
@@ -642,75 +653,60 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
   }
 }
 
-class _CheckerAppBar extends StatelessWidget implements PreferredSizeWidget {
-  @override
-  Size get preferredSize => const Size.fromHeight(64);
-
+class _CheckerAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ClipRect(
-      child: Container(
-        height: 64,
-        color: Colors.white.withValues(alpha: 0.8),
-        child: Stack(
+    return Container(
+      height: 64,
+      color: Colors.white,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
-              child: Container(color: Colors.transparent),
-            ),
-            SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    InkWell(
-                      onTap: () => Navigator.of(context).maybePop(),
-                      customBorder: const CircleBorder(),
-                      child: Container(
-                        width: 44,
-                        height: 44,
-                        decoration: BoxDecoration(
-                          color: AppColors.cardColor,
-                          shape: BoxShape.circle,
-                          boxShadow: [
-                            BoxShadow(
-                              color: AppColors.shadowColorBlack,
-                              blurRadius: 8,
-                            ),
-                          ],
-                        ),
-                        child: Center(
-                          child: SvgPicture.asset(
-                            AppAssets.commonArrowBack,
-                            width: 20,
-                            height: 20,
-                            colorFilter: const ColorFilter.mode(
-                              AppColors.primaryTextColor,
-                              BlendMode.srcIn,
-                            ),
-                          ),
-                        ),
-                      ),
+            InkWell(
+              onTap: () => Navigator.of(context).maybePop(),
+              customBorder: const CircleBorder(),
+              child: Container(
+                width: 44,
+                height: 44,
+                decoration: BoxDecoration(
+                  color: AppColors.cardColor,
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.shadowColorBlack,
+                      blurRadius: 8,
                     ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Center(
-                        child: Text(
-                          'Check a Laptop',
-                          style: GoogleFonts.urbanist(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w800,
-                            color: AppColors.charcoal,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 56),
                   ],
+                ),
+                child: Center(
+                  child: SvgPicture.asset(
+                    AppAssets.commonArrowBack,
+                    width: 20,
+                    height: 20,
+                    colorFilter: const ColorFilter.mode(
+                      AppColors.primaryTextColor,
+                      BlendMode.srcIn,
+                    ),
+                  ),
                 ),
               ),
             ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Center(
+                child: Text(
+                  'Check a Laptop',
+                  style: GoogleFonts.urbanist(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w800,
+                    color: AppColors.charcoal,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(width: 56),
           ],
         ),
       ),

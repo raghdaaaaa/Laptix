@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -48,12 +46,21 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
 
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: _RecommendationAppBar(),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+      body: Column(
+        children: [
+          SafeArea(
+            bottom: false,
+            child: SizedBox(
+              height: 64,
+              child: _RecommendationAppBar(),
+            ),
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
             // Header Section
             Text(
               'YOUR MATCH',
@@ -155,6 +162,9 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
           ],
         ),
       ),
+    ),
+  ],
+),
       bottomNavigationBar: CustomBottomNavBar(
         currentIndex: 0,
         onTap: (index) {
@@ -229,74 +239,59 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
   }
 }
 
-class _RecommendationAppBar extends StatelessWidget implements PreferredSizeWidget {
-  @override
-  Size get preferredSize => const Size.fromHeight(64);
-
+class _RecommendationAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 64,
-      color: Colors.white.withValues(alpha: 0.8),
-      child: Stack(
-        children: [
-          Positioned.fill(
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
-              child: Container(color: Colors.transparent),
-            ),
-          ),
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  // Back button
-                  InkWell(
-                    onTap: () => Navigator.of(context).maybePop(),
-                    customBorder: const CircleBorder(),
-                    child: Container(
-                      width: 44,
-                      height: 44,
-                      decoration: BoxDecoration(
-                        color: AppColors.cardColor,
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: AppColors.shadowColorBlack,
-                            blurRadius: 8,
-                          ),
-                        ],
-                      ),
-                      child: Center(
-                        child: SvgPicture.asset(
-                          AppAssets.commonArrowBack,
-                          width: 20,
-                          height: 20,
-                          colorFilter: const ColorFilter.mode(
-                            AppColors.primaryTextColor,
-                            BlendMode.srcIn,
-                          ),
-                        ),
-                      ),
+      color: Colors.white,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            // Back button
+            InkWell(
+              onTap: () => Navigator.of(context).maybePop(),
+              customBorder: const CircleBorder(),
+              child: Container(
+                width: 44,
+                height: 44,
+                decoration: BoxDecoration(
+                  color: AppColors.cardColor,
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.shadowColorBlack,
+                      blurRadius: 8,
+                    ),
+                  ],
+                ),
+                child: Center(
+                  child: SvgPicture.asset(
+                    AppAssets.commonArrowBack,
+                    width: 20,
+                    height: 20,
+                    colorFilter: const ColorFilter.mode(
+                      AppColors.primaryTextColor,
+                      BlendMode.srcIn,
                     ),
                   ),
-                  const SizedBox(width: 12),
-                  // Title
-                  Text(
-                    'Your Match',
-                    style: GoogleFonts.urbanist(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w800,
-                      color: AppColors.charcoal,
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
-          ),
-        ],
+            const SizedBox(width: 12),
+            // Title
+            Text(
+              'Your Match',
+              style: GoogleFonts.urbanist(
+                fontSize: 20,
+                fontWeight: FontWeight.w800,
+                color: AppColors.charcoal,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
