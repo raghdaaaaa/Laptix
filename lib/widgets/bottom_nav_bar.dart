@@ -47,33 +47,19 @@ class CustomBottomNavBar extends StatelessWidget {
           children: [
             _NavIcon(
               assetPath: AppAssets.navHome,
-              activeAssetPath: AppAssets.navHome, // MISSING: nav/home_active.svg - fallback to inactive
+              activeAssetPath: AppAssets.navHome,
               label: AppStrings.navHome,
               isActive: currentIndex == 0,
               onTap: () => onTap(0),
             ),
             _NavIcon(
               assetPath: AppAssets.navChecker,
-              activeAssetPath: AppAssets.navChecker, // MISSING: nav/checker_active.svg - fallback to inactive
+              activeAssetPath: AppAssets.navChecker,
               label: AppStrings.navChecker,
               isActive: currentIndex == 1,
               onTap: () => onTap(1),
             ),
             _CenterButton(onTap: onCenterTap),
-            _NavIcon(
-              assetPath: AppAssets.navExplore,
-              activeAssetPath: AppAssets.navExplore, // MISSING: nav/explore_active.svg - fallback to inactive
-              label: AppStrings.navExplore,
-              isActive: currentIndex == 2,
-              onTap: () => onTap(2),
-            ),
-            _NavIcon(
-              assetPath: AppAssets.navProfile,
-              activeAssetPath: AppAssets.navProfile, // MISSING: nav/profile_active.svg - fallback to inactive
-              label: AppStrings.navProfile,
-              isActive: currentIndex == 3,
-              onTap: () => onTap(3),
-            ),
           ],
         ),
       ),

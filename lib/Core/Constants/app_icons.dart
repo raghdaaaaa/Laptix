@@ -104,13 +104,7 @@ class AppIcons {
   static Widget navAdd({Color? color, double size = 24}) =>
       _buildSvg(AppAssets.navAdd, color: color, size: size);
 
-  static Widget navExplore({Color? color, double size = 24}) =>
-      _buildSvg(AppAssets.navExplore, color: color, size: size);
-
-  static Widget navProfile({Color? color, double size = 24}) =>
-      _buildSvg(AppAssets.navProfile, color: color, size: size);
-
-  // NOTE: Active state icons (navHomeActive, navCheckerActive, navExploreActive, navProfileActive) are MISSING from disk
+  // NOTE: Active state icons (navHomeActive, navCheckerActive) are MISSING from disk
 
   // ==========================================
   // HOME SCREEN ICONS

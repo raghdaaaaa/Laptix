@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:laptix/widgets/custom_app_bar.dart';
-import 'package:laptix/widgets/progress_header.dart';
 import 'package:laptix/widgets/laptop_placeholder.dart';
 import 'package:laptix/widgets/icon_pill_badge.dart';
 import 'package:laptix/widgets/primary_button.dart';
@@ -25,17 +25,13 @@ class HomeScreen extends StatelessWidget {
         padding: const EdgeInsets.only(top: 24, left: 24, right: 24, bottom: 120),
         child: Column(
           children: [
-            const StepHeader(
-              title: AppStrings.welcomeTitle,
-              highlight: 'laptop',
-              subtitle: AppStrings.welcomeSubtitle,
-            ),
+            _WelcomeHeader(),
             const SizedBox(height: 40),
             LaptopImagePlaceholder(
               imagePath: AppAssets.laptopHero,
               badges: [
                 Positioned(
-                  bottom: 20,
+                  bottom: -8,
                   left: -12,
                   child: IconPillBadge(
                     iconPath: AppAssets.commonStar,
@@ -46,7 +42,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  top: 30,
+                  top: -8,
                   right: -12,
                   child: IconPillBadge(
                     iconPath: AppAssets.commonVerified,
@@ -82,6 +78,57 @@ class HomeScreen extends StatelessWidget {
         },
         onCenterTap: () => Navigator.pushNamed(context, AppRoutes.major),
       ),
+    );
+  }
+}
+
+class _WelcomeHeader extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final highlightStyle = GoogleFonts.interTight(
+      fontSize: 40,
+      height: 44 / 40,
+      letterSpacing: -0.025,
+      fontWeight: FontWeight.w800,
+      color: AppColors.primaryColor,
+    );
+
+    final titleStyle = GoogleFonts.interTight(
+      fontSize: 40,
+      height: 44 / 40,
+      letterSpacing: -0.025,
+      fontWeight: FontWeight.w800,
+      color: AppColors.primaryTextColor,
+    );
+
+    const title = AppStrings.welcomeTitle;
+    const highlight = 'laptop for';
+
+    final words = title.split(highlight);
+    final spans = <TextSpan>[];
+
+    for (int i = 0; i < words.length; i++) {
+      spans.add(TextSpan(text: words[i], style: titleStyle));
+      if (i < words.length - 1) {
+        spans.add(TextSpan(text: highlight, style: highlightStyle));
+      }
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text.rich(TextSpan(children: spans)),
+        const SizedBox(height: 16),
+        Text(
+          AppStrings.welcomeSubtitle,
+          style: GoogleFonts.inter(
+            fontSize: 18,
+            height: 29.25 / 18,
+            fontWeight: FontWeight.w500,
+            color: AppColors.secondaryTextColor,
+          ),
+        ),
+      ],
     );
   }
 }

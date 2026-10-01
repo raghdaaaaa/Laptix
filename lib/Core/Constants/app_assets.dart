@@ -32,9 +32,7 @@ class AppAssets {
   static const String navHome = '$_iconsPath/nav/home.svg'; // Bottom Nav: Home tab (inactive)
   static const String navChecker = '$_iconsPath/nav/checker.svg'; // Bottom Nav: Checker tab (inactive)
   static const String navAdd = '$_iconsPath/nav/add.svg'; // Bottom Nav: Center + button
-  static const String navExplore = '$_iconsPath/nav/explore.svg'; // Bottom Nav: Explore tab (inactive)
-  static const String navProfile = '$_iconsPath/nav/profile.svg'; // Bottom Nav: Profile tab (inactive)
-  // NOTE: Active state icons (home_active, checker_active, explore_active, profile_active) are MISSING from disk
+  // NOTE: Active state icons (home_active, checker_active) are MISSING from disk
 
   // ==========================================
   // HOME SCREEN ICONS

@@ -14,22 +14,24 @@ class LaptopImagePlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 327,
+      height: 288,
       decoration: BoxDecoration(
         color: AppColors.cardColor,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(24),
         border: Border.all(color: AppColors.borderColor, width: 1),
         boxShadow: [
           BoxShadow(
-            color: AppColors.shadowColorPrimary,
-            offset: const Offset(0, 8),
-            blurRadius: 10,
-            spreadRadius: -6,
+            color: AppColors.shadowColorBlack,
+            offset: const Offset(0, 4),
+            blurRadius: 6,
+            spreadRadius: -4,
           ),
           BoxShadow(
-            color: AppColors.shadowColorPrimaryMedium,
-            offset: const Offset(0, 20),
-            blurRadius: 25,
-            spreadRadius: -5,
+            color: AppColors.shadowColorBlackMedium,
+            offset: const Offset(0, 10),
+            blurRadius: 15,
+            spreadRadius: -3,
           ),
         ],
       ),
@@ -38,8 +40,9 @@ class LaptopImagePlaceholder extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
-            child: AspectRatio(
-              aspectRatio: 1,
+            child: SizedBox(
+              width: 295,
+              height: 254,
               child: imagePath == null
                   ? const Placeholder(color: Colors.grey)
                   : Image.asset(imagePath!, fit: BoxFit.contain),

@@ -37,7 +37,7 @@ class AppStrings {
   static const String usageStudy = 'Study';
   static const String usageProgramming = 'Programming';
   static const String usageWebDev = 'Web Development';
-  static const String usageAIML = 'AI / ML';
+  static const String usageAIML = 'AI / Machine Learning';
 
   // Step 3: Budget
   static const String step3Title = 'What\'s your\nbudget?';
@@ -69,8 +69,6 @@ class AppStrings {
   // Navigation / Common Actions
   static const String navHome = 'Home';
   static const String navChecker = 'Checker';
-  static const String navExplore = 'Explore';
-  static const String navProfile = 'Profile';
   static const String btnCheckLaptop = 'Check a Laptop';
   static const String btnStartOver = 'Start Over';
   static const String btnFindLaptops = 'Find Laptops';
