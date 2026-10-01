@@ -78,15 +78,15 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
     if (matchedUsages == totalUsages) {
       verdict = AppStrings.checkerHighlySuitable;
       verdictColor = AppColors.successColor;
-      verdictIconPath = AppAssets.iconCheckCircle;
+      verdictIconPath = AppAssets.commonCheckCircle;
     } else if (matchedUsages >= totalUsages ~/ 2) {
       verdict = AppStrings.statusModeratelySuitable;
       verdictColor = AppColors.warningColor;
-      verdictIconPath = AppAssets.iconWarning;
+      verdictIconPath = AppAssets.commonWarning;
     } else {
       verdict = AppStrings.statusLimitedSuitability;
       verdictColor = AppColors.errorColor;
-      verdictIconPath = AppAssets.iconWarning;
+      verdictIconPath = AppAssets.commonWarning;
     }
 
     return {
@@ -181,7 +181,7 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
             // CPU Dropdown
             LabeledDropdown<String>(
               label: AppStrings.checkerLabelProcessor,
-              iconPath: AppAssets.specProcessor,
+              iconPath: AppAssets.checkerCpu,
               value: _selectedCpu,
               items: _cpuOptions,
               itemText: (item) => item,
@@ -192,7 +192,7 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
             // RAM Dropdown
             LabeledDropdown<int>(
               label: AppStrings.checkerLabelMemory,
-              iconPath: AppAssets.specMemory,
+              iconPath: AppAssets.checkerRam,
               value: _selectedRam,
               items: _ramOptions,
               itemText: (item) => '$item GB',
@@ -203,7 +203,7 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
             // GPU Dropdown
             LabeledDropdown<String>(
               label: AppStrings.checkerLabelGraphics,
-              iconPath: AppAssets.specGraphics,
+              iconPath: AppAssets.checkerGpu,
               value: _selectedGpu,
               items: _gpuOptions,
               itemText: (item) => item,
@@ -307,7 +307,7 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
 
         // CPU Analysis
         _buildAnalysisRow(
-          iconPath: AppAssets.specProcessor,
+          iconPath: AppAssets.checkerCpu,
           label: AppStrings.specProcessor,
           value: _selectedCpu,
           reason: result['cpuReason'] as String,
@@ -316,7 +316,7 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
 
         // RAM Analysis
         _buildAnalysisRow(
-          iconPath: AppAssets.specMemory,
+          iconPath: AppAssets.checkerRam,
           label: AppStrings.specMemory,
           value: '$_selectedRam GB',
           reason: result['ramReason'] as String,
@@ -325,7 +325,7 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
 
         // GPU Analysis
         _buildAnalysisRow(
-          iconPath: AppAssets.specGraphics,
+          iconPath: AppAssets.checkerGpu,
           label: AppStrings.specGraphics,
           value: _selectedGpu,
           reason: result['gpuReason'] as String,

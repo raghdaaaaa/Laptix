@@ -50,7 +50,7 @@ class LabeledDropdown<T> extends StatelessWidget {
               value: value,
               isExpanded: true,
               icon: SvgPicture.asset(
-                AppAssets.iconChevronDown,
+                AppAssets.commonChevronDown,
                 width: 20,
                 height: 20,
                 colorFilter: const ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn),

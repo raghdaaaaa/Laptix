@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laptix/Core/Constants/app_colors.dart';
+import 'package:laptix/Core/Constants/app_icons.dart';
 
 class BudgetOptionCard extends StatelessWidget {
   final String iconPath;
@@ -123,7 +124,7 @@ class BudgetOptionCard extends StatelessWidget {
                         : Border.all(color: AppColors.borderColor, width: 2),
                   ),
                   child: isSelected
-                      ? const Icon(Icons.check, size: 18, color: Colors.white)
+                      ? Center(child: AppIcons.check(color: Colors.white, size: 18))
                       : null,
                 ),
               ],

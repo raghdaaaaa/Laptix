@@ -93,7 +93,7 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
 
             // Big Result Card
             BigResultCard(
-              iconPath: AppAssets.iconCheckCircle,
+              iconPath: AppAssets.commonCheckCircle,
               color: AppColors.successColor,
               title: Text(AppStrings.recResultPerfectMatchTitle),
               subtitle: AppStrings.recResultBasedOn,
@@ -128,7 +128,7 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                 child: Row(
                   children: [
                     SvgPicture.asset(
-                      AppAssets.iconWarning,
+                      AppAssets.commonWarning,
                       width: 24,
                       height: 24,
                       colorFilter: const ColorFilter.mode(AppColors.warningColor, BlendMode.srcIn),
@@ -185,7 +185,7 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                     ),
                     child: Center(
                       child: SvgPicture.asset(
-                        AppAssets.iconStar,
+                        AppAssets.commonStar,
                         width: 18,
                         height: 18,
                         colorFilter: const ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn),
@@ -267,28 +267,28 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
     final specs = [
       _SpecData(
         label: AppStrings.specProcessor,
-        iconPath: AppAssets.specProcessor,
+        iconPath: AppAssets.resultCpu,
         iconColor: AppColors.primaryColor,
         title: _result.cpu,
         description: _result.cpuReason,
       ),
       _SpecData(
         label: AppStrings.specMemory,
-        iconPath: AppAssets.specMemory,
+        iconPath: AppAssets.resultMemory,
         iconColor: AppColors.secondaryColor,
         title: '${_result.ram} GB',
         description: _result.ramReason,
       ),
       _SpecData(
         label: AppStrings.specStorage,
-        iconPath: AppAssets.specStorage,
+        iconPath: AppAssets.resultSsd,
         iconColor: AppColors.purpleAccent,
         title: '${_result.storage} GB',
         description: _result.storageReason,
       ),
       _SpecData(
         label: AppStrings.specGraphics,
-        iconPath: AppAssets.specGraphics,
+        iconPath: AppAssets.resultGpu,
         iconColor: AppColors.orangeAccent,
         title: _result.gpu,
         description: _result.gpuReason,
@@ -322,28 +322,28 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
     return Column(
       children: [
         SpecStatusRow(
-          iconPath: AppAssets.specProcessor,
+          iconPath: AppAssets.resultCpu,
           label: AppStrings.specProcessor,
           value: _result.cpu,
           status: _getStatusForCpu(_result.cpu),
           reason: _result.cpuReason,
         ),
         SpecStatusRow(
-          iconPath: AppAssets.specMemory,
+          iconPath: AppAssets.resultMemory,
           label: AppStrings.specMemory,
           value: '${_result.ram} GB',
           status: _getStatusForRam(_result.ram),
           reason: _result.ramReason,
         ),
         SpecStatusRow(
-          iconPath: AppAssets.specStorage,
+          iconPath: AppAssets.resultSsd,
           label: AppStrings.specStorage,
           value: '${_result.storage} GB',
           status: _getStatusForStorage(_result.storage),
           reason: _result.storageReason,
         ),
         SpecStatusRow(
-          iconPath: AppAssets.specGraphics,
+          iconPath: AppAssets.resultGpu,
           label: AppStrings.specGraphics,
           value: _result.gpu,
           status: _getStatusForGpu(_result.gpu),

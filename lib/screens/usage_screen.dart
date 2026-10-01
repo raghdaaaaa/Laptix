@@ -28,7 +28,7 @@ class _UsageScreenState extends State<UsageScreen> {
   static final List<StepOption> _usageOptions = [
     StepOption(
       icon: SvgPicture.asset(
-        AppAssets.usageAndroidDev,
+        AppAssets.usageApp,
         width: 48,
         height: 48,
       ),
@@ -44,7 +44,7 @@ class _UsageScreenState extends State<UsageScreen> {
     ),
     StepOption(
       icon: SvgPicture.asset(
-        AppAssets.usageGraphicDesign,
+        AppAssets.usageGraphic,
         width: 48,
         height: 48,
       ),
@@ -52,7 +52,7 @@ class _UsageScreenState extends State<UsageScreen> {
     ),
     StepOption(
       icon: SvgPicture.asset(
-        AppAssets.usageVideoEditing,
+        AppAssets.usageVideo,
         width: 48,
         height: 48,
       ),
@@ -60,7 +60,7 @@ class _UsageScreenState extends State<UsageScreen> {
     ),
     StepOption(
       icon: SvgPicture.asset(
-        AppAssets.usage3DCAD,
+        AppAssets.usageCad,
         width: 48,
         height: 48,
       ),
@@ -84,7 +84,7 @@ class _UsageScreenState extends State<UsageScreen> {
     ),
     StepOption(
       icon: SvgPicture.asset(
-        AppAssets.usageWebDev,
+        AppAssets.usageWeb,
         width: 48,
         height: 48,
       ),
@@ -92,7 +92,7 @@ class _UsageScreenState extends State<UsageScreen> {
     ),
     StepOption(
       icon: SvgPicture.asset(
-        AppAssets.usageAIML,
+        AppAssets.usageAi,
         width: 48,
         height: 48,
       ),

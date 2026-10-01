@@ -26,13 +26,13 @@ class SpecStatusRow extends StatelessWidget {
   ({String text, Color color, String iconPath}) get _statusStyle {
     switch (status) {
       case SpecStatus.perfect:
-        return (text: AppStrings.statusPerfect, color: AppColors.successColor, iconPath: AppAssets.iconCheckCircle);
+        return (text: AppStrings.statusPerfect, color: AppColors.successColor, iconPath: AppAssets.commonCheckCircle);
       case SpecStatus.optimal:
-        return (text: AppStrings.statusOptimal, color: AppColors.successColor, iconPath: AppAssets.iconCheckCircle);
+        return (text: AppStrings.statusOptimal, color: AppColors.successColor, iconPath: AppAssets.commonCheckCircle);
       case SpecStatus.good:
-        return (text: AppStrings.statusGood, color: AppColors.warningColor, iconPath: AppAssets.iconInfo);
+        return (text: AppStrings.statusGood, color: AppColors.warningColor, iconPath: AppAssets.commonInfo);
       case SpecStatus.poor:
-        return (text: AppStrings.statusPoor, color: AppColors.errorColor, iconPath: AppAssets.iconWarning);
+        return (text: AppStrings.statusPoor, color: AppColors.errorColor, iconPath: AppAssets.commonWarning);
     }
   }
 

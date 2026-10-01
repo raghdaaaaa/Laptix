@@ -160,7 +160,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
             child: Center(
               child: SvgPicture.asset(
-                AppAssets.iconMenu,
+                AppAssets.homeMenu,
                 width: 20,
                 height: 20,
                 colorFilter: const ColorFilter.mode(
@@ -202,7 +202,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
               child: Center(
                 child: SvgPicture.asset(
-                  AppAssets.iconArrowBack,
+                  AppAssets.commonArrowBack,
                   width: 20,
                   height: 20,
                   colorFilter: const ColorFilter.mode(
@@ -259,7 +259,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
               child: Center(
                 child: SvgPicture.asset(
-                  AppAssets.iconArrowBack,
+                  AppAssets.commonArrowBack,
                   width: 20,
                   height: 20,
                   colorFilter: const ColorFilter.mode(
@@ -320,15 +320,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                       ],
                     ),
                     child: Center(
-                      child: SvgPicture.asset(
-                        AppAssets.iconArrowBack,
-                        width: 20,
-                        height: 20,
-                        colorFilter: const ColorFilter.mode(
-                          AppColors.primaryTextColor,
-                          BlendMode.srcIn,
-                        ),
-                      ),
+child: SvgPicture.asset(
+                AppAssets.commonArrowBack,
+                width: 20,
+                height: 20,
+                colorFilter: const ColorFilter.mode(
+                  AppColors.primaryTextColor,
+                  BlendMode.srcIn,
+                ),
+              ),
                     ),
                   ),
                 ),

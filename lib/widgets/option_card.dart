@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:laptix/Core/Constants/app_colors.dart';
+import 'package:laptix/Core/Constants/app_icons.dart';
 
 enum OptionCardVariant { major, usage }
 
@@ -119,8 +120,7 @@ class OptionSelectionCard extends StatelessWidget {
                       color: AppColors.secondaryColor,
                       shape: BoxShape.circle,
                     ),
-                    child: const Icon(
-                      Icons.check,
+                    child: AppIcons.check(
                       size: 12,
                       color: Colors.white,
                     ),

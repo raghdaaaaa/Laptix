@@ -38,7 +38,7 @@ class HomeScreen extends StatelessWidget {
                   bottom: 20,
                   left: -12,
                   child: IconPillBadge(
-                    iconPath: AppAssets.iconStar,
+                    iconPath: AppAssets.commonStar,
                     text: 'Performance',
                     backgroundColor: AppColors.cardColor,
                     foregroundColor: AppColors.charcoal,
@@ -49,7 +49,7 @@ class HomeScreen extends StatelessWidget {
                   top: 30,
                   right: -12,
                   child: IconPillBadge(
-                    iconPath: AppAssets.iconVerified,
+                    iconPath: AppAssets.commonVerified,
                     text: 'Student Life',
                     backgroundColor: AppColors.secondaryColor,
                     foregroundColor: Colors.white,

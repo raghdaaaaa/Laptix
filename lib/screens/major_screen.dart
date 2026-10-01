@@ -23,7 +23,7 @@ class _MajorScreenState extends State<MajorScreen> {
   static final List<StepOption> _majorOptions = [
     StepOption(
       icon: SvgPicture.asset(
-        AppAssets.majorComputerScience,
+        AppAssets.majorCs,
         width: 48,
         height: 48,
       ),
@@ -31,7 +31,7 @@ class _MajorScreenState extends State<MajorScreen> {
     ),
     StepOption(
       icon: SvgPicture.asset(
-        AppAssets.majorEngineering,
+        AppAssets.majorEng,
         width: 48,
         height: 48,
       ),
@@ -39,7 +39,7 @@ class _MajorScreenState extends State<MajorScreen> {
     ),
     StepOption(
       icon: SvgPicture.asset(
-        AppAssets.majorBusiness,
+        AppAssets.majorBis,
         width: 48,
         height: 48,
       ),
@@ -55,7 +55,7 @@ class _MajorScreenState extends State<MajorScreen> {
     ),
     StepOption(
       icon: SvgPicture.asset(
-        AppAssets.majorMedia,
+        AppAssets.majorDesign, // fallback: media.svg missing, use design
         width: 48,
         height: 48,
       ),

@@ -26,4 +26,11 @@ flutter:
 
   assets:
     - assets/images/
-    - assets/images/icons/
+    - assets/images/icons/common/
+    - assets/images/icons/nav/
+    - assets/images/icons/home/
+    - assets/images/icons/major/
+    - assets/images/icons/usage/
+    - assets/images/icons/budget/
+    - assets/images/icons/result/
+    - assets/images/icons/checker/

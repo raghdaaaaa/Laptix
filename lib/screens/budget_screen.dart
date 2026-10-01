@@ -25,7 +25,7 @@ class _BudgetScreenState extends State<BudgetScreen> {
 
   static final List<_BudgetOption> _options = [
     _BudgetOption(
-      iconPath: AppAssets.budgetEntry,
+      iconPath: AppAssets.budgetLow,
       label: AppStrings.budgetEntryLevelTitle,
       price: AppStrings.budgetEntryLevelValue,
     ),
