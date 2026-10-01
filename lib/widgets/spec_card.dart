@@ -26,7 +26,7 @@ class SpecificationCard extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(24),
         border: Border.all(color: AppColors.borderColor, width: 1),
       ),
       child: Column(
@@ -37,14 +37,14 @@ class SpecificationCard extends StatelessWidget {
             width: 44,
             height: 44,
             decoration: BoxDecoration(
-              color: iconColor.withValues(alpha: 0.12),
+              color: iconColor.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Center(
               child: SvgPicture.asset(
                 iconPath,
-                width: 20,
-                height: 20,
+                width: 18,
+                height: 18,
                 colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
               ),
             ),
@@ -55,7 +55,7 @@ class SpecificationCard extends StatelessWidget {
             style: GoogleFonts.inter(
               fontSize: 10,
               fontWeight: FontWeight.w700,
-              letterSpacing: 0.8,
+              letterSpacing: 0.5,
               color: AppColors.secondaryTextColor,
             ),
           ),
@@ -77,8 +77,8 @@ class SpecificationCard extends StatelessWidget {
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: GoogleFonts.inter(
-              fontSize: 12,
-              height: 1.4,
+              fontSize: 10,
+              height: 1.625,
               color: AppColors.secondaryTextColor,
             ),
           ),

@@ -1,14 +1,11 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'package:laptix/widgets/big_result_card.dart';
 import 'package:laptix/widgets/bottom_nav_bar.dart';
-import 'package:laptix/widgets/custom_app_bar.dart';
-import 'package:laptix/widgets/primary_button.dart';
-import 'package:laptix/widgets/secondary_button.dart';
 import 'package:laptix/widgets/spec_card.dart';
-import 'package:laptix/widgets/spec_status_row.dart';
 
 import 'package:laptix/Core/Constants/app_assets.dart';
 import 'package:laptix/Core/Constants/app_strings.dart';
@@ -51,54 +48,63 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
 
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: const CustomAppBar.recommendation(
-        title: '',
-        showBackButton: true,
-      ),
+      appBar: _RecommendationAppBar(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Header
+            // Header Section
             Text(
-              AppStrings.recResultYourMatch,
+              'YOUR MATCH',
               style: GoogleFonts.inter(
-                fontSize: 11,
+                fontSize: 14,
                 fontWeight: FontWeight.w700,
-                letterSpacing: 1,
-                color: AppColors.secondaryColor,
-              ),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              AppStrings.recResultPerfectMatch,
-              style: GoogleFonts.inter(
-                fontSize: 30,
-                fontWeight: FontWeight.w800,
-                color: AppColors.charcoal,
-                letterSpacing: -0.5,
+                letterSpacing: 1.4,
+                color: AppColors.secondaryTextColor,
               ),
             ),
             const SizedBox(height: 8),
-            Text(
-              AppStrings.recResultSubtitle,
-              style: GoogleFonts.inter(
-                fontSize: 16,
-                height: 1.5,
-                color: AppColors.secondaryTextColor,
+            Text.rich(
+              TextSpan(
+                children: [
+                  TextSpan(
+                    text: 'Perfect ',
+                    style: GoogleFonts.inter(
+                      fontSize: 30,
+                      fontWeight: FontWeight.w800,
+                      color: AppColors.charcoal,
+                      letterSpacing: -0.5,
+                    ),
+                  ),
+                  TextSpan(
+                    text: 'Match Found!',
+                    style: GoogleFonts.inter(
+                      fontSize: 30,
+                      fontWeight: FontWeight.w800,
+                      color: AppColors.primaryColor,
+                      letterSpacing: -0.5,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 8),
+            Center(
+              child: Text(
+                AppStrings.recResultSubtitle,
+                style: GoogleFonts.inter(
+                  fontSize: 16,
+                  height: 1.5,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.secondaryTextColor,
+                ),
               ),
             ),
             const SizedBox(height: 32),
 
-            // Big Result Card
-            BigResultCard(
-              iconPath: AppAssets.commonCheckCircle,
-              color: AppColors.successColor,
-              title: Text(AppStrings.recResultPerfectMatchTitle),
-              subtitle: AppStrings.recResultBasedOn,
-              filled: true,
-            ),
+            // Cyan Success Badge
+            _CyanSuccessBadge(),
             const SizedBox(height: 32),
 
             // Specification Cards Grid
@@ -115,117 +121,22 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
             _buildSpecGrid(),
             const SizedBox(height: 32),
 
-            // Budget warning (if applicable)
-            if (_result.budgetWarning != null) ...[
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: AppColors.warningBackgroundColor,
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: AppColors.warningBorderColor),
-                ),
-                child: Row(
-                  children: [
-                    SvgPicture.asset(
-                      AppAssets.commonWarning,
-                      width: 24,
-                      height: 24,
-                      colorFilter: const ColorFilter.mode(AppColors.warningColor, BlendMode.srcIn),
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Text(
-                        _result.budgetWarning!,
-                        style: GoogleFonts.inter(
-                          fontSize: 13,
-                          height: 1.4,
-                          color: AppColors.warningTextColor,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 16),
-            ],
-
             // Why this recommendation section
             Text(
-              AppStrings.recResultWhyTitle,
+              'WHY THIS RECOMMENDATION?',
               style: GoogleFonts.inter(
-                fontSize: 20,
-                fontWeight: FontWeight.w800,
+                fontSize: 12,
+                fontWeight: FontWeight.w900,
+                letterSpacing: 2.4,
                 color: AppColors.charcoal,
-                letterSpacing: -0.3,
               ),
             ),
             const SizedBox(height: 16),
-            _buildWhySection(),
-            const SizedBox(height: 32),
-
-            // Expert Tip
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: AppColors.primaryColor.withValues(alpha: 0.05),
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: AppColors.primaryColor.withValues(alpha: 0.1)),
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: 36,
-                    height: 36,
-                    decoration: BoxDecoration(
-                      color: AppColors.primaryColor.withValues(alpha: 0.12),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Center(
-                      child: SvgPicture.asset(
-                        AppAssets.commonStar,
-                        width: 18,
-                        height: 18,
-                        colorFilter: const ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 14),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          AppStrings.expertTipTitle,
-                          style: GoogleFonts.inter(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                            letterSpacing: 0.8,
-                            color: AppColors.primaryColor,
-                          ),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          AppStrings.expertTipContent,
-                          style: GoogleFonts.inter(
-                            fontSize: 14,
-                            height: 1.5,
-                            color: AppColors.primaryTextColor,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            _WhyRecommendationCard(result: _result, profile: widget.profile),
             const SizedBox(height: 32),
 
             // Action Buttons
-            PrimaryButton(
-              text: AppStrings.recResultFindLaptops,
+            _PrimaryActionButton(
               onTap: () => Navigator.pushNamedAndRemoveUntil(
                 context,
                 AppRoutes.home,
@@ -233,8 +144,7 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
               ),
             ),
             const SizedBox(height: 16),
-            SecondaryButton(
-              text: AppStrings.btnStartOver,
+            _SecondaryActionButton(
               onTap: () => Navigator.pushNamedAndRemoveUntil(
                 context,
                 AppRoutes.major,
@@ -282,14 +192,14 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
       _SpecData(
         label: AppStrings.specStorage,
         iconPath: AppAssets.resultSsd,
-        iconColor: AppColors.purpleAccent,
+        iconColor: AppColors.orangeAccent,
         title: '${_result.storage} GB',
         description: _result.storageReason,
       ),
       _SpecData(
         label: AppStrings.specGraphics,
         iconPath: AppAssets.resultGpu,
-        iconColor: AppColors.orangeAccent,
+        iconColor: AppColors.indigoAccent,
         title: _result.gpu,
         description: _result.gpuReason,
       ),
@@ -317,74 +227,295 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
       },
     );
   }
+}
 
-  Widget _buildWhySection() {
-    return Column(
-      children: [
-        SpecStatusRow(
-          iconPath: AppAssets.resultCpu,
-          label: AppStrings.specProcessor,
-          value: _result.cpu,
-          status: _getStatusForCpu(_result.cpu),
-          reason: _result.cpuReason,
-        ),
-        SpecStatusRow(
-          iconPath: AppAssets.resultMemory,
-          label: AppStrings.specMemory,
-          value: '${_result.ram} GB',
-          status: _getStatusForRam(_result.ram),
-          reason: _result.ramReason,
-        ),
-        SpecStatusRow(
-          iconPath: AppAssets.resultSsd,
-          label: AppStrings.specStorage,
-          value: '${_result.storage} GB',
-          status: _getStatusForStorage(_result.storage),
-          reason: _result.storageReason,
-        ),
-        SpecStatusRow(
-          iconPath: AppAssets.resultGpu,
-          label: AppStrings.specGraphics,
-          value: _result.gpu,
-          status: _getStatusForGpu(_result.gpu),
-          reason: _result.gpuReason,
-        ),
-      ],
+class _RecommendationAppBar extends StatelessWidget implements PreferredSizeWidget {
+  @override
+  Size get preferredSize => const Size.fromHeight(64);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 64,
+      color: Colors.white.withValues(alpha: 0.8),
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+              child: Container(color: Colors.transparent),
+            ),
+          ),
+          SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  // Back button
+                  InkWell(
+                    onTap: () => Navigator.of(context).maybePop(),
+                    customBorder: const CircleBorder(),
+                    child: Container(
+                      width: 44,
+                      height: 44,
+                      decoration: BoxDecoration(
+                        color: AppColors.cardColor,
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors.shadowColorBlack,
+                            blurRadius: 8,
+                          ),
+                        ],
+                      ),
+                      child: Center(
+                        child: SvgPicture.asset(
+                          AppAssets.commonArrowBack,
+                          width: 20,
+                          height: 20,
+                          colorFilter: const ColorFilter.mode(
+                            AppColors.primaryTextColor,
+                            BlendMode.srcIn,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  // Title
+                  Text(
+                    'Your Match',
+                    style: GoogleFonts.urbanist(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w800,
+                      color: AppColors.charcoal,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
+}
 
-  SpecStatus _getStatusForCpu(String cpu) {
-    switch (cpu) {
-      case 'High':
-        return SpecStatus.perfect;
-      case 'Medium':
-        return SpecStatus.optimal;
-      default:
-        return SpecStatus.good;
+class _CyanSuccessBadge extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        width: 80,
+        height: 80,
+        decoration: BoxDecoration(
+          color: AppColors.secondaryColor,
+          borderRadius: BorderRadius.circular(24),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.secondaryColor.withValues(alpha: 0.3),
+              offset: const Offset(0, 8),
+              blurRadius: 16,
+              spreadRadius: -4,
+            ),
+            BoxShadow(
+              color: AppColors.secondaryColor.withValues(alpha: 0.2),
+              offset: const Offset(0, 4),
+              blurRadius: 8,
+              spreadRadius: -2,
+            ),
+          ],
+        ),
+        child: Center(
+          child: SvgPicture.asset(
+            AppAssets.commonCheckCircle,
+            width: 36,
+            height: 36,
+            colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _WhyRecommendationCard extends StatelessWidget {
+  final RecommendationResult result;
+  final StudentProfile profile;
+
+  const _WhyRecommendationCard({
+    required this.result,
+    required this.profile,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final reasons = <String>[];
+
+    if (profile.usages.isNotEmpty) {
+      final usageNames = profile.usages.join(', ');
+      reasons.add('Based on your interest in $usageNames, we recommend specs that balance performance for your workloads.');
+    } else {
+      reasons.add('Based on your selections, we recommend specs that match your needs.');
     }
-  }
 
-  SpecStatus _getStatusForRam(int ram) {
-    if (ram >= 32) return SpecStatus.perfect;
-    if (ram >= 16) return SpecStatus.optimal;
-    return SpecStatus.good;
-  }
-
-  SpecStatus _getStatusForStorage(int storage) {
-    if (storage >= 1024) return SpecStatus.perfect;
-    if (storage >= 512) return SpecStatus.optimal;
-    return SpecStatus.good;
-  }
-
-  SpecStatus _getStatusForGpu(String gpu) {
-    switch (gpu) {
-      case 'Dedicated':
-        return SpecStatus.perfect;
-      case 'Entry-level Dedicated':
-        return SpecStatus.optimal;
-      default:
-        return SpecStatus.good;
+    if (result.ram >= 32) {
+      reasons.add('32 GB RAM handles heavy multitasking and large datasets smoothly.');
+    } else if (result.ram >= 16) {
+      reasons.add('16 GB RAM provides smooth multitasking for development and creative work.');
     }
+
+    if (result.gpu == 'Dedicated') {
+      reasons.add('A dedicated GPU is essential for graphics-intensive tasks like 3D rendering and video editing.');
+    } else if (result.gpu == 'Entry-level Dedicated') {
+      reasons.add('An entry-level dedicated GPU handles light creative work and external displays.');
+    }
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(24),
+      decoration: BoxDecoration(
+        color: AppColors.primaryColor.withValues(alpha: 0.05),
+        borderRadius: BorderRadius.circular(40),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.shadowColorPrimary,
+            offset: const Offset(0, 8),
+            blurRadius: 20,
+            spreadRadius: -4,
+          ),
+          BoxShadow(
+            color: AppColors.shadowColorPrimaryMedium,
+            offset: const Offset(0, 20),
+            blurRadius: 25,
+            spreadRadius: -5,
+          ),
+        ],
+      ),
+      child: Text(
+        reasons.join(' '),
+        style: GoogleFonts.inter(
+          fontSize: 16,
+          height: 1.625,
+          fontWeight: FontWeight.w600,
+          color: AppColors.charcoal,
+        ),
+      ),
+    );
+  }
+}
+
+class _PrimaryActionButton extends StatelessWidget {
+  final VoidCallback onTap;
+
+  const _PrimaryActionButton({required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      height: 64,
+      child: ElevatedButton(
+        onPressed: onTap,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.primaryColor,
+          foregroundColor: Colors.white,
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          shadowColor: Colors.transparent,
+        ).copyWith(
+          elevation: const WidgetStatePropertyAll(0),
+        ),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.shadowColorPrimary,
+                offset: const Offset(0, 8),
+                blurRadius: 10,
+                spreadRadius: -6,
+              ),
+              BoxShadow(
+                color: AppColors.shadowColorPrimaryMedium,
+                offset: const Offset(0, 20),
+                blurRadius: 25,
+                spreadRadius: -5,
+              ),
+            ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'CHECK A LAPTOP',
+                style: GoogleFonts.inter(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white,
+                ),
+              ),
+              const SizedBox(width: 12),
+              SvgPicture.asset(
+                AppAssets.commonChevronRight,
+                width: 18,
+                height: 18,
+                colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _SecondaryActionButton extends StatelessWidget {
+  final VoidCallback onTap;
+
+  const _SecondaryActionButton({required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      height: 44,
+      child: TextButton(
+        onPressed: onTap,
+        style: TextButton.styleFrom(
+          backgroundColor: Colors.transparent,
+          foregroundColor: AppColors.secondaryTextColor,
+          padding: EdgeInsets.zero,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SvgPicture.asset(
+              AppAssets.commonChevronLeft,
+              width: 18,
+              height: 18,
+              colorFilter: const ColorFilter.mode(AppColors.secondaryTextColor, BlendMode.srcIn),
+            ),
+            const SizedBox(width: 8),
+            Text(
+              'START OVER',
+              style: GoogleFonts.inter(
+                fontSize: 14,
+                fontWeight: FontWeight.w700,
+                color: AppColors.secondaryTextColor,
+                letterSpacing: 1.4,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 
