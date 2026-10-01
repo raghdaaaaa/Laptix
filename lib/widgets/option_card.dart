@@ -31,6 +31,9 @@ class OptionSelectionCard extends StatelessWidget {
     final checkSize = isMajor ? 56.0 : 28.0;
     final checkInnerSize = isMajor ? 50.0 : 22.0;
     final checkIconSize = isMajor ? 24.0 : 12.0;
+    final selectedBorder = !isMajor && isSelected
+        ? Border.all(color: AppColors.primaryColor, width: 2)
+        : null;
 
     return GestureDetector(
       onTap: onTap,
@@ -48,9 +51,7 @@ class OptionSelectionCard extends StatelessWidget {
             decoration: BoxDecoration(
               color: isSelected ? AppColors.primaryColor : AppColors.cardColor,
               borderRadius: BorderRadius.circular(cardRadius),
-              border: isSelected
-                  ? null
-                  : Border.all(color: AppColors.borderColor, width: 1.5),
+              border: isSelected ? selectedBorder : Border.all(color: AppColors.borderColor, width: 1.5),
               boxShadow: isSelected
                   ? [
                       BoxShadow(

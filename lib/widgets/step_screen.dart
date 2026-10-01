@@ -24,7 +24,8 @@ class StepScreen extends StatefulWidget {
   final List<StepOption> options;
   final VoidCallback? onContinue;
   final int columns;
-  final double cardHeight;
+  final double? cardHeight;
+  final double horizontalGap;
   final String continueText;
   final ValueChanged<int>? onSelectionChanged;
   final OptionCardVariant variant;
@@ -40,7 +41,8 @@ class StepScreen extends StatefulWidget {
     required this.options,
     this.onContinue,
     this.columns = 2,
-    this.cardHeight = 180,
+    this.cardHeight,
+    this.horizontalGap = 8,
     this.continueText = 'Continue',
     this.onSelectionChanged,
     this.variant = OptionCardVariant.major,
@@ -67,31 +69,34 @@ class _StepScreenState extends State<StepScreen> {
         final endIdx = (startIdx + widget.columns).clamp(0, widget.options.length);
         final rowOptions = widget.options.sublist(startIdx, endIdx);
 
+        Widget row = Row(
+          children: rowOptions.asMap().entries.map((entry) {
+            final idx = startIdx + entry.key;
+            final option = entry.value;
+            final badge = widget.badgeBuilder?.call(idx) ?? option.badge;
+            return Expanded(
+              child: Padding(
+                padding: EdgeInsets.only(right: entry.key < rowOptions.length - 1 ? widget.horizontalGap : 0),
+                child: OptionSelectionCard(
+                  icon: option.icon,
+                  label: option.label,
+                  isSelected: _selectedIndex == idx,
+                  onTap: () => _select(idx),
+                  variant: widget.variant,
+                  badge: badge,
+                ),
+              ),
+            );
+          }).toList(),
+        );
+
+        if (widget.cardHeight != null) {
+          row = SizedBox(height: widget.cardHeight, child: row);
+        }
+
         return Padding(
           padding: EdgeInsets.only(bottom: rowIndex < rows - 1 ? 16 : 0),
-          child: SizedBox(
-            height: widget.cardHeight,
-            child: Row(
-              children: rowOptions.asMap().entries.map((entry) {
-                final idx = startIdx + entry.key;
-                final option = entry.value;
-                final badge = widget.badgeBuilder?.call(idx) ?? option.badge;
-                return Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.only(right: entry.key < rowOptions.length - 1 ? 8 : 0),
-                    child: OptionSelectionCard(
-                      icon: option.icon,
-                      label: option.label,
-                      isSelected: _selectedIndex == idx,
-                      onTap: () => _select(idx),
-                      variant: widget.variant,
-                      badge: badge,
-                    ),
-                  ),
-                );
-              }).toList(),
-            ),
-          ),
+          child: row,
         );
       }),
     );

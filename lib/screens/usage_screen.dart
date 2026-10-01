@@ -134,8 +134,9 @@ class _UsageScreenState extends State<UsageScreen> {
                 ),
               ),
       onSelectionChanged: _onSelectionChanged,
-      cardHeight: 160,
-      columns: 3,
+      cardHeight: null,
+      columns: 2,
+      horizontalGap: 12,
       variant: OptionCardVariant.usage,
     );
   }
