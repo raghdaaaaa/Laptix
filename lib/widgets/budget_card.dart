@@ -34,7 +34,7 @@ class BudgetOptionCard extends StatelessWidget {
             padding: const EdgeInsets.all(24),
             decoration: BoxDecoration(
               color: isSelected ? AppColors.primaryColor : AppColors.cardColor,
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(32),
               boxShadow: isSelected
                   ? [
                       BoxShadow(
@@ -52,15 +52,15 @@ class BudgetOptionCard extends StatelessWidget {
                     ]
                   : [
                       BoxShadow(
-                        color: AppColors.shadowColorBlack,
-                        offset: const Offset(0, 4),
-                        blurRadius: 12,
-                        spreadRadius: -2,
+                        color: AppColors.shadowColorBlack.withValues(alpha: 0.05),
+                        offset: const Offset(0, 1),
+                        blurRadius: 2,
+                        spreadRadius: 0,
                       ),
                     ],
-              border: !isSelected
-                  ? Border.all(color: AppColors.borderColor, width: 1)
-                  : null,
+              border: isSelected
+                  ? Border.all(color: AppColors.primaryColor, width: 2)
+                  : Border.all(color: AppColors.borderColor, width: 1),
             ),
             child: Row(
               children: [
@@ -97,7 +97,7 @@ class BudgetOptionCard extends StatelessWidget {
                           fontWeight: FontWeight.w700,
                           letterSpacing: 1,
                           color: isSelected
-                              ? AppColors.secondaryColor
+                              ? AppColors.secondaryColor.withValues(alpha: 0.8)
                               : AppColors.primaryColor.withValues(alpha: 0.6),
                         ),
                       ),
@@ -114,8 +114,8 @@ class BudgetOptionCard extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  width: 28,
-                  height: 28,
+                  width: 24,
+                  height: 24,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: isSelected ? AppColors.secondaryColor : Colors.transparent,
@@ -124,7 +124,7 @@ class BudgetOptionCard extends StatelessWidget {
                         : Border.all(color: AppColors.borderColor, width: 2),
                   ),
                   child: isSelected
-                      ? Center(child: AppIcons.check(color: Colors.white, size: 18))
+                      ? Center(child: AppIcons.check(color: Colors.white, size: 16))
                       : null,
                 ),
               ],
@@ -132,8 +132,8 @@ class BudgetOptionCard extends StatelessWidget {
           ),
           if (badge != null)
             Positioned(
-              top: -12,
-              right: 24,
+              top: -8,
+              right: 16,
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                 decoration: BoxDecoration(

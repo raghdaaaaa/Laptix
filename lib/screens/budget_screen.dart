@@ -71,6 +71,7 @@ class _BudgetScreenState extends State<BudgetScreen> {
                 ),
               ),
       continueText: AppStrings.btnShowRecommendations,
+      continueButtonHeight: 64,
       content: Column(
         children: List.generate(_options.length, (index) {
           final option = _options[index];

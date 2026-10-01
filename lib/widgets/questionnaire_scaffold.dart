@@ -17,6 +17,7 @@ class QuestionnaireScaffold extends StatelessWidget {
   final Widget content;
   final VoidCallback? onContinue;
   final String continueText;
+  final double continueButtonHeight;
 
   const QuestionnaireScaffold({
     super.key,
@@ -28,6 +29,7 @@ class QuestionnaireScaffold extends StatelessWidget {
     required this.content,
     this.onContinue,
     this.continueText = 'Continue',
+    this.continueButtonHeight = 68,
   });
 
   Widget _stepDot({required bool isActive}) {
@@ -116,16 +118,16 @@ class QuestionnaireScaffold extends StatelessWidget {
                     child: content,
                   ),
                   const SizedBox(height: 36),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
-                    child: PrimaryButton(
-                      text: continueText,
-                      onTap: onContinue,
-                      height: 68,
-                      trailingIconSize: 17,
-                      trailingIconColor: Colors.white.withValues(alpha: 0.7),
+Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      child: PrimaryButton(
+                        text: continueText,
+                        onTap: onContinue,
+                        height: continueButtonHeight,
+                        trailingIconSize: 17,
+                        trailingIconColor: Colors.white.withValues(alpha: 0.7),
+                      ),
                     ),
-                  ),
                   const SizedBox(height: 24),
                 ],
               ),
