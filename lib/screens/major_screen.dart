@@ -28,6 +28,7 @@ class _MajorScreenState extends State<MajorScreen> {
         height: 48,
       ),
       label: AppStrings.majorComputerScience,
+      badge: 'Most Popular',
     ),
     StepOption(
       icon: SvgPicture.asset(
@@ -98,7 +99,7 @@ class _MajorScreenState extends State<MajorScreen> {
                 ),
               ),
       onSelectionChanged: _onSelectionChanged,
-      cardHeight: 180,
+      cardHeight: 172,
       variant: OptionCardVariant.major,
     );
   }

@@ -11,6 +11,7 @@ class OptionSelectionCard extends StatelessWidget {
   final bool isSelected;
   final VoidCallback? onTap;
   final OptionCardVariant variant;
+  final String? badge;
 
   const OptionSelectionCard({
     super.key,
@@ -19,11 +20,17 @@ class OptionSelectionCard extends StatelessWidget {
     required this.isSelected,
     required this.onTap,
     this.variant = OptionCardVariant.major,
+    this.badge,
   });
 
   @override
   Widget build(BuildContext context) {
     final isMajor = variant == OptionCardVariant.major;
+    final cardRadius = isMajor ? 24.0 : 40.0;
+    final overlayOpacity = isMajor ? 0.10 : 0.15;
+    final checkSize = isMajor ? 56.0 : 28.0;
+    final checkInnerSize = isMajor ? 50.0 : 22.0;
+    final checkIconSize = isMajor ? 24.0 : 12.0;
 
     return GestureDetector(
       onTap: onTap,
@@ -40,7 +47,7 @@ class OptionSelectionCard extends StatelessWidget {
             ),
             decoration: BoxDecoration(
               color: isSelected ? AppColors.primaryColor : AppColors.cardColor,
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(cardRadius),
               border: isSelected
                   ? null
                   : Border.all(color: AppColors.borderColor, width: 1.5),
@@ -70,7 +77,7 @@ class OptionSelectionCard extends StatelessWidget {
                   height: isMajor ? 56 : 48,
                   decoration: BoxDecoration(
                     color: isSelected
-                        ? Colors.white.withValues(alpha: 0.15)
+                        ? Colors.white.withValues(alpha: overlayOpacity)
                         : AppColors.backgroundColor,
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -106,24 +113,45 @@ class OptionSelectionCard extends StatelessWidget {
               top: -8,
               right: -8,
               child: Container(
-                width: 28,
-                height: 28,
+                width: checkSize,
+                height: checkSize,
                 decoration: const BoxDecoration(
                   color: AppColors.backgroundColor,
                   shape: BoxShape.circle,
                 ),
                 child: Center(
                   child: Container(
-                    width: 22,
-                    height: 22,
+                    width: checkInnerSize,
+                    height: checkInnerSize,
                     decoration: const BoxDecoration(
                       color: AppColors.secondaryColor,
                       shape: BoxShape.circle,
                     ),
                     child: AppIcons.check(
-                      size: 12,
+                      size: checkIconSize,
                       color: Colors.white,
                     ),
+                  ),
+                ),
+              ),
+            ),
+          if (isMajor && badge != null)
+            Positioned(
+              top: -12,
+              right: 16,
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                decoration: BoxDecoration(
+                  color: AppColors.secondaryColor,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Text(
+                  badge!,
+                  style: GoogleFonts.inter(
+                    fontSize: 10,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                    letterSpacing: 0.5,
                   ),
                 ),
               ),

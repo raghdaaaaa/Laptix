@@ -6,10 +6,12 @@ import 'package:laptix/widgets/questionnaire_scaffold.dart';
 class StepOption {
   final Widget icon;
   final String label;
+  final String? badge;
 
   const StepOption({
     required this.icon,
     required this.label,
+    this.badge,
   });
 }
 
@@ -26,6 +28,7 @@ class StepScreen extends StatefulWidget {
   final String continueText;
   final ValueChanged<int>? onSelectionChanged;
   final OptionCardVariant variant;
+  final String? Function(int index)? badgeBuilder;
 
   const StepScreen({
     super.key,
@@ -41,6 +44,7 @@ class StepScreen extends StatefulWidget {
     this.continueText = 'Continue',
     this.onSelectionChanged,
     this.variant = OptionCardVariant.major,
+    this.badgeBuilder,
   });
 
   @override
@@ -71,6 +75,7 @@ class _StepScreenState extends State<StepScreen> {
               children: rowOptions.asMap().entries.map((entry) {
                 final idx = startIdx + entry.key;
                 final option = entry.value;
+                final badge = widget.badgeBuilder?.call(idx) ?? option.badge;
                 return Expanded(
                   child: Padding(
                     padding: EdgeInsets.only(right: entry.key < rowOptions.length - 1 ? 8 : 0),
@@ -80,6 +85,7 @@ class _StepScreenState extends State<StepScreen> {
                       isSelected: _selectedIndex == idx,
                       onTap: () => _select(idx),
                       variant: widget.variant,
+                      badge: badge,
                     ),
                   ),
                 );
