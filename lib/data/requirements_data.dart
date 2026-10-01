@@ -71,3 +71,73 @@ final Map<String, LaptopRequirements> requirements = {
     gpu: 'Dedicated',
   ),
 };
+
+// Major minimum requirements (used as baseline before applying usage requirements)
+// Keys must match AppStrings.major* exactly.
+final Map<String, LaptopRequirements> majorMinimums = {
+  'Computer Science': LaptopRequirements(
+    cpu: 'Medium',
+    ram: 16,
+    storage: 512,
+    gpu: 'Integrated',
+  ),
+  'Engineering': LaptopRequirements(
+    cpu: 'Medium',
+    ram: 16,
+    storage: 512,
+    gpu: 'Integrated',
+  ),
+  'Business': LaptopRequirements(
+    cpu: 'Basic',
+    ram: 8,
+    storage: 256,
+    gpu: 'Integrated',
+  ),
+  'Design': LaptopRequirements(
+    cpu: 'Medium',
+    ram: 16,
+    storage: 512,
+    gpu: 'Entry-level Dedicated',
+  ),
+  'Media': LaptopRequirements(
+    cpu: 'Medium',
+    ram: 16,
+    storage: 512,
+    gpu: 'Entry-level Dedicated',
+  ),
+  'Other': LaptopRequirements(
+    cpu: 'Basic',
+    ram: 8,
+    storage: 256,
+    gpu: 'Integrated',
+  ),
+};
+
+// Budget caps (maximum specs allowed per budget tier)
+// Keys must match AppStrings.budget*Value exactly.
+final Map<String, LaptopRequirements> budgetCaps = {
+  'Under \$800': LaptopRequirements(
+    cpu: 'Medium',
+    ram: 16,
+    storage: 512,
+    gpu: 'Integrated',
+  ),
+  '\$800 - \$1,200': LaptopRequirements(
+    cpu: 'Medium',
+    ram: 16,
+    storage: 512,
+    gpu: 'Entry-level Dedicated',
+  ),
+  '\$1,200 - \$1,800': LaptopRequirements(
+    cpu: 'High',
+    ram: 32,
+    storage: 1024,
+    gpu: 'Dedicated',
+  ),
+  '\$1,800+': LaptopRequirements(
+    cpu: 'High',
+    ram: 32,
+    storage: 1024,
+    gpu: 'Dedicated',
+  ),
+};
