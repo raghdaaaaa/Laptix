@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:laptix/widgets/custom_app_bar.dart';
-import 'package:laptix/widgets/laptop_placeholder.dart';
-import 'package:laptix/widgets/icon_pill_badge.dart';
-import 'package:laptix/widgets/primary_button.dart';
-import 'package:laptix/widgets/secondary_button.dart';
+import 'package:laptix/widgets/custom_app_bar.dart'; //done
+import 'package:laptix/widgets/laptop_placeholder.dart'; //done
+import 'package:laptix/widgets/icon_pill_badge.dart'; //done
+import 'package:laptix/widgets/primary_button.dart';  //done
+import 'package:laptix/widgets/secondary_button.dart';  //done
 import 'package:laptix/widgets/bottom_nav_bar.dart';
 
 import 'package:laptix/Core/Constants/app_assets.dart';
@@ -20,19 +20,23 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
+      // App Bar
       appBar: const CustomAppBar.home(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(top: 24, left: 24, right: 24, bottom: 120),
         child: Column(
           children: [
+            // Welcome Header
             _WelcomeHeader(),
             const SizedBox(height: 40),
+            // Laptop Image Placeholder
             LaptopImagePlaceholder(
               imagePath: AppAssets.laptopHero,
               badges: [
+                // Icon Pill Badges
                 Positioned(
-                  bottom: -8,
-                  left: -12,
+                  bottom: -30,
+                  left: -20,
                   child: IconPillBadge(
                     iconPath: AppAssets.commonStar,
                     text: 'Performance',
@@ -42,8 +46,8 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  top: -8,
-                  right: -12,
+                  top: 10,
+                  right: -20,
                   child: IconPillBadge(
                     iconPath: AppAssets.commonVerified,
                     text: 'Student Life',

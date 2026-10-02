@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:laptix/widgets/app_bar_button.dart';
 import 'package:laptix/widgets/primary_button.dart';
-import 'package:laptix/widgets/progress_header.dart';
+import 'package:laptix/widgets/step_header.dart';
 
 import 'package:laptix/Core/Constants/app_colors.dart';
 import 'package:laptix/Core/Constants/app_icons.dart';

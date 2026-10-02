@@ -13,7 +13,9 @@ class LaptopCheckerService {
   //   AND storage >= requiredStorage AND gpuLevel >= requiredGpuLevel
   // - Suitability level: high if all usages matched, moderate if >= half matched, limited otherwise.
   // - Reason texts based on selected spec tiers.
-  // - Status (perfect/optimal/good) compares selected tier against maximum required across all usages.
+  // - Status (perfect/optimal/good):
+  //   * CPU/GPU: compare level against max required level
+  //   * RAM/Storage: compare actual GB values against max required GB
 
   CheckerResult check({
     required String cpu,
@@ -27,8 +29,6 @@ class LaptopCheckerService {
     List<String> notSuitableFor = [];
 
     final cpuLevel = RecommendationEngine.cpuLevel(cpu);
-    final ramLevel = _ramLevel(ram);
-    final storageLevel = _storageLevel(storage);
     final gpuLevel = RecommendationEngine.gpuLevel(gpu);
 
     for (final entry in requirements.entries) {
@@ -54,12 +54,12 @@ class LaptopCheckerService {
             ? SuitabilityLevel.moderate
             : SuitabilityLevel.limited);
 
-    int maxReqCpu = 1, maxReqRam = 1, maxReqStorage = 1, maxReqGpu = 1;
+    int maxReqCpu = 1, maxReqRam = 0, maxReqStorage = 0, maxReqGpu = 1;
     for (final entry in requirements.entries) {
       final req = entry.value;
       maxReqCpu = max(maxReqCpu, RecommendationEngine.cpuLevel(req.cpu));
-      maxReqRam = max(maxReqRam, _ramLevel(req.ram));
-      maxReqStorage = max(maxReqStorage, _storageLevel(req.storage));
+      maxReqRam = max(maxReqRam, req.ram);
+      maxReqStorage = max(maxReqStorage, req.storage);
       maxReqGpu = max(maxReqGpu, RecommendationEngine.gpuLevel(req.gpu));
     }
 
@@ -80,22 +80,10 @@ class LaptopCheckerService {
       storageReason: _getStorageReason(storage),
       gpuReason: _getGpuReason(gpu),
       cpuStatus: specStatusFn(cpuLevel, maxReqCpu),
-      ramStatus: specStatusFn(ramLevel, maxReqRam),
-      storageStatus: specStatusFn(storageLevel, maxReqStorage),
+      ramStatus: specStatusFn(ram, maxReqRam),
+      storageStatus: specStatusFn(storage, maxReqStorage),
       gpuStatus: specStatusFn(gpuLevel, maxReqGpu),
     );
-  }
-
-  static int _ramLevel(int ram) {
-    if (ram >= 32) return 3;
-    if (ram >= 16) return 2;
-    return 1;
-  }
-
-  static int _storageLevel(int storage) {
-    if (storage >= 1024) return 3;
-    if (storage >= 512) return 2;
-    return 1;
   }
 
   String _getCpuReason(String cpu) {

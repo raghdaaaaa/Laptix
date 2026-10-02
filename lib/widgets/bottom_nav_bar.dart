@@ -21,13 +21,13 @@ class CustomBottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
+      padding: const EdgeInsets.all(25),
       child: Container(
-        height: 88,
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        height: 80,
+        padding: const EdgeInsets.symmetric(horizontal: 30),
         decoration: BoxDecoration(
           color: AppColors.cardColor,
-          borderRadius: BorderRadius.circular(44),
+          borderRadius: BorderRadius.circular(35),
           boxShadow: [
             BoxShadow(
               color: AppColors.shadowColorBlackMedium,
@@ -45,21 +45,27 @@ class CustomBottomNavBar extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _NavIcon(
-              assetPath: AppAssets.navHome,
-              activeAssetPath: AppAssets.navHome,
-              label: AppStrings.navHome,
-              isActive: currentIndex == 0,
-              onTap: () => onTap(0),
-            ),
-            _NavIcon(
-              assetPath: AppAssets.navChecker,
-              activeAssetPath: AppAssets.navChecker,
-              label: AppStrings.navChecker,
-              isActive: currentIndex == 1,
-              onTap: () => onTap(1),
+            SizedBox(
+              width: 60,
+              child: _NavIcon(
+                assetPath: AppAssets.navHome,
+                activeAssetPath: AppAssets.navHome,
+                label: AppStrings.navHome,
+                isActive: currentIndex == 0,
+                onTap: () => onTap(0),
+              ),
             ),
             _CenterButton(onTap: onCenterTap),
+            SizedBox(
+              width: 60,
+              child: _NavIcon(
+                assetPath: AppAssets.navChecker,
+                activeAssetPath: AppAssets.navChecker,
+                label: AppStrings.navChecker,
+                isActive: currentIndex == 1,
+                onTap: () => onTap(1),
+              ),
+            ),
           ],
         ),
       ),
@@ -86,16 +92,16 @@ class _NavIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: BorderRadius.circular(10),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 4),
+        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 4),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             SvgPicture.asset(
               isActive ? activeAssetPath : assetPath,
-              width: 24,
-              height: 24,
+              width: 22,
+              height: 22,
               colorFilter: ColorFilter.mode(
                 isActive ? AppColors.primaryColor : AppColors.hintTextColor,
                 BlendMode.srcIn,
@@ -106,7 +112,7 @@ class _NavIcon extends StatelessWidget {
               label,
               style: GoogleFonts.urbanist(
                 fontSize: 10,
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.w700,
                 color: isActive ? AppColors.primaryColor : AppColors.hintTextColor,
                 letterSpacing: 0.3,
               ),
@@ -126,13 +132,13 @@ class _CenterButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      customBorder: const CircleBorder(),
+      borderRadius: BorderRadius.circular(1),
       child: Container(
-        width: 56,
-        height: 56,
+        width: 50,
+        height: 50,
         decoration: BoxDecoration(
           color: AppColors.primaryColor,
-          shape: BoxShape.circle,
+          borderRadius: BorderRadius.circular(15),
           boxShadow: [
             BoxShadow(
               color: AppColors.shadowColorPrimary,

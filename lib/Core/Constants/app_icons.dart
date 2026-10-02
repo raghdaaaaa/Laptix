@@ -65,7 +65,6 @@ class AppIcons {
   // NAVIGATION ICONS (Monochrome - colorizable)
   // ==========================================
   // NOTE: navHomeActive, navCheckerActive are MISSING from disk
-  // NOTE: nav/explore.svg and nav/profile.svg exist on disk for upcoming Bottom Navigation task
 
   // ==========================================
   // HOME SCREEN ICONS

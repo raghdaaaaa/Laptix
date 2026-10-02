@@ -29,72 +29,72 @@ class _UsageScreenState extends State<UsageScreen> {
     StepOption(
       icon: SvgPicture.asset(
         AppAssets.usageApp,
-        width: 48,
-        height: 48,
+        width: 30,
+        height: 30,
       ),
       label: AppStrings.usageAndroidDev,
     ),
     StepOption(
       icon: SvgPicture.asset(
         AppAssets.usageGaming,
-        width: 48,
-        height: 48,
+        width: 30,
+        height: 30,
       ),
       label: AppStrings.usageGaming,
     ),
     StepOption(
       icon: SvgPicture.asset(
         AppAssets.usageGraphic,
-        width: 48,
-        height: 48,
+        width: 30,
+        height: 30,
       ),
       label: AppStrings.usageGraphicDesign,
     ),
     StepOption(
       icon: SvgPicture.asset(
         AppAssets.usageVideo,
-        width: 48,
-        height: 48,
+        width: 30,
+        height: 30,
       ),
       label: AppStrings.usageVideoEditing,
     ),
     StepOption(
       icon: SvgPicture.asset(
         AppAssets.usageCad,
-        width: 48,
-        height: 48,
+        width: 30,
+        height: 30,
       ),
       label: AppStrings.usage3DCAD,
     ),
     StepOption(
       icon: SvgPicture.asset(
         AppAssets.usageStudy,
-        width: 48,
-        height: 48,
+        width: 30,
+        height: 30,
       ),
       label: AppStrings.usageStudy,
     ),
     StepOption(
       icon: SvgPicture.asset(
         AppAssets.usageProgramming,
-        width: 48,
-        height: 48,
+        width: 30,
+        height: 30,
       ),
       label: AppStrings.usageProgramming,
     ),
     StepOption(
       icon: SvgPicture.asset(
         AppAssets.usageWeb,
-        width: 48,
-        height: 48,
+        width: 30,
+        height: 30,
       ),
       label: AppStrings.usageWebDev,
     ),
     StepOption(
       icon: SvgPicture.asset(
         AppAssets.usageAi,
-        width: 48,
-        height: 48,
+        width: 30,
+        height: 30,
       ),
       label: AppStrings.usageAIML,
     ),

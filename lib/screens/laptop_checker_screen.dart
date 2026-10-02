@@ -7,7 +7,7 @@ import 'package:laptix/widgets/checker_app_bar.dart';
 import 'package:laptix/widgets/checker_analysis_row.dart';
 import 'package:laptix/widgets/expert_tip_card.dart';
 import 'package:laptix/widgets/checker_verdict_card.dart';
-import 'package:laptix/widgets/status_card.dart';
+import 'package:laptix/widgets/labeled_dropdown.dart';
 
 import 'package:laptix/Core/Constants/app_assets.dart';
 import 'package:laptix/Core/Constants/app_strings.dart';

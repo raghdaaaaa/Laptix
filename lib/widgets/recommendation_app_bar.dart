@@ -10,10 +10,12 @@ class RecommendationAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 64,
-      color: Colors.white,
-      child: Padding(
+    return Padding(
+      padding: const EdgeInsets.only(top:35),
+      child: Container(
+        height: 64,
+        color: AppColors.backgroundColor,
+        child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -23,8 +25,8 @@ class RecommendationAppBar extends StatelessWidget {
               onTap: () => Navigator.of(context).maybePop(),
               customBorder: const CircleBorder(),
               child: Container(
-                width: 44,
-                height: 44,
+                width: 36,
+                height: 36,
                 decoration: BoxDecoration(
                   color: AppColors.cardColor,
                   shape: BoxShape.circle,
@@ -37,9 +39,9 @@ class RecommendationAppBar extends StatelessWidget {
                 ),
                 child: Center(
                   child: SvgPicture.asset(
-                    AppAssets.commonArrowBack,
-                    width: 20,
-                    height: 20,
+                    AppAssets.commonChevronLeft,
+                    width: 18,
+                    height: 18,
                     colorFilter: const ColorFilter.mode(
                       AppColors.primaryTextColor,
                       BlendMode.srcIn,
@@ -49,18 +51,25 @@ class RecommendationAppBar extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 12),
-            // Title
-            Text(
-              'Your Match',
-              style: GoogleFonts.urbanist(
-                fontSize: 20,
-                fontWeight: FontWeight.w800,
-                color: AppColors.charcoal,
+            // Title centered
+            Expanded(
+              child: Center(
+                child: Text(
+                  'YOUR MATCH',
+                  style: GoogleFonts.inter(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: 2,
+                    color: AppColors.secondaryTextColor,
+                  ),
+                ),
               ),
             ),
+            const SizedBox(width: 44), // Balance the back button
           ],
         ),
       ),
-    );
+    )
+  );
   }
 }

@@ -53,42 +53,75 @@ class StepScreen extends StatelessWidget {
 
   Widget _buildOptionsGrid() {
     final rows = (options.length / columns).ceil();
-    return Column(
-      children: List.generate(rows, (rowIndex) {
-        final startIdx = rowIndex * columns;
-        final endIdx = (startIdx + columns).clamp(0, options.length);
-        final rowOptions = options.sublist(startIdx, endIdx);
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final cardWidth = (constraints.maxWidth - horizontalGap * (columns - 1)) / columns;
+        return Column(
+          children: List.generate(rows, (rowIndex) {
+            final startIdx = rowIndex * columns;
+            final endIdx = (startIdx + columns).clamp(0, options.length);
+            final rowOptions = options.sublist(startIdx, endIdx);
+            final isLastRow = rowIndex == rows - 1;
+            final isIncompleteRow = isLastRow && rowOptions.length < columns;
 
-        Widget row = Row(
-          children: rowOptions.asMap().entries.map((entry) {
-            final idx = startIdx + entry.key;
-            final option = entry.value;
-            final badge = badgeBuilder?.call(idx) ?? option.badge;
-            return Expanded(
-              child: Padding(
-                padding: EdgeInsets.only(right: entry.key < rowOptions.length - 1 ? horizontalGap : 0),
-                child: OptionSelectionCard(
-                  icon: option.icon,
-                  label: option.label,
-                  isSelected: selectedIndices.contains(idx),
-                  onTap: () => onSelectionChanged?.call(idx),
-                  variant: variant,
-                  badge: badge,
-                ),
-              ),
+            Widget row;
+            if (isIncompleteRow) {
+              row = Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: rowOptions.asMap().entries.map((entry) {
+                  final idx = startIdx + entry.key;
+                  final option = entry.value;
+                  final badge = badgeBuilder?.call(idx) ?? option.badge;
+                  return SizedBox(
+                    width: cardWidth,
+                    child: Padding(
+                      padding: EdgeInsets.only(right: entry.key < rowOptions.length - 1 ? horizontalGap : 0),
+                      child: OptionSelectionCard(
+                        icon: option.icon,
+                        label: option.label,
+                        isSelected: selectedIndices.contains(idx),
+                        onTap: () => onSelectionChanged?.call(idx),
+                        variant: variant,
+                        badge: badge,
+                      ),
+                    ),
+                  );
+                }).toList(),
+              );
+            } else {
+              row = Row(
+                children: rowOptions.asMap().entries.map((entry) {
+                  final idx = startIdx + entry.key;
+                  final option = entry.value;
+                  final badge = badgeBuilder?.call(idx) ?? option.badge;
+                  return Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.only(right: entry.key < rowOptions.length - 1 ? horizontalGap : 0),
+                      child: OptionSelectionCard(
+                        icon: option.icon,
+                        label: option.label,
+                        isSelected: selectedIndices.contains(idx),
+                        onTap: () => onSelectionChanged?.call(idx),
+                        variant: variant,
+                        badge: badge,
+                      ),
+                    ),
+                  );
+                }).toList(),
+              );
+            }
+
+            if (cardHeight != null) {
+              row = SizedBox(height: cardHeight, child: row);
+            }
+
+            return Padding(
+              padding: EdgeInsets.only(bottom: rowIndex < rows - 1 ? 16 : 0),
+              child: row,
             );
-          }).toList(),
+          }),
         );
-
-        if (cardHeight != null) {
-          row = SizedBox(height: cardHeight, child: row);
-        }
-
-        return Padding(
-          padding: EdgeInsets.only(bottom: rowIndex < rows - 1 ? 16 : 0),
-          child: row,
-        );
-      }),
+      },
     );
   }
 

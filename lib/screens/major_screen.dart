@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'package:laptix/widgets/step_screen.dart';
+import 'package:laptix/widgets/step_screen.dart'; //done
 import 'package:laptix/widgets/option_card.dart';
 
 import 'package:laptix/Core/Constants/app_assets.dart';
@@ -20,53 +20,52 @@ class MajorScreen extends StatefulWidget {
 class _MajorScreenState extends State<MajorScreen> {
   int? _selectedIndex;
 
-  static final List<StepOption> _majorOptions = [
+  static final List<StepOption> _majorOptions = [ 
     StepOption(
       icon: SvgPicture.asset(
         AppAssets.majorCs,
-        width: 48,
-        height: 48,
+        width: 30,
+        height: 30,
       ),
       label: AppStrings.majorComputerScience,
-      badge: 'Most Popular',
-    ),
+     ),
     StepOption(
       icon: SvgPicture.asset(
         AppAssets.majorEng,
-        width: 48,
-        height: 48,
+        width: 30,
+        height: 30,
       ),
       label: AppStrings.majorEngineering,
     ),
     StepOption(
       icon: SvgPicture.asset(
         AppAssets.majorBis,
-        width: 48,
-        height: 48,
+        width: 30,
+        height: 30,
       ),
       label: AppStrings.majorBusiness,
     ),
     StepOption(
       icon: SvgPicture.asset(
         AppAssets.majorDesign,
-        width: 48,
-        height: 48,
+        width: 30,
+        height: 30,
       ),
       label: AppStrings.majorDesign,
     ),
     StepOption(
       icon: SvgPicture.asset(
         AppAssets.majorDesign, // fallback: media.svg missing, use design
-        width: 48,
-        height: 48,
+        width: 30,
+        height: 30,
       ),
       label: AppStrings.majorMedia,
     ),
     StepOption(
       icon: SvgPicture.asset(
         AppAssets.majorOther,
-        width: 48,
-        height: 48,
+        width: 30,
+        height: 30,
       ),
       label: AppStrings.majorOther,
     ),
@@ -100,7 +99,7 @@ class _MajorScreenState extends State<MajorScreen> {
                 ),
               ),
       onSelectionChanged: _onSelectionChanged,
-      cardHeight: 184,
+      cardHeight: 180,
       variant: OptionCardVariant.major,
       selectedIndices: selectedIndices,
     );

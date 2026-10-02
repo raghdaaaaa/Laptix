@@ -32,7 +32,6 @@ class AppAssets {
   static const String navChecker = '$_iconsPath/nav/checker.svg'; // Bottom Nav: Checker tab (inactive)
   static const String navAdd = '$_iconsPath/nav/add.svg'; // Bottom Nav: Center + button
   // NOTE: Active state icons (home_active, checker_active) are MISSING from disk
-  // NOTE: nav/explore.svg and nav/profile.svg exist on disk for upcoming Bottom Navigation task
 
   // ==========================================
   // HOME SCREEN ICONS

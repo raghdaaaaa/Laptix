@@ -132,7 +132,7 @@ class BudgetOptionCard extends StatelessWidget {
           ),
           if (badge != null)
             Positioned(
-              top: -8,
+              top: 20,
               right: 16,
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),

@@ -138,7 +138,7 @@ void main() {
     test('g) Status: CPU High and GPU Dedicated are optimal (equal max required), CPU Basic is good', () {
       // CPU High matches max required (High is the max across all requirements)
       // GPU Dedicated matches max required (Dedicated is the max across all requirements)
-      // RAM 32 == max required (32)
+      // RAM 32 == max required (32) -> optimal
       // Storage 512 < max required (1024) -> good
       final result = service.check(
         cpu: 'High',
@@ -162,6 +162,60 @@ void main() {
 
       expect(resultBasic.cpuStatus, SpecStatus.good);
       expect(resultBasic.gpuStatus, SpecStatus.good);
+    });
+
+    // New tests for updated RAM/Storage status logic (real value comparison)
+    test('h) RAM 64 -> ramStatus perfect (exceeds max 32)', () {
+      final result = service.check(cpu: 'High', ram: 64, storage: 1024, gpu: 'Dedicated');
+      expect(result.ramStatus, SpecStatus.perfect);
+    });
+
+    test('i) RAM 32 -> ramStatus optimal (equals max 32)', () {
+      final result = service.check(cpu: 'High', ram: 32, storage: 1024, gpu: 'Dedicated');
+      expect(result.ramStatus, SpecStatus.optimal);
+    });
+
+    test('j) RAM 16 -> ramStatus good (below max 32)', () {
+      final result = service.check(cpu: 'High', ram: 16, storage: 1024, gpu: 'Dedicated');
+      expect(result.ramStatus, SpecStatus.good);
+    });
+
+    test('k) Storage 1024 -> optimal (equals max)', () {
+      final result = service.check(cpu: 'High', ram: 64, storage: 1024, gpu: 'Dedicated');
+      expect(result.storageStatus, SpecStatus.optimal);
+    });
+
+    test('l) Storage 512 -> good (below max 1024)', () {
+      final result = service.check(cpu: 'High', ram: 64, storage: 512, gpu: 'Dedicated');
+      expect(result.storageStatus, SpecStatus.good);
+    });
+
+    test('m) Storage 256 -> good (below max 1024)', () {
+      final result = service.check(cpu: 'High', ram: 64, storage: 256, gpu: 'Dedicated');
+      expect(result.storageStatus, SpecStatus.good);
+    });
+
+    test('n) CPU High -> optimal (unchanged), GPU Dedicated -> optimal (unchanged)', () {
+      final result = service.check(cpu: 'High', ram: 64, storage: 1024, gpu: 'Dedicated');
+      expect(result.cpuStatus, SpecStatus.optimal);
+      expect(result.gpuStatus, SpecStatus.optimal);
+    });
+
+    test('o) Cases a/b/e unchanged: limited 2/10, high 10/10, moderate 7/10', () {
+      // Case a: limited, 2 suitable
+      final a = service.check(cpu: 'High', ram: 64, storage: 256, gpu: 'Dedicated');
+      expect(a.level, SuitabilityLevel.limited);
+      expect(a.matchedUsages, 2);
+
+      // Case b: high, all suitable
+      final b = service.check(cpu: 'High', ram: 64, storage: 1024, gpu: 'Dedicated');
+      expect(b.level, SuitabilityLevel.high);
+      expect(b.matchedUsages, b.totalUsages);
+
+      // Case e: moderate, 7 matched
+      final e = service.check(cpu: 'High', ram: 32, storage: 512, gpu: 'Dedicated');
+      expect(e.level, SuitabilityLevel.moderate);
+      expect(e.matchedUsages, 7);
     });
   });
 }

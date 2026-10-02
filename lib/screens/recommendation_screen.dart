@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'package:laptix/widgets/bottom_nav_bar.dart';
-import 'package:laptix/widgets/spec_card.dart';
+import 'package:laptix/widgets/spec_card.dart'; 
 import 'package:laptix/widgets/recommendation_app_bar.dart';
 import 'package:laptix/widgets/budget_warning_card.dart';
 import 'package:laptix/widgets/why_recommendation_card.dart';
@@ -21,7 +20,10 @@ import 'package:laptix/services/recommendation_engine.dart';
 class RecommendationScreen extends StatefulWidget {
   final StudentProfile profile;
 
-  const RecommendationScreen({super.key, required this.profile});
+  const RecommendationScreen({
+    super.key,
+    required this.profile,
+  });
 
   @override
   State<RecommendationScreen> createState() => _RecommendationScreenState();
@@ -49,79 +51,64 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
         children: [
           SafeArea(
             bottom: false,
-            child: SizedBox(height: 64, child: const RecommendationAppBar()),
+            child: SizedBox(height: 80, child: const RecommendationAppBar()),
           ),
           Expanded(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+              padding: const EdgeInsets.fromLTRB(24, 28, 24, 40),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Header Section
-                  Text(
-                    'YOUR MATCH',
-                    style: GoogleFonts.inter(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: 1.4,
-                      color: AppColors.secondaryTextColor,
-                    ),
+                  // Success badge (green)
+                  Center(
+                    child: _SuccessBadge(),
                   ),
-                  const SizedBox(height: 8),
-                  Text.rich(
-                    TextSpan(
-                      children: [
-                        TextSpan(
-                          text: 'Perfect ',
-                          style: GoogleFonts.inter(
-                            fontSize: 30,
-                            fontWeight: FontWeight.w800,
-                            color: AppColors.charcoal,
-                            letterSpacing: -0.5,
+                  const SizedBox(height: 30),
+
+                  // Title
+                  Center(
+                    child: Text.rich(
+                      TextSpan(
+                        children: [
+                          TextSpan(
+                            text: _result.budgetWarning == null ? 'Perfect ' : 'Best Match ',
+                            style: GoogleFonts.inter(
+                              fontSize: 26,
+                              fontWeight: FontWeight.w700,
+                              color: AppColors.charcoal,
+                              letterSpacing: -0.5,
+                            ),
                           ),
-                        ),
-                        TextSpan(
-                          text: 'Match Found!',
-                          style: GoogleFonts.inter(
-                            fontSize: 30,
-                            fontWeight: FontWeight.w800,
-                            color: AppColors.primaryColor,
-                            letterSpacing: -0.5,
+                          TextSpan(
+                            text: _result.budgetWarning == null ? 'Match Found!' : 'for Your Budget!',
+                            style: GoogleFonts.inter(
+                              fontSize: 26,
+                              fontWeight: FontWeight.w700,
+                              color: AppColors.primaryColor,
+                              letterSpacing: -0.5,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(height: 8),
                   Center(
                     child: Text(
+                      textAlign: TextAlign.center,
                       AppStrings.recResultSubtitle,
                       style: GoogleFonts.inter(
                         fontSize: 16,
                         height: 1.5,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.w400,
                         color: AppColors.secondaryTextColor,
                       ),
                     ),
                   ),
-                  const SizedBox(height: 32),
+                  const SizedBox(height: 37),
 
-                  // Cyan Success Badge
-                  _CyanSuccessBadge(),
-                  const SizedBox(height: 32),
-
-                  // Specification Cards Grid
-                  Text(
-                    AppStrings.recResultRecommendedSpecs,
-                    style: GoogleFonts.inter(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w800,
-                      color: AppColors.charcoal,
-                      letterSpacing: -0.3,
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  _buildSpecGrid(),
+                  // Spec cards (2 rows)
+                  _buildSpecCards(),
 
                   // Budget Warning
                   if (_result.budgetWarning != null) ...[
@@ -129,8 +116,8 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                     BudgetWarningCard(message: _result.budgetWarning!),
                     const SizedBox(height: 16),
                   ],
-
-                  // Why this recommendation section
+                  const SizedBox(height: 40),
+                  // Why this recommendation
                   Text(
                     'WHY THIS RECOMMENDATION?',
                     style: GoogleFonts.inter(
@@ -149,12 +136,11 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
 
                   // Action Buttons
                   PrimaryButton(
-                    text: 'CHECK A LAPTOP',
-                    onTap: () =>
-                        Navigator.pushNamed(context, AppRoutes.laptopChecker),
+                    text: 'Check a Laptop',
+                    onTap: () => Navigator.pushNamed(context, AppRoutes.laptopChecker),
                     height: 64,
                     trailingIconSize: 18,
-                    trailingIconColor: Colors.white,
+                    trailingIconColor: AppColors.secondaryColor,
                   ),
                   const SizedBox(height: 16),
                   _SecondaryActionButton(
@@ -164,105 +150,137 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                       (route) => false,
                     ),
                   ),
-                  const SizedBox(height: 40),
                 ],
               ),
             ),
           ),
         ],
       ),
-      bottomNavigationBar: CustomBottomNavBar(
-        currentIndex: 0,
-        onTap: (index) {
-          if (index == 0) return;
-          if (index == 1) {
-            Navigator.pushNamed(context, AppRoutes.laptopChecker);
-            return;
-          }
-        },
-        onCenterTap: () => Navigator.pushNamedAndRemoveUntil(
-          context,
-          AppRoutes.major,
-          (route) => false,
-        ),
-      ),
     );
   }
 
-  Widget _buildSpecGrid() {
-    return GridView.count(
-      crossAxisCount: 2,
-      crossAxisSpacing: 12,
-      mainAxisSpacing: 12,
-      childAspectRatio: 1.0,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
+  Widget _buildSpecCards() {
+    final cpuTitle = _getCpuTitle(_result.cpu);
+    final memTitle = '${_result.ram} GB RAM';
+    final storTitle = '${_result.storage} GB SSD';
+    final gpuTitle = _getGpuTitle(_result.gpu);
+
+    return Column(
       children: [
-        SpecificationCard(
-          label: AppStrings.specProcessor,
-          iconPath: AppAssets.resultCpu,
-          iconColor: AppColors.primaryColor,
-          title: _result.cpu,
-          description: _result.cpuReason,
+        // Row 1: CPU + RAM
+        IntrinsicHeight(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Expanded(
+                child: SpecificationCard(
+                  label: AppStrings.specProcessor,
+                  iconPath: AppAssets.resultCpu,
+                  iconColor: AppColors.primaryColor,
+                  title: cpuTitle,
+                  description: _result.cpuReason,
+                ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: SpecificationCard(
+                  label: AppStrings.specMemory,
+                  iconPath: AppAssets.resultMemory,
+                  iconColor: AppColors.secondaryColor,
+                  title: memTitle,
+                  description: _result.ramReason,
+                ),
+              ),
+            ],
+          ),
         ),
-        SpecificationCard(
-          label: AppStrings.specMemory,
-          iconPath: AppAssets.resultMemory,
-          iconColor: AppColors.secondaryColor,
-          title: '${_result.ram} GB',
-          description: _result.ramReason,
-        ),
-        SpecificationCard(
-          label: AppStrings.specStorage,
-          iconPath: AppAssets.resultSsd,
-          iconColor: AppColors.orangeAccent,
-          title: '${_result.storage} GB',
-          description: _result.storageReason,
-        ),
-        SpecificationCard(
-          label: AppStrings.specGraphics,
-          iconPath: AppAssets.resultGpu,
-          iconColor: AppColors.indigoAccent,
-          title: _result.gpu,
-          description: _result.gpuReason,
+        const SizedBox(height: 16),
+        // Row 2: Storage + GPU
+        IntrinsicHeight(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Expanded(
+                child: SpecificationCard(
+                  label: AppStrings.specStorage,
+                  iconPath: AppAssets.resultSsd,
+                  iconColor: AppColors.orangeAccent,
+                  title: storTitle,
+                  description: _result.storageReason,
+                ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: SpecificationCard(
+                  label: AppStrings.specGraphics,
+                  iconPath: AppAssets.resultGpu,
+                  iconColor: AppColors.indigoAccent,
+                  title: gpuTitle,
+                  description: _result.gpuReason,
+                ),
+              ),
+            ],
+          ),
         ),
       ],
     );
   }
+
+  String _getCpuTitle(String cpu) {
+    switch (cpu) {
+      case 'High':
+        return 'High Performance';
+      case 'Medium':
+        return 'Medium Performance';
+      case 'Basic':
+      default:
+        return 'Basic Performance';
+    }
+  }
+
+  String _getGpuTitle(String gpu) {
+    switch (gpu) {
+      case 'Dedicated':
+        return 'Dedicated GPU';
+      case 'Entry-level Dedicated':
+        return 'Entry-level GPU';
+      case 'Integrated':
+      default:
+        return 'Integrated Graphics';
+    }
+  }
 }
 
-class _CyanSuccessBadge extends StatelessWidget {
+class _SuccessBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        width: 80,
-        height: 80,
-        decoration: BoxDecoration(
-          color: AppColors.secondaryColor,
-          borderRadius: BorderRadius.circular(24),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.secondaryColor.withValues(alpha: 0.3),
-              offset: const Offset(0, 8),
-              blurRadius: 16,
-              spreadRadius: -4,
-            ),
-            BoxShadow(
-              color: AppColors.secondaryColor.withValues(alpha: 0.2),
-              offset: const Offset(0, 4),
-              blurRadius: 8,
-              spreadRadius: -2,
-            ),
-          ],
-        ),
-        child: Center(
-          child: SvgPicture.asset(
-            AppAssets.commonCheckCircle,
-            width: 36,
-            height: 36,
-            colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+    return Container(
+      width: 80,
+      height: 80,
+      decoration: BoxDecoration(
+        color: AppColors.successColor,
+        borderRadius: BorderRadius.circular(24),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.successColor.withValues(alpha: 0.3),
+            offset: const Offset(0, 8),
+            blurRadius: 16,
+            spreadRadius: -4,
           ),
+          BoxShadow(
+            color: AppColors.successColor.withValues(alpha: 0.2),
+            offset: const Offset(0, 4),
+            blurRadius: 8,
+            spreadRadius: -2,
+          ),
+        ],
+      ),
+      child: Center(
+        child: SvgPicture.asset(
+          AppAssets.commonCheckCircle,
+          width: 36,
+          height: 36,
+          colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
         ),
       ),
     );
@@ -292,14 +310,10 @@ class _SecondaryActionButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SvgPicture.asset(
-              AppAssets.commonChevronLeft,
-              width: 18,
-              height: 18,
-              colorFilter: const ColorFilter.mode(
-                AppColors.secondaryTextColor,
-                BlendMode.srcIn,
-              ),
+            Icon(
+              Icons.refresh_rounded,
+              size: 18,
+              color: AppColors.secondaryTextColor,
             ),
             const SizedBox(width: 8),
             Text(

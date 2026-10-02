@@ -23,19 +23,26 @@ class SpecificationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(23),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: AppColors.borderColor, width: 1),
+        borderRadius: BorderRadius.circular(32),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.shadowColorBlack,
+            offset: const Offset(0, 4),
+            blurRadius: 12,
+            spreadRadius: 0,
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            width: 44,
-            height: 44,
+            width: 40,
+            height: 40,
             decoration: BoxDecoration(
               color: iconColor.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(12),
@@ -49,36 +56,33 @@ class SpecificationCard extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 14),
+          const SizedBox(height: 16),
           Text(
-            label,
+            label.toUpperCase(),
             style: GoogleFonts.inter(
               fontSize: 10,
               fontWeight: FontWeight.w700,
-              letterSpacing: 0.5,
+              letterSpacing: 1.0,
               color: AppColors.secondaryTextColor,
             ),
           ),
           const SizedBox(height: 4),
           Text(
             title,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
             style: GoogleFonts.inter(
-              fontSize: 16,
-              fontWeight: FontWeight.w800,
+              fontSize: 15.5,
+              fontWeight: FontWeight.w900,
               color: AppColors.charcoal,
-              letterSpacing: -0.2,
+              letterSpacing: -0.3,
             ),
           ),
-          const SizedBox(height: 6),
+          const SizedBox(height: 8),
           Text(
             description,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
             style: GoogleFonts.inter(
-              fontSize: 10,
-              height: 1.625,
+              fontSize: 11,
+              fontWeight: FontWeight.w500,
+              height: 1.1,
               color: AppColors.secondaryTextColor,
             ),
           ),

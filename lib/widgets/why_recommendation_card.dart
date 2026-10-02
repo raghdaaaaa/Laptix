@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
+import 'package:laptix/Core/Constants/app_assets.dart';
 import 'package:laptix/Core/Constants/app_colors.dart';
 import 'package:laptix/models/recommendation_result.dart';
 import 'package:laptix/models/student_profile.dart';
@@ -17,32 +19,25 @@ class WhyRecommendationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final reasons = <String>[];
-
+    String usageText;
     if (profile.usages.isNotEmpty) {
-      final usageNames = profile.usages.join(', ');
-      reasons.add('Based on your interest in $usageNames, we recommend specs that balance performance for your workloads.');
+      final names = profile.usages;
+      if (names.length == 1) {
+        usageText = names.first;
+      } else if (names.length == 2) {
+        usageText = '${names[0]} and ${names[1]}';
+      } else {
+        usageText = '${names.sublist(0, names.length - 1).join(', ')}, and ${names.last}';
+      }
     } else {
-      reasons.add('Based on your selections, we recommend specs that match your needs.');
-    }
-
-    if (result.ram >= 32) {
-      reasons.add('32 GB RAM handles heavy multitasking and large datasets smoothly.');
-    } else if (result.ram >= 16) {
-      reasons.add('16 GB RAM provides smooth multitasking for development and creative work.');
-    }
-
-    if (result.gpu == 'Dedicated') {
-      reasons.add('A dedicated GPU is essential for graphics-intensive tasks like 3D rendering and video editing.');
-    } else if (result.gpu == 'Entry-level Dedicated') {
-      reasons.add('An entry-level dedicated GPU handles light creative work and external displays.');
+      usageText = '';
     }
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.all(35),
       decoration: BoxDecoration(
-        color: AppColors.primaryColor.withValues(alpha: 0.05),
+        color: AppColors.primaryColor,
         borderRadius: BorderRadius.circular(40),
         boxShadow: [
           BoxShadow(
@@ -55,19 +50,97 @@ class WhyRecommendationCard extends StatelessWidget {
             color: AppColors.shadowColorPrimaryMedium,
             offset: const Offset(0, 20),
             blurRadius: 25,
-            spreadRadius: -5,
+            spreadRadius: -2,
           ),
         ],
       ),
-      child: Text(
-        reasons.join(' '),
-        style: GoogleFonts.inter(
-          fontSize: 16,
-          height: 1.625,
-          fontWeight: FontWeight.w600,
-          color: AppColors.charcoal,
+      child: ClipPath(
+        clipper: _WhyCardClipper(),
+        child: Stack(
+          children: [
+            // Optional AI icon decoration (bottom-right)
+            Positioned(
+              right: -13,
+              bottom: -30,
+              child: Opacity(
+                opacity: 0.1,
+                child: SvgPicture.asset(
+                  AppAssets.usageAi,
+                  width: 120,
+                  height: 120,
+                  colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                ),
+              ),
+            ),
+            // Content
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: 45,
+                  height: 45,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withValues(alpha: 0.12),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Center(
+                    child: SvgPicture.asset(
+                      AppAssets.commonStar,
+                      width: 24,
+                      height: 24,
+                      colorFilter: const ColorFilter.mode(
+                        AppColors.secondaryColor,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 24),
+                Expanded(
+                  child: Text.rich(
+                    TextSpan(
+                      style: GoogleFonts.inter(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                        height: 1.4,
+                        color: Colors.white,
+                      ),
+                      children: [
+                        const TextSpan(text: 'Based on your interest in '),
+                        if (usageText.isNotEmpty)
+                          TextSpan(
+                            text: usageText,
+                            style: const TextStyle(
+                              color: AppColors.secondaryColor,
+                            ),
+                          ),
+                        TextSpan(
+                          text: usageText.isNotEmpty
+                              ? ', we recommend specs that balance performance for your workloads.'
+                              : 'Based on your selections, we recommend specs that match your needs.',
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
   }
+}
+
+class _WhyCardClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    return Path()..addRRect(RRect.fromRectAndRadius(
+      Rect.fromLTWH(0, 20, size.width, size.height),
+      const Radius.circular(10),
+    ));
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
