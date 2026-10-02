@@ -10,10 +10,6 @@ class AppStrings {
   static const String welcomeSubtitle = 'Personalized laptop\nrecommendations based on your\nmajor, usage, and budget.';
 
   // Questionnaire Common
-  static const String step1Of3 = 'Step 1 of 3';
-  static const String step2Of3 = 'Step 2 of 3';
-  static const String step3Of3 = 'Step 3 of 3';
-  static const String btnContinue = 'Continue';
   static const String btnShowRecommendations = 'Show Recommendations';
 
   // Step 1: Major
@@ -57,21 +53,17 @@ class AppStrings {
   static const String budgetProValue = '\$1,800+';
 
   // Recommendation Result
-  static const String recResultYourMatch = 'Your Match';
-  static const String recResultPerfectMatch = 'Perfect Match Found!';
   static const String recResultSubtitle = 'We\'ve analyzed your needs and found\nyour ideal specs.';
+  static const String recResultRecommendedSpecs = 'Recommended Specs';
   static const String specProcessor = 'Processor';
   static const String specMemory = 'Memory';
   static const String specStorage = 'Storage';
   static const String specGraphics = 'Graphics';
-  static const String recResultWhyTitle = 'Why this recommendation?';
 
   // Navigation / Common Actions
   static const String navHome = 'Home';
   static const String navChecker = 'Checker';
   static const String btnCheckLaptop = 'Check a Laptop';
-  static const String btnStartOver = 'Start Over';
-  static const String btnFindLaptops = 'Find Laptops';
 
   // Laptop Checker
   static const String checkerLabelProcessor = 'Processor (CPU)';
@@ -79,38 +71,19 @@ class AppStrings {
   static const String checkerLabelGraphics = 'Graphics (GPU)';
   static const String checkerBtnCheck = 'Check Compatibility';
   static const String checkerAnalysisResult = 'Analysis Result';
-  static const String checkerCalculationComplete = 'Calculation Complete';
   static const String checkerHighlySuitable = 'Highly Suitable';
-  static const String checkerExpertTip = 'Expert Tip';
   static const String checkerTitle = 'Check a Laptop';
-  static const String checkerSubtitle = 'Enter specs to see compatibility';
-  static const String checkerDescription = 'Select the specifications of the laptop you\'re considering';
   static const String checkerSpecsHeader = 'Specifications';
   static const String checkerSuitableFor = 'Suitable for';
   static const String checkerNotSuitableFor = 'Not suitable for';
 
-  // Recommendation Result Additional
-  static const String recResultPerfectMatchTitle = 'Perfect Match';
-  static const String recResultBasedOn = 'Based on your major, usage, and budget';
-  static const String recResultRecommendedSpecs = 'Recommended Specs';
-  static const String recResultFindLaptops = 'Find Laptops';
-
   // Home Screen
   static const String homeFindMyLaptop = 'Find My Laptop';
 
-  // Expert Tip
-  static const String expertTipTitle = 'Expert Tip';
-  static const String expertTipContent = 'Consider future-proofing: selecting a tier above your current needs extends laptop lifespan by 2-3 years.';
-
   // Budget warning
   static const String budgetWarningTitle = 'Budget Alert';
-  static const String budgetWarningMessage = 'Your selected budget may be lower than what your usage needs require. Consider increasing your budget for better performance.';
 
   // Status texts
-  static const String statusPerfect = 'Perfect';
-  static const String statusOptimal = 'Optimal';
-  static const String statusGood = 'Good';
-  static const String statusPoor = 'Poor';
   static const String statusModeratelySuitable = 'Moderately Suitable';
   static const String statusLimitedSuitability = 'Limited Suitability';
 
@@ -127,10 +100,4 @@ class AppStrings {
   static const String gpuReasonBasic = 'Integrated graphics only for basic tasks.';
   static const String gpuReasonMedium = 'Entry-level GPU handles light creative work.';
   static const String gpuReasonHigh = 'Dedicated GPU required for gaming, 3D, and video editing.';
-
-  // Dropdown placeholders
-  static const String dropdownSelect = 'Select';
-
-  // Empty states
-  static const String noSelection = 'No selection';
 }

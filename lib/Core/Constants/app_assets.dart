@@ -6,7 +6,6 @@ class AppAssets {
 
   // Images
   static const String laptopHero = '$_imagesPath/laptop_hero.png'; // Welcome Screen hero image
-  static const String laptopPlaceholder = '$_imagesPath/laptop_placeholder.svg'; // Recommendation result placeholder
 
   // ==========================================
   // COMMON ICONS (Used across multiple screens)
@@ -33,13 +32,13 @@ class AppAssets {
   static const String navChecker = '$_iconsPath/nav/checker.svg'; // Bottom Nav: Checker tab (inactive)
   static const String navAdd = '$_iconsPath/nav/add.svg'; // Bottom Nav: Center + button
   // NOTE: Active state icons (home_active, checker_active) are MISSING from disk
+  // NOTE: nav/explore.svg and nav/profile.svg exist on disk for upcoming Bottom Navigation task
 
   // ==========================================
   // HOME SCREEN ICONS
   // ==========================================
   static const String homeMenu = '$_iconsPath/home/menu.svg'; // Home Screen: Appbar hamburger menu button
   static const String homeHero = '$_iconsPath/home/hero.svg'; // Home Screen: Background hero graphic (was hero_illustration)
-  static const String homePerformance = '$_iconsPath/home/performance.svg'; // Home Screen: Performance metric (orphan, not yet used)
 
   // ==========================================
   // STEP 1: MAJOR ICONS
@@ -48,7 +47,6 @@ class AppAssets {
   static const String majorEng = '$_iconsPath/major/eng.svg'; // Step 1: Engineering major card (was engineering)
   static const String majorBis = '$_iconsPath/major/bis.svg'; // Step 1: Business Info Systems major card (replaces business)
   static const String majorDesign = '$_iconsPath/major/design.svg'; // Step 1: Design major card
-  static const String majorEdit = '$_iconsPath/major/edit.svg'; // Step 1: Edit/Other major card (orphan, not yet used)
   static const String majorOther = '$_iconsPath/major/other.svg'; // Step 1: Other major card
   // NOTE: majorBusiness (business.svg) and majorMedia (media.svg) are MISSING from disk
 
@@ -81,7 +79,6 @@ class AppAssets {
   static const String resultMemory = '$_iconsPath/result/memory.svg'; // Result: RAM spec card & status row
   static const String resultSsd = '$_iconsPath/result/ssd.svg'; // Result: SSD spec card & status row (was storage)
   static const String resultGpu = '$_iconsPath/result/gpu.svg'; // Result: GPU spec card & status row (was graphics)
-  static const String resultPerf = '$_iconsPath/result/perf.svg'; // Result: Performance badge (orphan, not yet used)
   // NOTE: resultLaptopCard (laptop_card.svg) and resultStatusBadgeHuge (status_badge_huge.svg) are MISSING from disk
 
   // ==========================================
@@ -91,49 +88,10 @@ class AppAssets {
   static const String checkerRam = '$_iconsPath/checker/ram.svg'; // Checker: RAM dropdown leading icon (was memory)
   static const String checkerStorage = '$_iconsPath/checker/storage.svg'; // Checker: SSD dropdown leading icon
   static const String checkerGpu = '$_iconsPath/checker/gpu.svg'; // Checker: GPU dropdown leading icon (was graphics)
-  static const String checkerBottomArrow = '$_iconsPath/checker/bottom_arrow.svg'; // Checker: Expand/collapse arrow (orphan)
-  static const String checkerCheck = '$_iconsPath/checker/check.svg'; // Checker: Check mark (orphan)
-  static const String checkerTips = '$_iconsPath/checker/tips.svg'; // Checker: Tips icon (orphan)
   // NOTE: checkerStatusWarning, checkerBgPattern, checkerInfoDot, checkerResultBadge, checkerSpecIcon are MISSING from disk
 
   // ==========================================
-  // BACKWARD COMPATIBILITY ALIASES (for gradual migration)
+  // BACKWARD COMPATIBILITY ALIASES (still used)
   // ==========================================
-  static String get specProcessor => resultCpu;
-  static String get specMemory => resultMemory;
-  static String get specStorage => resultSsd;
-  static String get specGraphics => resultGpu;
-  static String get iconCheckCircle => commonCheckCircle;
-  static String get iconWarning => commonWarning;
-  static String get iconInfo => commonInfo;
-  static String get iconStar => commonStar;
-  static String get iconVerified => commonVerified;
-  static String get iconArrowBack => commonArrowBack;
-  static String get iconArrowForward => commonArrowForward;
-  static String get iconChevronLeft => commonChevronLeft;
-  static String get iconChevronRight => commonChevronRight;
-  static String get iconChevronDown => commonChevronDown;
-  static String get iconCheck => commonCheck;
-  static String get iconClose => commonClose;
-  static String get iconMenu => homeMenu;
   static String get iconAdd => navAdd;
-  static String get iconSearch => commonSearch;
-  static String get homeHeroIllustration => homeHero; // old name
-  static String get majorComputerScience => majorCs; // old name
-  static String get majorEngineering => majorEng; // old name
-  static String get majorBusiness => majorBis; // old name -> now maps to BIS
-  static String get majorMedia => majorDesign; // old name -> fallback to Design (MISSING)
-  static String get usageWebDev => usageWeb; // old name
-  static String get usageAndroidDev => usageApp; // old name -> now maps to App Dev
-  static String get usageGraphicDesign => usageGraphic; // old name
-  static String get usageVideoEditing => usageVideo; // old name
-  static String get usageAIML => usageAi; // old name
-  static String get usage3DCAD => usageCad; // old name
-  static String get budgetEntry => budgetLow; // old name
-  static String get resultProcessor => resultCpu; // old name
-  static String get resultStorage => resultSsd; // old name
-  static String get resultGraphics => resultGpu; // old name
-  static String get checkerProcessor => checkerCpu; // old name
-  static String get checkerMemory => checkerRam; // old name
-  static String get checkerGraphics => checkerGpu; // old name
 }

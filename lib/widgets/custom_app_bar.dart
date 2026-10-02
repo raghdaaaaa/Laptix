@@ -7,8 +7,6 @@ import 'package:laptix/Core/Constants/app_assets.dart';
 
 enum CustomAppBarVariant {
   home,
-  checker,
-  recommendation,
   defaultVariant,
 }
 
@@ -37,7 +35,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.showBackButton = false,
   });
 
-  // Factory constructors for specific variants
+  // Factory constructor for home variant
   const CustomAppBar.home({
     super.key,
     this.title,
@@ -49,28 +47,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.showBackButton = false,
   }) : variant = CustomAppBarVariant.home;
 
-  const CustomAppBar.checker({
-    super.key,
-    this.title,
-    this.subtitle,
-    this.onLeadingTap,
-    this.onTrailingTap,
-    this.trailing,
-    this.showLogo = false,
-    this.showBackButton = true,
-  }) : variant = CustomAppBarVariant.checker;
-
-  const CustomAppBar.recommendation({
-    super.key,
-    this.title,
-    this.subtitle,
-    this.onLeadingTap,
-    this.onTrailingTap,
-    this.trailing,
-    this.showLogo = false,
-    this.showBackButton = true,
-  }) : variant = CustomAppBarVariant.recommendation;
-
   @override
   Size get preferredSize => Size.fromHeight(
         variant == CustomAppBarVariant.home ? _heightHome : _heightStandard,
@@ -81,10 +57,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     switch (variant) {
       case CustomAppBarVariant.home:
         return _buildHomeAppBar(context);
-      case CustomAppBarVariant.checker:
-        return _buildCheckerAppBar(context);
-      case CustomAppBarVariant.recommendation:
-        return _buildRecommendationAppBar(context);
       default:
         return _buildDefaultAppBar(context);
     }
@@ -175,120 +147,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
-  Widget _buildCheckerAppBar(BuildContext context) {
-    return Container(
-      height: _heightStandard,
-      color: AppColors.backgroundColor,
-      padding: const EdgeInsets.only(top: 12, left: 16, right: 16),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          // Back button
-          InkWell(
-            onTap: onLeadingTap ?? () => Navigator.of(context).maybePop(),
-            customBorder: const CircleBorder(),
-            child: Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                color: AppColors.cardColor,
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.shadowColorBlack,
-                    blurRadius: 8,
-                  ),
-                ],
-              ),
-              child: Center(
-                child: SvgPicture.asset(
-                  AppAssets.commonArrowBack,
-                  width: 20,
-                  height: 20,
-                  colorFilter: const ColorFilter.mode(
-                    AppColors.primaryTextColor,
-                    BlendMode.srcIn,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(width: 12),
-          // Title
-          Expanded(
-            child: Text(
-              title ?? 'Laptop Checker',
-              style: GoogleFonts.urbanist(
-                fontSize: 20,
-                fontWeight: FontWeight.w800,
-                color: AppColors.charcoal,
-              ),
-            ),
-          ),
-          // Trailing
-          if (trailing != null) trailing!,
-        ],
-      ),
-    );
-  }
-
-  Widget _buildRecommendationAppBar(BuildContext context) {
-    return Container(
-      height: _heightStandard,
-      color: AppColors.backgroundColor,
-      padding: const EdgeInsets.only(top: 12, left: 16, right: 16),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          // Back button
-          InkWell(
-            onTap: onLeadingTap ?? () => Navigator.of(context).maybePop(),
-            customBorder: const CircleBorder(),
-            child: Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                color: AppColors.cardColor,
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.shadowColorBlack,
-                    blurRadius: 8,
-                  ),
-                ],
-              ),
-              child: Center(
-                child: SvgPicture.asset(
-                  AppAssets.commonArrowBack,
-                  width: 20,
-                  height: 20,
-                  colorFilter: const ColorFilter.mode(
-                    AppColors.primaryTextColor,
-                    BlendMode.srcIn,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(width: 12),
-          // Title
-          Expanded(
-            child: Text(
-              title ?? 'Recommendation',
-              style: GoogleFonts.urbanist(
-                fontSize: 20,
-                fontWeight: FontWeight.w800,
-                color: AppColors.charcoal,
-              ),
-            ),
-          ),
-          // Trailing
-          if (trailing != null) trailing!,
-        ],
-      ),
-    );
-  }
-
   Widget _buildDefaultAppBar(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
@@ -320,15 +178,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                       ],
                     ),
                     child: Center(
-child: SvgPicture.asset(
-                AppAssets.commonArrowBack,
-                width: 20,
-                height: 20,
-                colorFilter: const ColorFilter.mode(
-                  AppColors.primaryTextColor,
-                  BlendMode.srcIn,
-                ),
-              ),
+                      child: SvgPicture.asset(
+                        AppAssets.commonArrowBack,
+                        width: 20,
+                        height: 20,
+                        colorFilter: const ColorFilter.mode(
+                          AppColors.primaryTextColor,
+                          BlendMode.srcIn,
+                        ),
+                      ),
                     ),
                   ),
                 ),

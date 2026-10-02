@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:laptix/Core/Constants/app_assets.dart';
 import 'package:laptix/Core/Constants/app_colors.dart';
-import 'package:laptix/widgets/spec_status_row.dart';
+import 'package:laptix/models/spec_status.dart';
 
 class CheckerAnalysisRow extends StatelessWidget {
   const CheckerAnalysisRow({
@@ -30,8 +30,6 @@ class CheckerAnalysisRow extends StatelessWidget {
         return (text: 'Optimal', color: AppColors.successColor, iconPath: AppAssets.commonCheckCircle);
       case SpecStatus.good:
         return (text: 'Good', color: AppColors.warningColor, iconPath: AppAssets.commonCheckCircle);
-      case SpecStatus.poor:
-        return (text: 'Poor', color: AppColors.errorColor, iconPath: AppAssets.commonWarning);
     }
   }
 

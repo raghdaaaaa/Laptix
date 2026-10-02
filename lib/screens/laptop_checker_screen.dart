@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -9,7 +7,6 @@ import 'package:laptix/widgets/checker_app_bar.dart';
 import 'package:laptix/widgets/checker_analysis_row.dart';
 import 'package:laptix/widgets/expert_tip_card.dart';
 import 'package:laptix/widgets/checker_verdict_card.dart';
-import 'package:laptix/widgets/spec_status_row.dart';
 import 'package:laptix/widgets/status_card.dart';
 
 import 'package:laptix/Core/Constants/app_assets.dart';
@@ -17,8 +14,9 @@ import 'package:laptix/Core/Constants/app_strings.dart';
 import 'package:laptix/Core/Constants/app_colors.dart';
 import 'package:laptix/Core/Constants/app_routes.dart';
 
-import 'package:laptix/data/requirements_data.dart';
-import 'package:laptix/services/recommendation_engine.dart';
+import 'package:laptix/models/checker_result.dart';
+import 'package:laptix/models/spec_status.dart';
+import 'package:laptix/services/laptop_checker_service.dart';
 
 class LaptopCheckerScreen extends StatefulWidget {
   const LaptopCheckerScreen({super.key});
@@ -55,7 +53,7 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
   };
 
   bool _isChecking = false;
-  Map<String, dynamic>? _analysisResult;
+  CheckerResult? _result;
 
   void _checkCompatibility() {
     setState(() {
@@ -64,113 +62,17 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
 
     Future.delayed(const Duration(milliseconds: 800), () {
       if (!mounted) return;
-      final result = _analyzeSpecs();
+      final result = LaptopCheckerService().check(
+        cpu: _selectedCpu,
+        ram: _selectedRam,
+        storage: _selectedStorage,
+        gpu: _selectedGpu,
+      );
       setState(() {
         _isChecking = false;
-        _analysisResult = result;
+        _result = result;
       });
     });
-  }
-
-  Map<String, dynamic> _analyzeSpecs() {
-    int matchedUsages = 0;
-    int totalUsages = requirements.length;
-    List<String> suitableFor = [];
-    List<String> notSuitableFor = [];
-
-    for (final entry in requirements.entries) {
-      final usage = entry.key;
-      final req = entry.value;
-
-      final cpuLevel =
-          RecommendationEngine.cpuLevel(_selectedCpu) >=
-          RecommendationEngine.cpuLevel(req.cpu);
-      final ramOk = _selectedRam >= req.ram;
-      final storageOk = _selectedStorage >= req.storage;
-      final gpuLevel =
-          RecommendationEngine.gpuLevel(_selectedGpu) >=
-          RecommendationEngine.gpuLevel(req.gpu);
-
-      if (cpuLevel && ramOk && storageOk && gpuLevel) {
-        matchedUsages++;
-        suitableFor.add(usage);
-      } else {
-        notSuitableFor.add(usage);
-      }
-    }
-
-    String verdict;
-    Color verdictColor;
-    String verdictIconPath;
-
-    if (matchedUsages == totalUsages) {
-      verdict = AppStrings.checkerHighlySuitable;
-      verdictColor = AppColors.successColor;
-      verdictIconPath = AppAssets.commonCheckCircle;
-    } else if (matchedUsages >= totalUsages ~/ 2) {
-      verdict = AppStrings.statusModeratelySuitable;
-      verdictColor = AppColors.warningColor;
-      verdictIconPath = AppAssets.commonWarning;
-    } else {
-      verdict = AppStrings.statusLimitedSuitability;
-      verdictColor = AppColors.errorColor;
-      verdictIconPath = AppAssets.commonWarning;
-    }
-
-    return {
-      'verdict': verdict,
-      'verdictColor': verdictColor,
-      'verdictIconPath': verdictIconPath,
-      'matchedUsages': matchedUsages,
-      'totalUsages': totalUsages,
-      'suitableFor': suitableFor,
-      'notSuitableFor': notSuitableFor,
-      'cpuReason': _getCpuReason(),
-      'ramReason': _getRamReason(),
-      'storageReason': _getStorageReason(),
-      'gpuReason': _getGpuReason(),
-    };
-  }
-
-  String _getCpuReason() {
-    final level = RecommendationEngine.cpuLevel(_selectedCpu);
-    if (level >= 3) return AppStrings.cpuReasonHigh;
-    if (level >= 2) return AppStrings.cpuReasonMedium;
-    return AppStrings.cpuReasonBasic;
-  }
-
-  String _getRamReason() {
-    if (_selectedRam >= 32) return AppStrings.ramReasonHigh;
-    if (_selectedRam >= 16) return AppStrings.ramReasonMedium;
-    return AppStrings.ramReasonBasic;
-  }
-
-  String _getStorageReason() {
-    if (_selectedStorage >= 1024) return AppStrings.storageReasonHigh;
-    if (_selectedStorage >= 512) return AppStrings.storageReasonMedium;
-    return AppStrings.storageReasonBasic;
-  }
-
-  String _getGpuReason() {
-    if (_selectedGpu == 'Dedicated') {
-      return AppStrings.gpuReasonHigh;
-    }
-    if (_selectedGpu == 'Entry-level Dedicated') {
-      return AppStrings.gpuReasonMedium;
-    }
-    return AppStrings.gpuReasonBasic;
-  }
-
-  int _ramLevel(int ram) {
-    if (ram >= 32) return 3;
-    if (ram >= 16) return 2;
-    return 1;
-  }
-
-  int _storageLevel(int storage) {
-    if (storage >= 1024) return 3;
-    if (storage >= 512) return 2;
-    return 1;
   }
 
   String _pickExpertTip(
@@ -181,9 +83,9 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
     String tip =
         'Consider future-proofing: selecting a tier above your current needs extends laptop lifespan by 2-3 years.';
 
-    if (gpuStatus == SpecStatus.good || gpuStatus == SpecStatus.poor) {
+    if (gpuStatus == SpecStatus.good) {
       tip = 'While the GPU is suitable, upgrading to an RTX 40-series would future-proof your 3D rendering tasks for the next 3 years.';
-    } else if (ramStatus == SpecStatus.good || ramStatus == SpecStatus.poor) {
+    } else if (ramStatus == SpecStatus.good) {
       tip = 'Consider upgrading to 32 GB RAM for smoother multitasking with heavy creative workloads.';
     }
 
@@ -323,7 +225,7 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
                   ),
                   const SizedBox(height: 32),
 
-                  if (_analysisResult != null) _buildResults(),
+                  if (_result != null) _buildResults(),
                   const SizedBox(height: 40),
                 ],
               ),
@@ -352,34 +254,10 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
   }
 
   Widget _buildResults() {
-    final result = _analysisResult!;
-    final verdictColor = result['verdictColor'] as Color;
-    final verdictIconPath = result['verdictIconPath'] as String;
-
-    final cpuLevel = RecommendationEngine.cpuLevel(_selectedCpu);
-    final ramLevel = _ramLevel(_selectedRam);
-    final storageLevel = _storageLevel(_selectedStorage);
-    final gpuLevel = RecommendationEngine.gpuLevel(_selectedGpu);
-
-    int maxReqCpu = 1, maxReqRam = 1, maxReqStorage = 1, maxReqGpu = 1;
-    for (final entry in requirements.entries) {
-      final req = entry.value;
-      maxReqCpu = max(maxReqCpu, RecommendationEngine.cpuLevel(req.cpu));
-      maxReqRam = max(maxReqRam, _ramLevel(req.ram));
-      maxReqStorage = max(maxReqStorage, _storageLevel(req.storage));
-      maxReqGpu = max(maxReqGpu, RecommendationEngine.gpuLevel(req.gpu));
-    }
-
-    SpecStatus specStatusFn(int current, int required) {
-      if (current > required) return SpecStatus.perfect;
-      if (current == required) return SpecStatus.optimal;
-      return SpecStatus.good;
-    }
-
-    final cpuStatus = specStatusFn(cpuLevel, maxReqCpu);
-    final ramStatus = specStatusFn(ramLevel, maxReqRam);
-    final storageStatus = specStatusFn(storageLevel, maxReqStorage);
-    final gpuStatus = specStatusFn(gpuLevel, maxReqGpu);
+    final result = _result!;
+    final verdictColor = _verdictColorForLevel(result.level);
+    final verdictIconPath = _verdictIconPathForLevel(result.level);
+    final verdictText = _verdictTextForLevel(result.level);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -387,9 +265,9 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
         CheckerVerdictCard(
           color: verdictColor,
           iconPath: verdictIconPath,
-          verdict: result['verdict'] as String,
-          matchedUsages: result['matchedUsages'] as int,
-          totalUsages: result['totalUsages'] as int,
+          verdict: verdictText,
+          matchedUsages: result.matchedUsages,
+          totalUsages: result.totalUsages,
         ),
         const SizedBox(height: 24),
 
@@ -408,8 +286,8 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
           iconPath: AppAssets.checkerCpu,
           label: AppStrings.specProcessor,
           value: _cpuDisplay[_selectedCpu] ?? _selectedCpu,
-          reason: result['cpuReason'] as String,
-          status: cpuStatus,
+          reason: result.cpuReason,
+          status: result.cpuStatus,
         ),
         const SizedBox(height: 12),
 
@@ -417,8 +295,8 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
           iconPath: AppAssets.checkerRam,
           label: AppStrings.specMemory,
           value: '$_selectedRam GB',
-          reason: result['ramReason'] as String,
-          status: ramStatus,
+          reason: result.ramReason,
+          status: result.ramStatus,
         ),
         const SizedBox(height: 12),
 
@@ -426,8 +304,8 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
           iconPath: AppAssets.checkerStorage,
           label: AppStrings.specStorage,
           value: '$_selectedStorage GB',
-          reason: result['storageReason'] as String,
-          status: storageStatus,
+          reason: result.storageReason,
+          status: result.storageStatus,
         ),
         const SizedBox(height: 12),
 
@@ -435,18 +313,18 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
           iconPath: AppAssets.checkerGpu,
           label: AppStrings.specGraphics,
           value: _gpuDisplay[_selectedGpu] ?? _selectedGpu,
-          reason: result['gpuReason'] as String,
-          status: gpuStatus,
+          reason: result.gpuReason,
+          status: result.gpuStatus,
         ),
         const SizedBox(height: 24),
 
-        ExpertTipCard(tip: _pickExpertTip(cpuStatus, ramStatus, gpuStatus)),
+        ExpertTipCard(tip: _pickExpertTip(result.cpuStatus, result.ramStatus, result.gpuStatus)),
         const SizedBox(height: 24),
 
-        if ((result['suitableFor'] as List).isNotEmpty) ...[
+        if (result.suitableFor.isNotEmpty) ...[
           _buildChipsSection(
             title: AppStrings.checkerSuitableFor,
-            items: result['suitableFor'] as List<String>,
+            items: result.suitableFor,
             background: AppColors.successBackgroundColor,
             border: AppColors.successBorderColor,
             textColor: AppColors.successTextColor,
@@ -454,10 +332,10 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
           const SizedBox(height: 16),
         ],
 
-        if ((result['notSuitableFor'] as List).isNotEmpty) ...[
+        if (result.notSuitableFor.isNotEmpty) ...[
           _buildChipsSection(
             title: AppStrings.checkerNotSuitableFor,
-            items: result['notSuitableFor'] as List<String>,
+            items: result.notSuitableFor,
             background: AppColors.errorBackgroundColor,
             border: AppColors.errorBorderColor,
             textColor: AppColors.errorTextColor,
@@ -465,5 +343,37 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
         ],
       ],
     );
+  }
+
+  Color _verdictColorForLevel(SuitabilityLevel level) {
+    switch (level) {
+      case SuitabilityLevel.high:
+        return AppColors.successColor;
+      case SuitabilityLevel.moderate:
+        return AppColors.warningColor;
+      case SuitabilityLevel.limited:
+        return AppColors.errorColor;
+    }
+  }
+
+  String _verdictIconPathForLevel(SuitabilityLevel level) {
+    switch (level) {
+      case SuitabilityLevel.high:
+        return AppAssets.commonCheckCircle;
+      case SuitabilityLevel.moderate:
+      case SuitabilityLevel.limited:
+        return AppAssets.commonWarning;
+    }
+  }
+
+  String _verdictTextForLevel(SuitabilityLevel level) {
+    switch (level) {
+      case SuitabilityLevel.high:
+        return AppStrings.checkerHighlySuitable;
+      case SuitabilityLevel.moderate:
+        return AppStrings.statusModeratelySuitable;
+      case SuitabilityLevel.limited:
+        return AppStrings.statusLimitedSuitability;
+    }
   }
 }

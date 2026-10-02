@@ -35,17 +35,11 @@ class AppIcons {
   static Widget arrowBack({Color? color, double size = 20}) =>
       _buildSvg(AppAssets.commonArrowBack, color: color, size: size);
 
-  static Widget arrowForward({Color? color, double size = 20}) =>
-      _buildSvg(AppAssets.commonArrowForward, color: color, size: size);
-
   static Widget chevronLeft({Color? color, double size = 20}) =>
       _buildSvg(AppAssets.commonChevronLeft, color: color, size: size);
 
   static Widget chevronRight({Color? color, double size = 20}) =>
       _buildSvg(AppAssets.commonChevronRight, color: color, size: size);
-
-  static Widget chevronDown({Color? color, double size = 16}) =>
-      _buildSvg(AppAssets.commonChevronDown, color: color, size: size);
 
   static Widget close({Color? color, double size = 20}) =>
       _buildSvg(AppAssets.commonClose, color: color, size: size);
@@ -62,49 +56,16 @@ class AppIcons {
   static Widget warning({Color? color, double size = 24}) =>
       _buildSvg(AppAssets.commonWarning, color: color, size: size);
 
-  static Widget info({Color? color, double size = 20}) =>
-      _buildSvg(AppAssets.commonInfo, color: color, size: size);
-
-  static Widget star({Color? color, double size = 18}) =>
-      _buildSvg(AppAssets.commonStar, color: color, size: size);
-
-  static Widget verified({Color? color, double size = 18}) =>
-      _buildSvg(AppAssets.commonVerified, color: color, size: size);
-
-  static Widget suitableCheck({Color? color, double size = 20}) =>
-      _buildSvg(AppAssets.commonSuitableCheck, color: color, size: size);
-
-  // Alias getters for backward compatibility
+  // Aliases (still used in code)
   static Widget arrowBackIos({Color? color, double size = 20}) => chevronLeft(color: color, size: size);
   static Widget iconChevronRight({Color? color, double size = 20}) => chevronRight(color: color, size: size);
-  static Widget iconChevronLeft({Color? color, double size = 20}) => chevronLeft(color: color, size: size);
-  static Widget iconChevronDown({Color? color, double size = 16}) => chevronDown(color: color, size: size);
-  static Widget iconCheck({Color? color, double size = 18}) => check(color: color, size: size);
-  static Widget iconCheckCircle({Color? color, double size = 24}) => checkCircle(color: color, size: size);
-  static Widget iconWarning({Color? color, double size = 24}) => warning(color: color, size: size);
-  static Widget iconInfo({Color? color, double size = 20}) => info(color: color, size: size);
-  static Widget iconStar({Color? color, double size = 18}) => star(color: color, size: size);
-  static Widget iconVerified({Color? color, double size = 18}) => verified(color: color, size: size);
-  static Widget iconArrowForward({Color? color, double size = 20}) => arrowForward(color: color, size: size);
-  static Widget iconArrowBack({Color? color, double size = 20}) => arrowBack(color: color, size: size);
-  static Widget iconClose({Color? color, double size = 20}) => close(color: color, size: size);
-  static Widget iconMenu({Color? color, double size = 20}) => menu(color: color, size: size);
-  static Widget iconAdd({Color? color, double size = 24}) => navAdd(color: color, size: size);
   static Widget iconSearch({Color? color, double size = 20}) => search(color: color, size: size);
 
   // ==========================================
   // NAVIGATION ICONS (Monochrome - colorizable)
   // ==========================================
-  static Widget navHome({Color? color, double size = 24}) =>
-      _buildSvg(AppAssets.navHome, color: color, size: size);
-
-  static Widget navChecker({Color? color, double size = 24}) =>
-      _buildSvg(AppAssets.navChecker, color: color, size: size);
-
-  static Widget navAdd({Color? color, double size = 24}) =>
-      _buildSvg(AppAssets.navAdd, color: color, size: size);
-
-  // NOTE: Active state icons (navHomeActive, navCheckerActive) are MISSING from disk
+  // NOTE: navHomeActive, navCheckerActive are MISSING from disk
+  // NOTE: nav/explore.svg and nav/profile.svg exist on disk for upcoming Bottom Navigation task
 
   // ==========================================
   // HOME SCREEN ICONS
@@ -115,9 +76,6 @@ class AppIcons {
   // Multicolor - preserves original colors
   static Widget homeHero({double? width, double? height, double? size}) =>
       _buildSvgMulti(AppAssets.homeHero, width: width, height: height, size: size);
-
-  static Widget homePerformance({double? width, double? height, double? size}) =>
-      _buildSvgMulti(AppAssets.homePerformance, width: width, height: height, size: size);
 
   // ==========================================
   // MAJOR ICONS (Multicolor SVG - keeps original colors unless specified)
@@ -133,12 +91,6 @@ class AppIcons {
 
   static Widget majorDesign({Color? color, double size = 48}) =>
       _buildSvg(AppAssets.majorDesign, color: color, size: size);
-
-  static Widget majorEdit({Color? color, double size = 48}) =>
-      _buildSvg(AppAssets.majorEdit, color: color, size: size);
-
-  static Widget majorOther({Color? color, double size = 48}) =>
-      _buildSvg(AppAssets.majorOther, color: color, size: size);
 
   // ==========================================
   // USAGE ICONS (Multicolor SVG)
@@ -214,40 +166,4 @@ class AppIcons {
 
   static Widget checkerGpu({Color? color, double size = 24}) =>
       _buildSvg(AppAssets.checkerGpu, color: color, size: size);
-
-  static Widget checkerBottomArrow({Color? color, double size = 20}) =>
-      _buildSvg(AppAssets.checkerBottomArrow, color: color, size: size);
-
-  static Widget checkerCheck({Color? color, double size = 20}) =>
-      _buildSvg(AppAssets.checkerCheck, color: color, size: size);
-
-  static Widget checkerTips({Color? color, double size = 20}) =>
-      _buildSvg(AppAssets.checkerTips, color: color, size: size);
-
-  // NOTE: checkerStatusWarning, checkerBgPattern, checkerInfoDot, checkerResultBadge, checkerSpecIcon are MISSING from disk
-
-  // ==========================================
-  // BACKWARD COMPATIBILITY ALIASES
-  // ==========================================
-  static Widget specProcessor({Color? color, double size = 24}) => specCpu(color: color, size: size);
-  static Widget specStorage({Color? color, double size = 24}) => specSsd(color: color, size: size);
-  static Widget specGraphics({Color? color, double size = 24}) => specGpu(color: color, size: size);
-
-  static Widget majorComputerScience({Color? color, double size = 48}) => majorCs(color: color, size: size);
-  static Widget majorEngineering({Color? color, double size = 48}) => majorEng(color: color, size: size);
-  static Widget majorBusiness({Color? color, double size = 48}) => majorBis(color: color, size: size);
-  static Widget majorMedia({Color? color, double size = 48}) => majorDesign(color: color, size: size); // fallback
-
-  static Widget usageWebDev({Color? color, double size = 48}) => usageWeb(color: color, size: size);
-  static Widget usageAndroidDev({Color? color, double size = 48}) => usageApp(color: color, size: size);
-  static Widget usageGraphicDesign({Color? color, double size = 48}) => usageGraphic(color: color, size: size);
-  static Widget usageVideoEditing({Color? color, double size = 48}) => usageVideo(color: color, size: size);
-  static Widget usageAIML({Color? color, double size = 48}) => usageAi(color: color, size: size);
-  static Widget usage3DCAD({Color? color, double size = 48}) => usageCad(color: color, size: size);
-
-  static Widget budgetEntry({Color? color, double size = 48}) => budgetLow(color: color, size: size);
-
-  static Widget checkerProcessor({Color? color, double size = 24}) => checkerCpu(color: color, size: size);
-  static Widget checkerMemory({Color? color, double size = 24}) => checkerRam(color: color, size: size);
-  static Widget checkerGraphics({Color? color, double size = 24}) => checkerGpu(color: color, size: size);
 }
