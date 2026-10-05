@@ -7,6 +7,7 @@ import 'package:laptix/widgets/icon_pill_badge.dart'; //done
 import 'package:laptix/widgets/primary_button.dart';  //done
 import 'package:laptix/widgets/secondary_button.dart';  //done
 import 'package:laptix/widgets/bottom_nav_bar.dart';
+import 'package:laptix/widgets/home_menu_sheet.dart';
 
 import 'package:laptix/Core/Constants/app_assets.dart';
 import 'package:laptix/Core/Constants/app_strings.dart';
@@ -16,12 +17,21 @@ import 'package:laptix/Core/Constants/app_colors.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
+  void _openMenuSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (_) => const HomeMenuSheet(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       // App Bar
-      appBar: const CustomAppBar.home(),
+      appBar: CustomAppBar.home(onMenuTap: () => _openMenuSheet(context)),
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(top: 24, left: 24, right: 24, bottom: 120),
         child: Column(

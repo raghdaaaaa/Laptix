@@ -81,6 +81,17 @@ class AppStrings {
   // Home Screen
   static const String homeFindMyLaptop = 'Find My Laptop';
 
+  // Home Menu Sheet
+  static const String homeMenuTitle = 'Laptix';
+  static const String homeMenuSubtitle = 'Find the right laptop for your needs.';
+  static const String homeMenuHowItWorks = 'How it works';
+  static const String homeMenuStep1 = '1. Choose your major.';
+  static const String homeMenuStep2 = '2. Pick what you\'ll use your laptop for.';
+  static const String homeMenuStep3 = '3. Set your budget. We combine all three to recommend CPU, RAM, storage and GPU, and we show what your budget can realistically get.';
+  static const String homeMenuFindMyLaptop = 'Find My Laptop';
+  static const String homeMenuCheckLaptop = 'Check a Laptop';
+  static const String homeMenuAbout = 'Recommendations are based on general guidelines, not live prices.';
+
   // Budget warning
   static const String budgetWarningTitle = 'Budget Alert';
 

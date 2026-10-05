@@ -442,7 +442,7 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
   String _verdictIconPathForLevel(SuitabilityLevel level) {
     switch (level) {
       case SuitabilityLevel.high:
-        return AppAssets.checkerDoubleCheck;
+        return AppAssets.commonCheckDouble;
       case SuitabilityLevel.moderate:
       case SuitabilityLevel.limited:
         return AppAssets.commonWarning;

@@ -17,7 +17,8 @@ class AppAssets {
   static const String commonChevronDown = '$_iconsPath/common/chevron_down.svg'; // Dropdown selectors
   static const String commonClose = '$_iconsPath/common/close.svg'; // Step screen header close button
   static const String commonSearch = '$_iconsPath/common/search.svg'; // Find laptop / search action
-  static const String commonCheck = '$_iconsPath/common/check.svg'; // Card selection checkmark
+  static const String commonCheck = '$_iconsPath/common/check.svg'; // Card selection checkmark (single check)
+  static const String commonCheckDouble = '$_iconsPath/common/check_double.svg'; // Double check (Checker high verdict only)
   static const String commonCheckCircle = '$_iconsPath/common/check_circle.svg'; // Big result success badge
   static const String commonWarning = '$_iconsPath/common/warning.svg'; // Budget warning & status alert
   static const String commonInfo = '$_iconsPath/common/info.svg'; // Info rows & tips
@@ -100,7 +101,6 @@ class AppAssets {
   static const String checkerStorage = '$_iconsPath/checker/storage.svg'; // Checker: SSD dropdown leading icon
   static const String checkerGpu = '$_iconsPath/checker/gpu.svg'; // Checker: GPU dropdown leading icon (was graphics)
   static const String checkerTips = '$_iconsPath/checker/tips.svg'; // Checker: Expert tip light-bulb icon (legacy)
-  static const String checkerDoubleCheck = '$_iconsPath/checker/double_check.svg'; // Checker: Success verdict badge (double check)
   static const String checkerInfoCircle = '$_iconsPath/checker/info_circle.svg'; // Checker: Expert tip leading icon (info circle)
   static const String checkerFadedLightning = '$_iconsPath/checker/faded_lightning.svg'; // Checker: Expert tip top-right decoration (faded lightning)
   static const String checkerSparkleWandButton = '$_iconsPath/checker/sparkle_wand_button.svg'; // Checker: Check Compatibility button trailing icon

@@ -19,6 +19,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? trailing;
   final bool showLogo;
   final bool showBackButton;
+  final VoidCallback? onMenuTap;
 
   static const double _heightHome = 120;
   static const double _heightStandard = 88;
@@ -33,6 +34,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.trailing,
     this.showLogo = false,
     this.showBackButton = false,
+    this.onMenuTap,
   });
 
   // Factory constructor for home variant
@@ -45,6 +47,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.trailing,
     this.showLogo = true,
     this.showBackButton = false,
+    this.onMenuTap,
   }) : variant = CustomAppBarVariant.home;
 
   @override
@@ -115,29 +118,33 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           const Spacer(),
           // Menu button
-          Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              color: AppColors.cardColor,
-              shape: BoxShape.circle,
-              border: Border.all(color: AppColors.backgroundColor, width: 1),
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.shadowColorBlack,
-                  offset: const Offset(0, 1),
-                  blurRadius: 2,
-                ),
-              ],
-            ),
-            child: Center(
-              child: SvgPicture.asset(
-                AppAssets.homeMenu,
-                width: 20,
-                height: 20,
-                colorFilter: const ColorFilter.mode(
-                  AppColors.primaryTextColor,
-                  BlendMode.srcIn,
+          InkWell(
+            onTap: onMenuTap,
+            customBorder: const CircleBorder(),
+            child: Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                color: AppColors.cardColor,
+                shape: BoxShape.circle,
+                border: Border.all(color: AppColors.backgroundColor, width: 1),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.shadowColorBlack,
+                    offset: const Offset(0, 1),
+                    blurRadius: 2,
+                  ),
+                ],
+              ),
+              child: Center(
+                child: SvgPicture.asset(
+                  AppAssets.homeMenu,
+                  width: 20,
+                  height: 20,
+                  colorFilter: const ColorFilter.mode(
+                    AppColors.primaryTextColor,
+                    BlendMode.srcIn,
+                  ),
                 ),
               ),
             ),

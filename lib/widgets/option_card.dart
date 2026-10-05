@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laptix/Core/Constants/app_colors.dart';
+import 'package:laptix/Core/Constants/app_assets.dart';
 
 enum OptionCardVariant { major, usage }
 
@@ -128,7 +129,7 @@ class OptionSelectionCard extends StatelessWidget {
                       shape: BoxShape.circle,
                     ),
                     child: SvgPicture.asset(
-                      'assets/images/icons/common/check.svg',
+                      AppAssets.commonCheck,
                       width: 12,
                       height: 12,
                       colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
