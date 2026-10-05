@@ -31,9 +31,9 @@ class LabeledDropdown<T> extends StatelessWidget {
         Text(
           label.toUpperCase(),
           style: GoogleFonts.inter(
-            fontSize: 11,
+            fontSize: 12,
             fontWeight: FontWeight.w700,
-            letterSpacing: 1,
+            letterSpacing: 1.2,
             color: AppColors.secondaryTextColor,
           ),
         ),
@@ -43,7 +43,15 @@ class LabeledDropdown<T> extends StatelessWidget {
           decoration: BoxDecoration(
             color: AppColors.cardColor,
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: AppColors.borderColor, width: 1.5),
+            border: Border.all(color: AppColors.borderColor, width: 1),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.shadowColorBlack,
+                offset: const Offset(0, 2),
+                blurRadius: 8,
+                spreadRadius: 0,
+              ),
+            ],
           ),
           child: DropdownButtonHideUnderline(
             child: DropdownButton<T>(
@@ -51,9 +59,12 @@ class LabeledDropdown<T> extends StatelessWidget {
               isExpanded: true,
               icon: SvgPicture.asset(
                 AppAssets.commonChevronDown,
-                width: 20,
-                height: 20,
-                colorFilter: const ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn),
+                width: 14,
+                height: 14,
+                colorFilter: const ColorFilter.mode(
+                  AppColors.secondaryTextColor,
+                  BlendMode.srcIn,
+                ),
               ),
               items: items
                   .map((item) => DropdownMenuItem<T>(
@@ -64,15 +75,21 @@ class LabeledDropdown<T> extends StatelessWidget {
                               iconPath,
                               width: 20,
                               height: 20,
-                              colorFilter: const ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn),
+                              colorFilter: const ColorFilter.mode(
+                                AppColors.secondaryTextColor,
+                                BlendMode.srcIn,
+                              ),
                             ),
                             const SizedBox(width: 12),
-                            Text(
-                              itemText(item),
-                              style: GoogleFonts.inter(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w700,
-                                color: AppColors.charcoal,
+                            Expanded(
+                              child: Text(
+                                itemText(item),
+                                overflow: TextOverflow.ellipsis,
+                                style: GoogleFonts.inter(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.charcoal,
+                                ),
                               ),
                             ),
                           ],

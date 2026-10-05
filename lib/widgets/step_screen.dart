@@ -4,7 +4,7 @@ import 'package:laptix/widgets/option_card.dart';
 import 'package:laptix/widgets/questionnaire_scaffold.dart';
 
 class StepOption {
-  final Widget icon;
+  final String icon;
   final String label;
   final String? badge;
 
@@ -77,7 +77,7 @@ class StepScreen extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.only(right: entry.key < rowOptions.length - 1 ? horizontalGap : 0),
                       child: OptionSelectionCard(
-                        icon: option.icon,
+                        iconPath: option.icon,
                         label: option.label,
                         isSelected: selectedIndices.contains(idx),
                         onTap: () => onSelectionChanged?.call(idx),
@@ -98,7 +98,7 @@ class StepScreen extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.only(right: entry.key < rowOptions.length - 1 ? horizontalGap : 0),
                       child: OptionSelectionCard(
-                        icon: option.icon,
+                        iconPath: option.icon,
                         label: option.label,
                         isSelected: selectedIndices.contains(idx),
                         onTap: () => onSelectionChanged?.call(idx),

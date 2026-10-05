@@ -21,9 +21,14 @@ class AppAssets {
   static const String commonCheckCircle = '$_iconsPath/common/check_circle.svg'; // Big result success badge
   static const String commonWarning = '$_iconsPath/common/warning.svg'; // Budget warning & status alert
   static const String commonInfo = '$_iconsPath/common/info.svg'; // Info rows & tips
-  static const String commonStar = '$_iconsPath/common/star.svg'; // Home performance badge & expert tip
-  static const String commonVerified = '$_iconsPath/common/verified.svg'; // Home student life badge
+  static const String commonStar = '$_iconsPath/common/star.svg'; // Home performance badge (legacy) & expert tip
+  static const String commonVerified = '$_iconsPath/common/verified.svg'; // Legacy student life badge
   static const String commonSuitableCheck = '$_iconsPath/common/suitable_check.svg'; // Suitable status indicator
+  static const String commonLightningBolt = '$_iconsPath/common/lightning_bolt.svg'; // Home performance badge & checker expert tip decoration
+  static const String commonGraduationCap = '$_iconsPath/common/graduation_cap.svg'; // Home student life badge
+  static const String commonSparkleWand = '$_iconsPath/common/sparkle_wand.svg'; // Budget show recommendations & checker check button
+  static const String commonCheckMark = '$_iconsPath/common/check_mark.svg'; // Result top success badge (plain check)
+  static const String commonWandSparkles = '$_iconsPath/common/wand_sparkles.svg'; // Result why-card leading icon
 
   // ==========================================
   // NAVIGATION ICONS (Bottom Navigation Bar)
@@ -31,7 +36,10 @@ class AppAssets {
   static const String navHome = '$_iconsPath/nav/home.svg'; // Bottom Nav: Home tab (inactive)
   static const String navChecker = '$_iconsPath/nav/checker.svg'; // Bottom Nav: Checker tab (inactive)
   static const String navAdd = '$_iconsPath/nav/add.svg'; // Bottom Nav: Center + button
-  // NOTE: Active state icons (home_active, checker_active) are MISSING from disk
+  static const String navHomeActive = '$_iconsPath/nav/home_active.svg'; // Bottom Nav: Home tab (active)
+  static const String navCheckerActive = '$_iconsPath/nav/checker_active.svg'; // Bottom Nav: Checker tab (active)
+  static const String navExplore = '$_iconsPath/nav/explore.svg'; // Bottom Nav: Explore tab
+  static const String navProfile = '$_iconsPath/nav/profile.svg'; // Bottom Nav: Profile tab
 
   // ==========================================
   // HOME SCREEN ICONS
@@ -47,7 +55,8 @@ class AppAssets {
   static const String majorBis = '$_iconsPath/major/bis.svg'; // Step 1: Business Info Systems major card (replaces business)
   static const String majorDesign = '$_iconsPath/major/design.svg'; // Step 1: Design major card
   static const String majorOther = '$_iconsPath/major/other.svg'; // Step 1: Other major card
-  // NOTE: majorBusiness (business.svg) and majorMedia (media.svg) are MISSING from disk
+  static const String majorBusiness = '$_iconsPath/major/business.svg'; // Step 1: Business major card
+  static const String majorMedia = '$_iconsPath/major/media.svg'; // Step 1: Media major card (clapperboard)
 
   // ==========================================
   // STEP 2: USAGE ICONS
@@ -61,7 +70,7 @@ class AppAssets {
   static const String usageAi = '$_iconsPath/usage/ai.svg'; // Step 2: AI / ML card (was ai_ml)
   static const String usageCad = '$_iconsPath/usage/cad.svg'; // Step 2: 3D / CAD card (was 3d_cad)
   static const String usageStudy = '$_iconsPath/usage/study.svg'; // Step 2: General Study card
-  // NOTE: usageAndroidDev (android_dev.svg) is MISSING from disk
+  static const String usageAndroidDev = '$_iconsPath/usage/android_dev.svg'; // Step 2: Android Development card
 
   // ==========================================
   // STEP 3: BUDGET ICONS
@@ -70,6 +79,7 @@ class AppAssets {
   static const String budgetMid = '$_iconsPath/budget/mid.svg'; // Step 3: Mid range budget card
   static const String budgetHigh = '$_iconsPath/budget/high.svg'; // Step 3: High end budget card
   static const String budgetPro = '$_iconsPath/budget/pro.svg'; // Step 3: Pro workstation budget card
+  static const String budgetWallet = '$_iconsPath/budget/wallet.svg'; // Step 3: Decorative wallet illustration (grey, opacity)
 
   // ==========================================
   // RECOMMENDATION RESULT ICONS
@@ -78,7 +88,9 @@ class AppAssets {
   static const String resultMemory = '$_iconsPath/result/memory.svg'; // Result: RAM spec card & status row
   static const String resultSsd = '$_iconsPath/result/ssd.svg'; // Result: SSD spec card & status row (was storage)
   static const String resultGpu = '$_iconsPath/result/gpu.svg'; // Result: GPU spec card & status row (was graphics)
-  // NOTE: resultLaptopCard (laptop_card.svg) and resultStatusBadgeHuge (status_badge_huge.svg) are MISSING from disk
+  static const String resultLaptopCard = '$_iconsPath/result/laptop_card.svg'; // Result: Laptop illustration in card
+  static const String resultFadedWand = '$_iconsPath/result/faded_wand.svg'; // Result: Why-card top-right decorative (faded wand)
+  // NOTE: resultStatusBadgeHuge (status_badge_huge.svg) is MISSING from disk
 
   // ==========================================
   // LAPTOP CHECKER ICONS
@@ -87,6 +99,11 @@ class AppAssets {
   static const String checkerRam = '$_iconsPath/checker/ram.svg'; // Checker: RAM dropdown leading icon (was memory)
   static const String checkerStorage = '$_iconsPath/checker/storage.svg'; // Checker: SSD dropdown leading icon
   static const String checkerGpu = '$_iconsPath/checker/gpu.svg'; // Checker: GPU dropdown leading icon (was graphics)
+  static const String checkerTips = '$_iconsPath/checker/tips.svg'; // Checker: Expert tip light-bulb icon (legacy)
+  static const String checkerDoubleCheck = '$_iconsPath/checker/double_check.svg'; // Checker: Success verdict badge (double check)
+  static const String checkerInfoCircle = '$_iconsPath/checker/info_circle.svg'; // Checker: Expert tip leading icon (info circle)
+  static const String checkerFadedLightning = '$_iconsPath/checker/faded_lightning.svg'; // Checker: Expert tip top-right decoration (faded lightning)
+  static const String checkerSparkleWandButton = '$_iconsPath/checker/sparkle_wand_button.svg'; // Checker: Check Compatibility button trailing icon
   // NOTE: checkerStatusWarning, checkerBgPattern, checkerInfoDot, checkerResultBadge, checkerSpecIcon are MISSING from disk
 
   // ==========================================

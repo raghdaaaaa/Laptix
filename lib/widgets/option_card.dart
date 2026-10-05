@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laptix/Core/Constants/app_colors.dart';
-import 'package:laptix/Core/Constants/app_icons.dart';
 
 enum OptionCardVariant { major, usage }
 
 class OptionSelectionCard extends StatelessWidget {
-  final Widget icon;
+  final String iconPath;
   final String label;
   final bool isSelected;
   final VoidCallback? onTap;
@@ -15,7 +15,7 @@ class OptionSelectionCard extends StatelessWidget {
 
   const OptionSelectionCard({
     super.key,
-    required this.icon,
+    required this.iconPath,
     required this.label,
     required this.isSelected,
     required this.onTap,
@@ -31,6 +31,9 @@ class OptionSelectionCard extends StatelessWidget {
     final selectedBorder = !isMajor && isSelected
         ? Border.all(color: AppColors.primaryColor, width: 2)
         : null;
+
+    final iconColor = isSelected ? AppColors.secondaryColor : AppColors.primaryColor;
+    final iconSize = isMajor ? 30.0 : 28.0;
 
     return GestureDetector(
       onTap: onTap,
@@ -79,14 +82,13 @@ class OptionSelectionCard extends StatelessWidget {
                         : AppColors.backgroundColor,
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: IconTheme(
-                    data: IconThemeData(
-                      color: isSelected
-                          ? AppColors.secondaryColor
-                          : AppColors.primaryColor,
-                      size: isMajor ? 10 : 5,
+                  child: Center(
+                    child: SvgPicture.asset(
+                      iconPath,
+                      width: iconSize,
+                      height: iconSize,
+                      colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
                     ),
-                    child: Center(child: icon),
                   ),
                 ),
                 SizedBox(height: isMajor ? 16 : 12),
@@ -125,9 +127,11 @@ class OptionSelectionCard extends StatelessWidget {
                       color: AppColors.secondaryColor,
                       shape: BoxShape.circle,
                     ),
-                    child: AppIcons.check(
-                      size: 12,
-                      color: Colors.white,
+                    child: SvgPicture.asset(
+                      'assets/images/icons/common/check.svg',
+                      width: 12,
+                      height: 12,
+                      colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
                     ),
                   ),
                 ),

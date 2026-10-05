@@ -22,51 +22,57 @@ class CustomBottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(25),
-      child: Container(
-        height: 80,
-        padding: const EdgeInsets.symmetric(horizontal: 30),
-        decoration: BoxDecoration(
-          color: AppColors.cardColor,
-          borderRadius: BorderRadius.circular(35),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.shadowColorBlackMedium,
-              blurRadius: 20,
-              offset: const Offset(0, -4),
-              spreadRadius: -4,
+      child: Center(
+        heightFactor: 1,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 300),
+          child: Container(
+            height: 80,
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            decoration: BoxDecoration(
+              color: AppColors.cardColor,
+              borderRadius: BorderRadius.circular(35),
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.shadowColorBlackMedium,
+                  blurRadius: 20,
+                  offset: const Offset(0, -4),
+                  spreadRadius: -4,
+                ),
+                BoxShadow(
+                  color: AppColors.shadowColorBlack,
+                  blurRadius: 10,
+                  offset: const Offset(0, -2),
+                ),
+              ],
             ),
-            BoxShadow(
-              color: AppColors.shadowColorBlack,
-              blurRadius: 10,
-              offset: const Offset(0, -2),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(
+                  width: 60,
+                  child: _NavIcon(
+                    assetPath: AppAssets.navHome,
+                    activeAssetPath: AppAssets.navHome,
+                    label: AppStrings.navHome,
+                    isActive: currentIndex == 0,
+                    onTap: () => onTap(0),
+                  ),
+                ),
+                _CenterButton(onTap: onCenterTap),
+                SizedBox(
+                  width: 60,
+                  child: _NavIcon(
+                    assetPath: AppAssets.navChecker,
+                    activeAssetPath: AppAssets.navChecker,
+                    label: AppStrings.navChecker,
+                    isActive: currentIndex == 1,
+                    onTap: () => onTap(1),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            SizedBox(
-              width: 60,
-              child: _NavIcon(
-                assetPath: AppAssets.navHome,
-                activeAssetPath: AppAssets.navHome,
-                label: AppStrings.navHome,
-                isActive: currentIndex == 0,
-                onTap: () => onTap(0),
-              ),
-            ),
-            _CenterButton(onTap: onCenterTap),
-            SizedBox(
-              width: 60,
-              child: _NavIcon(
-                assetPath: AppAssets.navChecker,
-                activeAssetPath: AppAssets.navChecker,
-                label: AppStrings.navChecker,
-                isActive: currentIndex == 1,
-                onTap: () => onTap(1),
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );

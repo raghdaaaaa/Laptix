@@ -37,7 +37,7 @@ class CheckerVerdictCard extends StatelessWidget {
             height: 64,
             decoration: BoxDecoration(
               color: color,
-              shape: BoxShape.circle,
+              borderRadius: BorderRadius.circular(20),
               boxShadow: [
                 BoxShadow(
                   color: color.withValues(alpha: 0.3),

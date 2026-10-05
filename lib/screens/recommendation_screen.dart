@@ -114,9 +114,8 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                   if (_result.budgetWarning != null) ...[
                     const SizedBox(height: 16),
                     BudgetWarningCard(message: _result.budgetWarning!),
-                    const SizedBox(height: 16),
                   ],
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 32),
                   // Why this recommendation
                   Text(
                     'WHY THIS RECOMMENDATION?',
@@ -277,7 +276,7 @@ class _SuccessBadge extends StatelessWidget {
       ),
       child: Center(
         child: SvgPicture.asset(
-          AppAssets.commonCheckCircle,
+          AppAssets.commonCheckMark,
           width: 36,
           height: 36,
           colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),

@@ -33,37 +33,37 @@ class WhyRecommendationCard extends StatelessWidget {
       usageText = '';
     }
 
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(35),
-      decoration: BoxDecoration(
-        color: AppColors.primaryColor,
-        borderRadius: BorderRadius.circular(40),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.shadowColorPrimary,
-            offset: const Offset(0, 8),
-            blurRadius: 20,
-            spreadRadius: -4,
-          ),
-          BoxShadow(
-            color: AppColors.shadowColorPrimaryMedium,
-            offset: const Offset(0, 20),
-            blurRadius: 25,
-            spreadRadius: -2,
-          ),
-        ],
-      ),
-      child: ClipPath(
-        clipper: _WhyCardClipper(),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(40),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(40),
+        decoration: BoxDecoration(
+          color: AppColors.primaryColor.withValues(alpha: 1),
+          borderRadius: BorderRadius.circular(40),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.shadowColorPrimary,
+              offset: const Offset(0, 8),
+              blurRadius: 20,
+              spreadRadius: -4,
+            ),
+            BoxShadow(
+              color: AppColors.shadowColorPrimaryMedium,
+              offset: const Offset(0, 20),
+              blurRadius: 25,
+              spreadRadius: -2,
+            ),
+          ],
+        ),
         child: Stack(
           children: [
-            // Optional AI icon decoration (bottom-right)
+            // Decorative AI icon (bottom-right, behind content)
             Positioned(
               right: -13,
               bottom: -30,
               child: Opacity(
-                opacity: 0.1,
+                opacity: 0.08,
                 child: SvgPicture.asset(
                   AppAssets.usageAi,
                   width: 120,
@@ -72,22 +72,22 @@ class WhyRecommendationCard extends StatelessWidget {
                 ),
               ),
             ),
-            // Content
+            // Content (non-positioned, sizes the card)
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  width: 45,
-                  height: 45,
+                  width: 60,
+                  height: 60,
                   decoration: BoxDecoration(
                     color: Colors.white.withValues(alpha: 0.12),
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: Center(
                     child: SvgPicture.asset(
-                      AppAssets.commonStar,
-                      width: 24,
-                      height: 24,
+                      AppAssets.commonWandSparkles,
+                      width: 30,
+                      height: 30,
                       colorFilter: const ColorFilter.mode(
                         AppColors.secondaryColor,
                         BlendMode.srcIn,
@@ -95,7 +95,7 @@ class WhyRecommendationCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(width: 24),
+                const SizedBox(width: 20),
                 Expanded(
                   child: Text.rich(
                     TextSpan(
@@ -130,17 +130,4 @@ class WhyRecommendationCard extends StatelessWidget {
       ),
     );
   }
-}
-
-class _WhyCardClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    return Path()..addRRect(RRect.fromRectAndRadius(
-      Rect.fromLTWH(0, 20, size.width, size.height),
-      const Radius.circular(10),
-    ));
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }

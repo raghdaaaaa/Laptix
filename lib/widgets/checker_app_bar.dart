@@ -12,7 +12,7 @@ class CheckerAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 64,
-      color: Colors.white,
+      color: AppColors.backgroundColor,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Row(
@@ -22,8 +22,8 @@ class CheckerAppBar extends StatelessWidget {
               onTap: () => Navigator.of(context).maybePop(),
               customBorder: const CircleBorder(),
               child: Container(
-                width: 44,
-                height: 44,
+                width: 36,
+                height: 36,
                 decoration: BoxDecoration(
                   color: AppColors.cardColor,
                   shape: BoxShape.circle,
@@ -36,9 +36,9 @@ class CheckerAppBar extends StatelessWidget {
                 ),
                 child: Center(
                   child: SvgPicture.asset(
-                    AppAssets.commonArrowBack,
-                    width: 20,
-                    height: 20,
+                    AppAssets.commonChevronLeft,
+                    width: 18,
+                    height: 18,
                     colorFilter: const ColorFilter.mode(
                       AppColors.primaryTextColor,
                       BlendMode.srcIn,
@@ -52,7 +52,7 @@ class CheckerAppBar extends StatelessWidget {
               child: Center(
                 child: Text(
                   'Check a Laptop',
-                  style: GoogleFonts.urbanist(
+                  style: GoogleFonts.inter(
                     fontSize: 18,
                     fontWeight: FontWeight.w800,
                     color: AppColors.charcoal,
@@ -60,7 +60,7 @@ class CheckerAppBar extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(width: 56),
+            const SizedBox(width: 48),
           ],
         ),
       ),

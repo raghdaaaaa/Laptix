@@ -51,6 +51,18 @@ class _BudgetScreenState extends State<BudgetScreen> {
     setState(() => _selectedIndex = index);
   }
 
+  void _continue() {
+    Navigator.pushNamed(
+      context,
+      AppRoutes.recommendation,
+      arguments: StudentProfile(
+        major: widget.profile.major,
+        usages: widget.profile.usages,
+        budget: _options[_selectedIndex].price,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return QuestionnaireScaffold(
@@ -59,17 +71,7 @@ class _BudgetScreenState extends State<BudgetScreen> {
       title: AppStrings.step3Title,
       highlight: 'budget?',
       subtitle: AppStrings.step3Subtitle,
-      onContinue: _selectedIndex == -1
-          ? null
-          : () => Navigator.pushNamed(
-                context,
-                AppRoutes.recommendation,
-                arguments: StudentProfile(
-                  major: widget.profile.major,
-                  usages: widget.profile.usages,
-                  budget: _options[_selectedIndex].price,
-                ),
-              ),
+      onContinue: _selectedIndex == -1 ? null : _continue,
       continueText: AppStrings.btnShowRecommendations,
       continueButtonHeight: 64,
       content: Column(

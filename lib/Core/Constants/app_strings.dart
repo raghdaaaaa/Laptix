@@ -71,6 +71,7 @@ class AppStrings {
   static const String checkerLabelGraphics = 'Graphics (GPU)';
   static const String checkerBtnCheck = 'Check Compatibility';
   static const String checkerAnalysisResult = 'Analysis Result';
+  static const String checkerCalculationComplete = 'CALCULATION COMPLETE';
   static const String checkerHighlySuitable = 'Highly Suitable';
   static const String checkerTitle = 'Check a Laptop';
   static const String checkerSpecsHeader = 'Specifications';

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:laptix/widgets/bottom_nav_bar.dart';
-import 'package:laptix/widgets/primary_button.dart';
 import 'package:laptix/widgets/checker_app_bar.dart';
 import 'package:laptix/widgets/checker_analysis_row.dart';
 import 'package:laptix/widgets/expert_tip_card.dart';
@@ -13,6 +12,7 @@ import 'package:laptix/Core/Constants/app_assets.dart';
 import 'package:laptix/Core/Constants/app_strings.dart';
 import 'package:laptix/Core/Constants/app_colors.dart';
 import 'package:laptix/Core/Constants/app_routes.dart';
+import 'package:laptix/Core/Constants/app_icons.dart';
 
 import 'package:laptix/models/checker_result.dart';
 import 'package:laptix/models/spec_status.dart';
@@ -153,27 +153,7 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    AppStrings.checkerTitle,
-                    style: GoogleFonts.inter(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w800,
-                      color: AppColors.charcoal,
-                    ),
-                  ),
-                  const SizedBox(height: 32),
-
-                  Text(
-                    AppStrings.checkerSpecsHeader,
-                    style: GoogleFonts.inter(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w800,
-                      color: AppColors.charcoal,
-                      letterSpacing: -0.3,
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-
+                  // Processor field (full width)
                   LabeledDropdown<String>(
                     label: AppStrings.checkerLabelProcessor,
                     iconPath: AppAssets.checkerCpu,
@@ -184,27 +164,36 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
                   ),
                   const SizedBox(height: 20),
 
-                  LabeledDropdown<int>(
-                    label: AppStrings.checkerLabelMemory,
-                    iconPath: AppAssets.checkerRam,
-                    value: _selectedRam,
-                    items: _ramOptions,
-                    itemText: (item) => '$item GB',
-                    onChanged: (value) => setState(() => _selectedRam = value!),
+                  // RAM and Storage side by side
+                  Row(
+                    children: [
+                      Expanded(
+                        child: LabeledDropdown<int>(
+                          label: AppStrings.checkerLabelMemory,
+                          iconPath: AppAssets.checkerRam,
+                          value: _selectedRam,
+                          items: _ramOptions,
+                          itemText: (item) => '$item GB',
+                          onChanged: (value) => setState(() => _selectedRam = value!),
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: LabeledDropdown<int>(
+                          label: AppStrings.checkerLabelGraphics.replaceAll('Graphics', 'Storage'),
+                          iconPath: AppAssets.checkerStorage,
+                          value: _selectedStorage,
+                          items: _storageOptions,
+                          itemText: (item) => '$item GB',
+                          onChanged: (value) =>
+                              setState(() => _selectedStorage = value!),
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 20),
 
-                  LabeledDropdown<int>(
-                    label: 'Storage',
-                    iconPath: AppAssets.checkerStorage,
-                    value: _selectedStorage,
-                    items: _storageOptions,
-                    itemText: (item) => '$item GB',
-                    onChanged: (value) =>
-                        setState(() => _selectedStorage = value!),
-                  ),
-                  const SizedBox(height: 20),
-
+                  // GPU field (full width)
                   LabeledDropdown<String>(
                     label: AppStrings.checkerLabelGraphics,
                     iconPath: AppAssets.checkerGpu,
@@ -215,14 +204,8 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
                   ),
                   const SizedBox(height: 32),
 
-                  PrimaryButton(
-                    text: _isChecking
-                        ? 'Checking...'
-                        : AppStrings.checkerBtnCheck,
-                    onTap: _isChecking ? null : _checkCompatibility,
-                    height: 64,
-                    trailingIconSize: 18,
-                  ),
+                  // Custom Check button with search icon on left, no chevron
+                  _buildCheckButton(),
                   const SizedBox(height: 32),
 
                   if (_result != null) _buildResults(),
@@ -253,6 +236,62 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
     );
   }
 
+  Widget _buildCheckButton() {
+    return SizedBox(
+      width: double.infinity,
+      height: 64,
+      child: ElevatedButton(
+        onPressed: _isChecking ? null : _checkCompatibility,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.primaryColor,
+          foregroundColor: Colors.white,
+          elevation: 0,
+          padding: EdgeInsets.zero,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          shadowColor: Colors.transparent,
+        ).copyWith(
+          elevation: const WidgetStatePropertyAll(0),
+        ),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.shadowColorPrimary,
+                offset: const Offset(0, 8),
+                blurRadius: 10,
+                spreadRadius: -6,
+              ),
+              BoxShadow(
+                color: AppColors.shadowColorPrimaryMedium,
+                offset: const Offset(0, 20),
+                blurRadius: 25,
+                spreadRadius: -5,
+              ),
+            ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AppIcons.search(color: AppColors.secondaryColor, size: 20),
+              const SizedBox(width: 12),
+              Text(
+                _isChecking ? 'Checking...' : AppStrings.checkerBtnCheck,
+                style: GoogleFonts.inter(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget _buildResults() {
     final result = _result!;
     final verdictColor = _verdictColorForLevel(result.level);
@@ -271,50 +310,86 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
         ),
         const SizedBox(height: 24),
 
-        Text(
-          AppStrings.checkerAnalysisResult,
-          style: GoogleFonts.inter(
-            fontSize: 20,
-            fontWeight: FontWeight.w800,
-            color: AppColors.charcoal,
-            letterSpacing: -0.3,
-          ),
+        // Header row: ANALYSIS RESULT + CALCULATION COMPLETE pill
+        Row(
+          children: [
+            Text(
+              AppStrings.checkerAnalysisResult,
+              style: GoogleFonts.inter(
+                fontSize: 12,
+                fontWeight: FontWeight.w900,
+                letterSpacing: 2.4,
+                color: AppColors.charcoal,
+              ),
+            ),
+            const SizedBox(width: 12),
+            Flexible(
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                decoration: BoxDecoration(
+                  color: AppColors.successBackgroundColor,
+                  borderRadius: BorderRadius.circular(999),
+                ),
+                child: Text(
+                  AppStrings.checkerCalculationComplete,
+                  style: GoogleFonts.inter(
+                    fontSize: 10,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.successTextColor,
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
         const SizedBox(height: 16),
 
-        CheckerAnalysisRow(
-          iconPath: AppAssets.checkerCpu,
-          label: AppStrings.specProcessor,
-          value: _cpuDisplay[_selectedCpu] ?? _selectedCpu,
-          reason: result.cpuReason,
-          status: result.cpuStatus,
-        ),
-        const SizedBox(height: 12),
-
-        CheckerAnalysisRow(
-          iconPath: AppAssets.checkerRam,
-          label: AppStrings.specMemory,
-          value: '$_selectedRam GB',
-          reason: result.ramReason,
-          status: result.ramStatus,
-        ),
-        const SizedBox(height: 12),
-
-        CheckerAnalysisRow(
-          iconPath: AppAssets.checkerStorage,
-          label: AppStrings.specStorage,
-          value: '$_selectedStorage GB',
-          reason: result.storageReason,
-          status: result.storageStatus,
-        ),
-        const SizedBox(height: 12),
-
-        CheckerAnalysisRow(
-          iconPath: AppAssets.checkerGpu,
-          label: AppStrings.specGraphics,
-          value: _gpuDisplay[_selectedGpu] ?? _selectedGpu,
-          reason: result.gpuReason,
-          status: result.gpuStatus,
+        // Analysis rows wrapped in one card with dividers
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+          decoration: BoxDecoration(
+            color: AppColors.cardColor,
+            borderRadius: BorderRadius.circular(40),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.shadowColorBlack,
+                offset: const Offset(0, 4),
+                blurRadius: 12,
+                spreadRadius: 0,
+              ),
+            ],
+          ),
+          child: Column(
+            children: [
+              CheckerAnalysisRow(
+                iconPath: AppAssets.checkerCpu,
+                label: AppStrings.specProcessor,
+                value: _cpuDisplay[_selectedCpu] ?? _selectedCpu,
+                status: result.cpuStatus,
+              ),
+              _buildDivider(),
+              CheckerAnalysisRow(
+                iconPath: AppAssets.checkerRam,
+                label: AppStrings.specMemory,
+                value: '$_selectedRam GB',
+                status: result.ramStatus,
+              ),
+              _buildDivider(),
+              CheckerAnalysisRow(
+                iconPath: AppAssets.checkerStorage,
+                label: AppStrings.specStorage,
+                value: '$_selectedStorage GB',
+                status: result.storageStatus,
+              ),
+              _buildDivider(),
+              CheckerAnalysisRow(
+                iconPath: AppAssets.checkerGpu,
+                label: AppStrings.specGraphics,
+                value: _gpuDisplay[_selectedGpu] ?? _selectedGpu,
+                status: result.gpuStatus,
+              ),
+            ],
+          ),
         ),
         const SizedBox(height: 24),
 
@@ -345,6 +420,14 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
     );
   }
 
+  Widget _buildDivider() {
+    return Container(
+      height: 1,
+      color: AppColors.borderColor,
+      margin: const EdgeInsets.symmetric(vertical: 8),
+    );
+  }
+
   Color _verdictColorForLevel(SuitabilityLevel level) {
     switch (level) {
       case SuitabilityLevel.high:
@@ -359,7 +442,7 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
   String _verdictIconPathForLevel(SuitabilityLevel level) {
     switch (level) {
       case SuitabilityLevel.high:
-        return AppAssets.commonCheckCircle;
+        return AppAssets.checkerDoubleCheck;
       case SuitabilityLevel.moderate:
       case SuitabilityLevel.limited:
         return AppAssets.commonWarning;

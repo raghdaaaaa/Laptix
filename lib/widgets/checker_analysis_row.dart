@@ -12,14 +12,12 @@ class CheckerAnalysisRow extends StatelessWidget {
     required this.iconPath,
     required this.label,
     required this.value,
-    required this.reason,
     required this.status,
   });
 
   final String iconPath;
   final String label;
   final String value;
-  final String reason;
   final SpecStatus status;
 
   ({String text, Color color, String iconPath}) _getStatusData(SpecStatus status) {
@@ -29,22 +27,7 @@ class CheckerAnalysisRow extends StatelessWidget {
       case SpecStatus.optimal:
         return (text: 'Optimal', color: AppColors.successColor, iconPath: AppAssets.commonCheckCircle);
       case SpecStatus.good:
-        return (text: 'Good', color: AppColors.warningColor, iconPath: AppAssets.commonCheckCircle);
-    }
-  }
-
-  Color _getIconBgColor(String label) {
-    switch (label) {
-      case 'Processor':
-        return AppColors.primaryColor.withValues(alpha: 0.1);
-      case 'Memory':
-        return AppColors.secondaryColor.withValues(alpha: 0.1);
-      case 'Storage':
-        return AppColors.orangeAccent.withValues(alpha: 0.1);
-      case 'Graphics':
-        return AppColors.indigoAccent.withValues(alpha: 0.1);
-      default:
-        return AppColors.primaryColor.withValues(alpha: 0.1);
+        return (text: 'Good', color: AppColors.warningColor, iconPath: AppAssets.commonWarning);
     }
   }
 
@@ -52,96 +35,81 @@ class CheckerAnalysisRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final statusData = _getStatusData(status);
 
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: AppColors.cardColor,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.borderColor),
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              color: _getIconBgColor(label),
-              borderRadius: BorderRadius.circular(10),
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Container(
+          width: 48,
+          height: 48,
+          decoration: BoxDecoration(
+            color: AppColors.backgroundColor,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Center(
+            child: SvgPicture.asset(
+              iconPath,
+              width: 20,
+              height: 20,
+              colorFilter: const ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn),
             ),
-            child: Center(
-              child: SvgPicture.asset(
-                iconPath,
-                width: 20,
-                height: 20,
-                colorFilter: const ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn),
+          ),
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                label.toUpperCase(),
+                style: GoogleFonts.inter(
+                  fontSize: 10,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 1,
+                  color: AppColors.secondaryTextColor,
+                ),
+              ),
+              Text(
+                value,
+                style: GoogleFonts.inter(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w800,
+                  color: AppColors.charcoal,
+                ),
+              ),
+            ],
+          ),
+        ),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              statusData.text,
+              style: GoogleFonts.inter(
+                fontSize: 14,
+                fontWeight: FontWeight.w700,
+                color: statusData.color,
               ),
             ),
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  label.toUpperCase(),
-                  style: GoogleFonts.inter(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w700,
-                    letterSpacing: 0.8,
-                    color: AppColors.secondaryTextColor,
-                  ),
-                ),
-                Text(
-                  value,
-                  style: GoogleFonts.inter(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w800,
-                    color: AppColors.charcoal,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  reason,
-                  style: GoogleFonts.inter(
-                    fontSize: 12,
-                    height: 1.4,
-                    color: AppColors.secondaryTextColor,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-            decoration: BoxDecoration(
-              color: statusData.color.withValues(alpha: 0.1),
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: statusData.color.withValues(alpha: 0.3)),
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                SvgPicture.asset(
+            const SizedBox(width: 8),
+            Container(
+              width: 18,
+              height: 18,
+              decoration: BoxDecoration(
+                color: statusData.color,
+                shape: BoxShape.circle,
+              ),
+              child: Center(
+                child: SvgPicture.asset(
                   statusData.iconPath,
-                  width: 12,
-                  height: 12,
-                  colorFilter: ColorFilter.mode(statusData.color, BlendMode.srcIn),
+                  width: 10,
+                  height: 10,
+                  colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
                 ),
-                const SizedBox(width: 4),
-                Text(
-                  statusData.text,
-                  style: GoogleFonts.inter(
-                    fontSize: 11,
-                    fontWeight: FontWeight.w700,
-                    color: statusData.color,
-                  ),
-                ),
-              ],
+              ),
             ),
-          ),
-        ],
-      ),
+          ],
+        ),
+      ],
     );
   }
 }

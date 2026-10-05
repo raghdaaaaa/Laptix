@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:laptix/widgets/step_screen.dart';
 import 'package:laptix/widgets/option_card.dart';
@@ -27,75 +26,39 @@ class _UsageScreenState extends State<UsageScreen> {
 
   static final List<StepOption> _usageOptions = [
     StepOption(
-      icon: SvgPicture.asset(
-        AppAssets.usageApp,
-        width: 30,
-        height: 30,
-      ),
+      icon: AppAssets.usageAndroidDev,
       label: AppStrings.usageAndroidDev,
     ),
     StepOption(
-      icon: SvgPicture.asset(
-        AppAssets.usageGaming,
-        width: 30,
-        height: 30,
-      ),
+      icon: AppAssets.usageGaming,
       label: AppStrings.usageGaming,
     ),
     StepOption(
-      icon: SvgPicture.asset(
-        AppAssets.usageGraphic,
-        width: 30,
-        height: 30,
-      ),
+      icon: AppAssets.usageGraphic,
       label: AppStrings.usageGraphicDesign,
     ),
     StepOption(
-      icon: SvgPicture.asset(
-        AppAssets.usageVideo,
-        width: 30,
-        height: 30,
-      ),
+      icon: AppAssets.usageVideo,
       label: AppStrings.usageVideoEditing,
     ),
     StepOption(
-      icon: SvgPicture.asset(
-        AppAssets.usageCad,
-        width: 30,
-        height: 30,
-      ),
+      icon: AppAssets.usageCad,
       label: AppStrings.usage3DCAD,
     ),
     StepOption(
-      icon: SvgPicture.asset(
-        AppAssets.usageStudy,
-        width: 30,
-        height: 30,
-      ),
+      icon: AppAssets.usageStudy,
       label: AppStrings.usageStudy,
     ),
     StepOption(
-      icon: SvgPicture.asset(
-        AppAssets.usageProgramming,
-        width: 30,
-        height: 30,
-      ),
+      icon: AppAssets.usageProgramming,
       label: AppStrings.usageProgramming,
     ),
     StepOption(
-      icon: SvgPicture.asset(
-        AppAssets.usageWeb,
-        width: 30,
-        height: 30,
-      ),
+      icon: AppAssets.usageWeb,
       label: AppStrings.usageWebDev,
     ),
     StepOption(
-      icon: SvgPicture.asset(
-        AppAssets.usageAi,
-        width: 30,
-        height: 30,
-      ),
+      icon: AppAssets.usageAi,
       label: AppStrings.usageAIML,
     ),
   ];

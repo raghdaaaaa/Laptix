@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laptix/Core/Constants/app_colors.dart';
 import 'package:laptix/Core/Constants/app_icons.dart';
 
@@ -9,6 +10,9 @@ class PrimaryButton extends StatelessWidget {
   final double? height;
   final double trailingIconSize;
   final Color? trailingIconColor;
+  final String? leadingIconPath;
+  final double leadingIconSize;
+  final Color? leadingIconColor;
 
   const PrimaryButton({
     super.key,
@@ -17,6 +21,9 @@ class PrimaryButton extends StatelessWidget {
     this.height,
     this.trailingIconSize = 18,
     this.trailingIconColor,
+    this.leadingIconPath,
+    this.leadingIconSize = 20,
+    this.leadingIconColor,
   });
 
   @override
@@ -61,6 +68,18 @@ class PrimaryButton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              if (leadingIconPath != null) ...[
+                SvgPicture.asset(
+                  leadingIconPath!,
+                  width: leadingIconSize,
+                  height: leadingIconSize,
+                  colorFilter: ColorFilter.mode(
+                    leadingIconColor ?? Colors.white,
+                    BlendMode.srcIn,
+                  ),
+                ),
+                const SizedBox(width: 12),
+              ],
               Text(
                 text,
                 style: GoogleFonts.inter(
@@ -69,11 +88,13 @@ class PrimaryButton extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              const SizedBox(width: 12),
-              AppIcons.iconChevronRight(
-                color: trailingIconColor ?? Colors.white.withValues(alpha: 0.7),
-                size: trailingIconSize,
-              ),
+              if (leadingIconPath == null) ...[
+                const SizedBox(width: 12),
+                AppIcons.iconChevronRight(
+                  color: trailingIconColor ?? Colors.white.withValues(alpha: 0.7),
+                  size: trailingIconSize,
+                ),
+              ],
             ],
           ),
         ),

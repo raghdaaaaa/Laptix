@@ -26,17 +26,17 @@ class ExpertTipCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            width: 40,
-            height: 40,
+            width: 48,
+            height: 48,
             decoration: BoxDecoration(
               color: AppColors.secondaryColor.withValues(alpha: 0.2),
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(16),
             ),
             child: Center(
               child: SvgPicture.asset(
-                AppAssets.commonStar,
-                width: 18,
-                height: 18,
+                AppAssets.commonInfo,
+                width: 24,
+                height: 24,
                 colorFilter: const ColorFilter.mode(AppColors.secondaryColor, BlendMode.srcIn),
               ),
             ),

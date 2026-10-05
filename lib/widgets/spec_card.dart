@@ -72,6 +72,7 @@ class SpecificationCard extends StatelessWidget {
             style: GoogleFonts.inter(
               fontSize: 15.5,
               fontWeight: FontWeight.w900,
+              height: 1.2,
               color: AppColors.charcoal,
               letterSpacing: -0.3,
             ),
@@ -82,7 +83,7 @@ class SpecificationCard extends StatelessWidget {
             style: GoogleFonts.inter(
               fontSize: 11,
               fontWeight: FontWeight.w500,
-              height: 1.1,
+              height: 1.5,
               color: AppColors.secondaryTextColor,
             ),
           ),

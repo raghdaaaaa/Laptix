@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
-import 'package:laptix/widgets/step_screen.dart'; //done
+import 'package:laptix/widgets/step_screen.dart';
 import 'package:laptix/widgets/option_card.dart';
 
 import 'package:laptix/Core/Constants/app_assets.dart';
@@ -22,51 +21,27 @@ class _MajorScreenState extends State<MajorScreen> {
 
   static final List<StepOption> _majorOptions = [ 
     StepOption(
-      icon: SvgPicture.asset(
-        AppAssets.majorCs,
-        width: 30,
-        height: 30,
-      ),
+      icon: AppAssets.majorCs,
       label: AppStrings.majorComputerScience,
      ),
     StepOption(
-      icon: SvgPicture.asset(
-        AppAssets.majorEng,
-        width: 30,
-        height: 30,
-      ),
+      icon: AppAssets.majorEng,
       label: AppStrings.majorEngineering,
     ),
     StepOption(
-      icon: SvgPicture.asset(
-        AppAssets.majorBis,
-        width: 30,
-        height: 30,
-      ),
+      icon: AppAssets.majorBusiness,
       label: AppStrings.majorBusiness,
     ),
     StepOption(
-      icon: SvgPicture.asset(
-        AppAssets.majorDesign,
-        width: 30,
-        height: 30,
-      ),
+      icon: AppAssets.majorDesign,
       label: AppStrings.majorDesign,
     ),
     StepOption(
-      icon: SvgPicture.asset(
-        AppAssets.majorDesign, // fallback: media.svg missing, use design
-        width: 30,
-        height: 30,
-      ),
+      icon: AppAssets.majorMedia,
       label: AppStrings.majorMedia,
     ),
     StepOption(
-      icon: SvgPicture.asset(
-        AppAssets.majorOther,
-        width: 30,
-        height: 30,
-      ),
+      icon: AppAssets.majorOther,
       label: AppStrings.majorOther,
     ),
   ];
