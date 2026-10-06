@@ -34,7 +34,7 @@ class ExpertTipCard extends StatelessWidget {
             ),
             child: Center(
               child: SvgPicture.asset(
-                AppAssets.commonInfo,
+                AppAssets.checkerTips,
                 width: 24,
                 height: 24,
                 colorFilter: const ColorFilter.mode(AppColors.secondaryColor, BlendMode.srcIn),

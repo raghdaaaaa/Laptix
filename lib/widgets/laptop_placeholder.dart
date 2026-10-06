@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:laptix/Core/Constants/app_colors.dart';
 
 class LaptopImagePlaceholder extends StatelessWidget {
-  final String? imagePath;
+  final String imagePath;
   final List<Widget> badges;
 
   const LaptopImagePlaceholder({
     super.key,
-    this.imagePath,
+    required this.imagePath,
     this.badges = const [],
   });
 
@@ -45,9 +45,7 @@ class LaptopImagePlaceholder extends StatelessWidget {
             child: SizedBox(
               width: 295,
               height: 254,
-              child: imagePath == null
-                  ? const Placeholder(color: Colors.grey)
-                  : Image.asset(imagePath!, fit: BoxFit.contain),
+              child: Image.asset(imagePath, fit: BoxFit.contain),
             ),
           ),
           ...badges,
