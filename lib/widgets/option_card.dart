@@ -130,8 +130,8 @@ class OptionSelectionCard extends StatelessWidget {
                     ),
                     child: SvgPicture.asset(
                       AppAssets.commonCheck,
-                      width: 12,
-                      height: 12,
+                      width: 1,
+                      height: 1,
                       colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
                     ),
                   ),

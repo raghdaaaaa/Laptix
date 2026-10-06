@@ -59,7 +59,7 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Success badge (green)
+                  // Success badge 
                   Center(
                     child: _SuccessBadge(),
                   ),
@@ -68,10 +68,12 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                   // Title
                   Center(
                     child: Text.rich(
+                      textAlign: TextAlign.center,
                       TextSpan(
                         children: [
                           TextSpan(
                             text: _result.budgetWarning == null ? 'Perfect ' : 'Best Match ',
+                            
                             style: GoogleFonts.inter(
                               fontSize: 26,
                               fontWeight: FontWeight.w700,

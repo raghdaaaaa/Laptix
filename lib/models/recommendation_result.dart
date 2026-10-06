@@ -5,6 +5,7 @@ class RecommendationResult {
   final String gpu;
 
   final String cpuReason;
+
   final String ramReason;
   final String storageReason;
   final String gpuReason;

@@ -298,31 +298,21 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
     final verdictIconPath = _verdictIconPathForLevel(result.level);
     final verdictText = _verdictTextForLevel(result.level);
 
-    return Column(
+      return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CheckerVerdictCard(
-          color: verdictColor,
-          iconPath: verdictIconPath,
-          verdict: verdictText,
-          matchedUsages: result.matchedUsages,
-          totalUsages: result.totalUsages,
-        ),
-        const SizedBox(height: 24),
-
-        // Header row: ANALYSIS RESULT + CALCULATION COMPLETE pill
         Row(
           children: [
             Text(
-              AppStrings.checkerAnalysisResult,
+              AppStrings.checkerAnalysisResult.toUpperCase(),
               style: GoogleFonts.inter(
-                fontSize: 12,
-                fontWeight: FontWeight.w900,
-                letterSpacing: 2.4,
-                color: AppColors.charcoal,
+                fontSize: 10,
+                fontWeight: FontWeight.w800,
+                letterSpacing: 1,
+                color: AppColors.charcoal.withValues(alpha: 0.5),
               ),
             ),
-            const SizedBox(width: 12),
+            const SizedBox(width: 60),
             Flexible(
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
@@ -333,9 +323,9 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
                 child: Text(
                   AppStrings.checkerCalculationComplete,
                   style: GoogleFonts.inter(
-                    fontSize: 10,
+                    fontSize: 8,
                     fontWeight: FontWeight.w700,
-                    color: AppColors.successTextColor,
+                    color: AppColors.successTextColor.withValues(alpha: 0.9),
                   ),
                 ),
               ),
@@ -343,12 +333,18 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
           ],
         ),
         const SizedBox(height: 16),
-
-        // Analysis rows wrapped in one card with dividers
+        CheckerVerdictCard(
+          color: verdictColor,
+          iconPath: verdictIconPath,
+          verdict: verdictText,
+          matchedUsages: result.matchedUsages,
+          totalUsages: result.totalUsages,
+        ),
+        const SizedBox(height: 40),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
           decoration: BoxDecoration(
-            color: AppColors.cardColor,
+            color: AppColors.cardColor.withValues(alpha: 0.5),
             borderRadius: BorderRadius.circular(40),
             boxShadow: [
               BoxShadow(

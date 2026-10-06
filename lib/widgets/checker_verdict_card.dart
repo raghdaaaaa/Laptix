@@ -24,11 +24,11 @@ class CheckerVerdictCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.all(40),
       decoration: BoxDecoration(
         color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(40),
-        border: Border.all(color: color.withValues(alpha: 0.3)),
+        border: Border.all(color: color.withValues(alpha: 0.1)),
       ),
       child: Column(
         children: [
@@ -80,7 +80,7 @@ class CheckerVerdictCard extends StatelessWidget {
             '$matchedUsages of $totalUsages use cases supported',
             style: GoogleFonts.inter(
               fontSize: 14,
-              color: AppColors.secondaryTextColor,
+              color:  color.withValues(alpha: 0.8),
             ),
           ),
         ],
