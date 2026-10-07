@@ -66,6 +66,34 @@ class LabeledDropdown<T> extends StatelessWidget {
                   BlendMode.srcIn,
                 ),
               ),
+              selectedItemBuilder: (context) => items
+                  .map((item) => Row(
+                        children: [
+                          SvgPicture.asset(
+                            iconPath,
+                            width: 20,
+                            height: 20,
+                            colorFilter: const ColorFilter.mode(
+                              AppColors.secondaryTextColor,
+                              BlendMode.srcIn,
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Text(
+                              itemText(item),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                              style: GoogleFonts.inter(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.charcoal,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ))
+                  .toList(),
               items: items
                   .map((item) => DropdownMenuItem<T>(
                         value: item,

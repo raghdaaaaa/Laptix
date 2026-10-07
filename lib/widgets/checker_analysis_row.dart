@@ -20,33 +20,6 @@ class CheckerAnalysisRow extends StatelessWidget {
   final String value;
   final SpecStatus status;
 
-  ({String text, Color color, String iconPath}) _getStatusData(
-    SpecStatus status,
-  ) {
-    switch (status) {
-      case SpecStatus.perfect:
-        return (
-          text: 'Perfect',
-          color: AppColors.successColor,
-          iconPath: AppAssets.commonCheckCircle,
-        );
-
-      case SpecStatus.optimal:
-        return (
-          text: 'Optimal',
-          color: AppColors.successColor,
-          iconPath: AppAssets.commonCheckCircle,
-        );
-
-      case SpecStatus.good:
-        return (
-          text: 'Good',
-          color: AppColors.warningColor,
-          iconPath: AppAssets.commonWarning,
-        );
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final statusData = _getStatusData(status);
@@ -64,8 +37,8 @@ class CheckerAnalysisRow extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-            Container(    
+          children: [
+            Container(
               width: 40,
               height: 40,
               decoration: BoxDecoration(
@@ -127,22 +100,32 @@ class CheckerAnalysisRow extends StatelessWidget {
                 const SizedBox(width: 6),
 
                 Container(
-                  width: 15,
-                  height: 15,
+                  width: 18,
+                  height: 18,
                   decoration: BoxDecoration(
                     color: statusData.color,
                     shape: BoxShape.circle,
                   ),
                   child: Center(
-                    child: SvgPicture.asset(
-                      statusData.iconPath,
-                      width: 8,
-                      height: 8,
-                      colorFilter: const ColorFilter.mode(
-                        Colors.white,
-                        BlendMode.srcIn,
-                      ),
-                    ),
+                    child: statusData.isGood
+                        ? Text(
+                            '!',
+                            style: GoogleFonts.inter(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w800,
+                              color: Colors.white,
+                              height: 1.0,
+                            ),
+                          )
+                        : SvgPicture.asset(
+                            AppAssets.commonCheck,
+                            width: 11,
+                            height: 11,
+                            colorFilter: const ColorFilter.mode(
+                              Colors.white,
+                              BlendMode.srcIn,
+                            ),
+                          ),
                   ),
                 ),
               ],
@@ -152,4 +135,39 @@ class CheckerAnalysisRow extends StatelessWidget {
       ),
     );
   }
+
+  _StatusData _getStatusData(SpecStatus status) {
+    switch (status) {
+      case SpecStatus.perfect:
+        return _StatusData(
+          text: 'Perfect',
+          color: AppColors.successColor,
+          isGood: false,
+        );
+      case SpecStatus.optimal:
+        return _StatusData(
+          text: 'Optimal',
+          color: AppColors.successColor,
+          isGood: false,
+        );
+      case SpecStatus.good:
+        return _StatusData(
+          text: 'Good',
+          color: AppColors.warningColor,
+          isGood: true,
+        );
+    }
+  }
+}
+
+class _StatusData {
+  final String text;
+  final Color color;
+  final bool isGood;
+
+  const _StatusData({
+    required this.text,
+    required this.color,
+    required this.isGood,
+  });
 }

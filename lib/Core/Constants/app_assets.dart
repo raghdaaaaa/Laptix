@@ -14,7 +14,6 @@ class AppAssets {
   static const String commonSearch = '$_iconsPath/common/search.svg';
   static const String commonCheck = '$_iconsPath/common/check.svg';
   static const String commonCheckDouble = '$_iconsPath/common/check_double.svg';
-  static const String commonCheckCircle = '$_iconsPath/common/check_circle.svg';
   static const String commonWarning = '$_iconsPath/common/warning.svg';
   static const String commonLightningBolt = '$_iconsPath/common/lightning_bolt.svg';
   static const String commonGraduationCap = '$_iconsPath/common/graduation_cap.svg';

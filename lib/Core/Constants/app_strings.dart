@@ -56,6 +56,7 @@ class AppStrings {
   static const String checkerLabelProcessor = 'Processor (CPU)';
   static const String checkerLabelMemory = 'Memory (RAM)';
   static const String checkerLabelGraphics = 'Graphics (GPU)';
+  static const String checkerLabelStorage = 'Storage';
   static const String checkerBtnCheck = 'Check Compatibility';
   static const String checkerAnalysisResult = 'Analysis Result';
   static const String checkerCalculationComplete = 'CALCULATION COMPLETE';

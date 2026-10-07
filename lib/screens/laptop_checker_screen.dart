@@ -48,7 +48,7 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
 
   final Map<String, String> _gpuDisplay = {
     'Integrated': 'Integrated Graphics',
-    'Entry-level Dedicated': 'Entry-level Dedicated (RTX 3050)',
+    'Entry-level Dedicated': 'Entry-level (RTX 3050)',
     'Dedicated': 'Dedicated (RTX 3050+)',
   };
 
@@ -180,7 +180,7 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
                       const SizedBox(width: 16),
                       Expanded(
                         child: LabeledDropdown<int>(
-                          label: AppStrings.checkerLabelGraphics.replaceAll('Graphics', 'Storage'),
+                          label: AppStrings.checkerLabelStorage,
                           iconPath: AppAssets.checkerStorage,
                           value: _selectedStorage,
                           items: _storageOptions,
