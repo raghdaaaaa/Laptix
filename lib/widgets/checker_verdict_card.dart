@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class CheckerVerdictCard extends StatelessWidget {
   const CheckerVerdictCard({
@@ -66,7 +65,8 @@ class CheckerVerdictCard extends StatelessWidget {
           const SizedBox(height: 16),
           Text(
             verdict,
-            style: GoogleFonts.inter(
+            style: TextStyle(
+              fontFamily: 'Inter',
               fontSize: 24,
               fontWeight: FontWeight.w800,
               color: color,
@@ -76,7 +76,8 @@ class CheckerVerdictCard extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             '$matchedUsages of $totalUsages use cases supported',
-            style: GoogleFonts.inter(
+            style: TextStyle(
+              fontFamily: 'Inter',
               fontSize: 14,
               color: color.withValues(alpha: 0.8),
             ),

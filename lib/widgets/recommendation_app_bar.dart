@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'package:laptix/Core/Constants/app_assets.dart';
 import 'package:laptix/Core/Constants/app_colors.dart';
@@ -55,7 +54,8 @@ class RecommendationAppBar extends StatelessWidget {
                 child: Center(
                   child: Text(
                     'YOUR MATCH',
-                    style: GoogleFonts.inter(
+                    style: TextStyle(
+                      fontFamily: 'Inter',
                       fontSize: 15,
                       fontWeight: FontWeight.w600,
                       letterSpacing: 2,

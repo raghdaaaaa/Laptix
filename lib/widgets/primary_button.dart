@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laptix/Core/Constants/app_colors.dart';
 import 'package:laptix/Core/Constants/app_icons.dart';
@@ -84,7 +83,8 @@ class PrimaryButton extends StatelessWidget {
               ],
               Text(
                 text,
-                style: GoogleFonts.inter(
+                style: TextStyle(
+                  fontFamily: 'Inter',
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
                   color: Colors.white,

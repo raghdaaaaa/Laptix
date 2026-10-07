@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'package:laptix/widgets/bottom_nav_bar.dart';
 import 'package:laptix/widgets/checker_app_bar.dart';
@@ -116,7 +115,8 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
       children: [
         Text(
           title,
-          style: GoogleFonts.inter(
+          style: TextStyle(
+            fontFamily: 'Inter',
             fontSize: 14,
             fontWeight: FontWeight.w700,
             color: AppColors.charcoal,
@@ -136,7 +136,8 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
               ),
               child: Text(
                 usage,
-                style: GoogleFonts.inter(
+                style: TextStyle(
+                  fontFamily: 'Inter',
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
                   color: textColor,
@@ -283,7 +284,8 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
               const SizedBox(width: 12),
               Text(
                 _isChecking ? 'Checking...' : AppStrings.checkerBtnCheck,
-                style: GoogleFonts.inter(
+                style: TextStyle(
+                  fontFamily: 'Inter',
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
                   color: Colors.white,
@@ -309,7 +311,8 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
           children: [
             Text(
               AppStrings.checkerAnalysisResult.toUpperCase(),
-              style: GoogleFonts.inter(
+              style: TextStyle(
+                fontFamily: 'Inter',
                 fontSize: 10,
                 fontWeight: FontWeight.w800,
                 letterSpacing: 1,
@@ -329,7 +332,8 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
                 ),
                 child: Text(
                   AppStrings.checkerCalculationComplete,
-                  style: GoogleFonts.inter(
+                  style: TextStyle(
+                    fontFamily: 'Inter',
                     fontSize: 8,
                     fontWeight: FontWeight.w700,
                     color: AppColors.successTextColor.withValues(alpha: 0.9),

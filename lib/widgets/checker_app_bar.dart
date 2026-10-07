@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'package:laptix/Core/Constants/app_assets.dart';
 import 'package:laptix/Core/Constants/app_colors.dart';
@@ -49,7 +48,8 @@ class CheckerAppBar extends StatelessWidget {
               child: Center(
                 child: Text(
                   'Check a Laptop',
-                  style: GoogleFonts.inter(
+                  style: TextStyle(
+                    fontFamily: 'Inter',
                     fontSize: 18,
                     fontWeight: FontWeight.w800,
                     color: AppColors.charcoal,

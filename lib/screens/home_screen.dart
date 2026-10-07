@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'package:laptix/widgets/custom_app_bar.dart';
 import 'package:laptix/widgets/laptop_placeholder.dart';
@@ -102,7 +101,8 @@ class HomeScreen extends StatelessWidget {
 class _WelcomeHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final highlightStyle = GoogleFonts.interTight(
+    final highlightStyle = TextStyle(
+      fontFamily: 'InterTight',
       fontSize: 40,
       height: 44 / 40,
       letterSpacing: -0.025,
@@ -110,7 +110,8 @@ class _WelcomeHeader extends StatelessWidget {
       color: AppColors.primaryColor,
     );
 
-    final titleStyle = GoogleFonts.interTight(
+    final titleStyle = TextStyle(
+      fontFamily: 'InterTight',
       fontSize: 40,
       height: 44 / 40,
       letterSpacing: -0.025,
@@ -138,7 +139,8 @@ class _WelcomeHeader extends StatelessWidget {
         const SizedBox(height: 16),
         Text(
           AppStrings.welcomeSubtitle,
-          style: GoogleFonts.inter(
+          style: TextStyle(
+            fontFamily: 'Inter',
             fontSize: 18,
             height: 29.25 / 18,
             fontWeight: FontWeight.w500,

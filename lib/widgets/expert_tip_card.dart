@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'package:laptix/Core/Constants/app_assets.dart';
 import 'package:laptix/Core/Constants/app_colors.dart';
@@ -51,7 +50,8 @@ class ExpertTipCard extends StatelessWidget {
               children: [
                 Text(
                   'Expert Tip',
-                  style: GoogleFonts.inter(
+                  style: TextStyle(
+                    fontFamily: 'Inter',
                     fontSize: 14,
                     fontWeight: FontWeight.w700,
                     color: Colors.white,
@@ -61,7 +61,8 @@ class ExpertTipCard extends StatelessWidget {
                 const SizedBox(height: 8),
                 Text.rich(
                   TextSpan(
-                    style: GoogleFonts.inter(
+                    style: TextStyle(
+                      fontFamily: 'Inter',
                       fontSize: 12,
                       height: 1.5,
                       color: AppColors.hintTextColor,

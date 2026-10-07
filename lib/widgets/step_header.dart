@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:laptix/Core/Constants/app_colors.dart';
 
 class StepHeader extends StatelessWidget {
@@ -16,7 +15,8 @@ class StepHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final highlightStyle = GoogleFonts.interTight(
+    final highlightStyle = TextStyle(
+      fontFamily: 'InterTight',
       fontSize: 30,
       height: 35.5 / 30,
       letterSpacing: -0.3,
@@ -24,7 +24,8 @@ class StepHeader extends StatelessWidget {
       color: AppColors.primaryColor,
     );
 
-    final titleStyle = GoogleFonts.interTight(
+    final titleStyle = TextStyle(
+      fontFamily: 'InterTight',
       fontSize: 30,
       height: 35.5 / 30,
       letterSpacing: -0.3,
@@ -50,7 +51,8 @@ class StepHeader extends StatelessWidget {
           const SizedBox(height: 16),
           Text(
             subtitle!,
-            style: GoogleFonts.inter(
+            style: TextStyle(
+              fontFamily: 'Inter',
               fontSize: 16,
               height: 1.5,
               fontWeight: FontWeight.w500,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:laptix/Core/Constants/app_assets.dart';
@@ -102,7 +101,8 @@ class WhyRecommendationCard extends StatelessWidget {
                 Expanded(
                   child: Text.rich(
                     TextSpan(
-                      style: GoogleFonts.inter(
+                      style: TextStyle(
+                        fontFamily: 'Inter',
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
                         height: 1.4,

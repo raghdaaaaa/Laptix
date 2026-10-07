@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:laptix/Core/Constants/app_colors.dart';
 import 'package:laptix/Core/Constants/app_icons.dart';
 
@@ -31,7 +30,8 @@ class SecondaryButton extends StatelessWidget {
             const SizedBox(width: 12),
             Text(
               text,
-              style: GoogleFonts.inter(
+              style: TextStyle(
+                fontFamily: 'Inter',
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
                 color: AppColors.primaryColor,

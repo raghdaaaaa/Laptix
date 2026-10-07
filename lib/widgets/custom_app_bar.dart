@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:laptix/Core/Constants/app_colors.dart';
@@ -93,7 +92,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             child: Center(
               child: Text(
                 'L',
-                style: GoogleFonts.inter(
+                style: TextStyle(
+                  fontFamily: 'Inter',
                   fontSize: 20,
                   fontWeight: FontWeight.w800,
                   color: Colors.white,
@@ -104,7 +104,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           const SizedBox(width: 10),
           Text(
             'Laptix',
-            style: GoogleFonts.inter(
+            style: TextStyle(
+              fontFamily: 'Inter',
               fontSize: 24,
               fontWeight: FontWeight.w800,
               color: AppColors.primaryColor,
@@ -197,7 +198,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: title != null
           ? Text(
               title!,
-              style: GoogleFonts.urbanist(
+              style: TextStyle(
+                fontFamily: 'Urbanist',
                 fontSize: 20,
                 fontWeight: FontWeight.w800,
                 color: AppColors.charcoal,

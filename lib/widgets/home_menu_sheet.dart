@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:laptix/Core/Constants/app_assets.dart';
@@ -42,7 +41,8 @@ class HomeMenuSheet extends StatelessWidget {
                 const SizedBox(height: 24),
                 Text(
                   AppStrings.homeMenuTitle,
-                  style: GoogleFonts.inter(
+                  style: TextStyle(
+                    fontFamily: 'Inter',
                     fontSize: 24,
                     fontWeight: FontWeight.w800,
                     color: AppColors.charcoal,
@@ -51,7 +51,8 @@ class HomeMenuSheet extends StatelessWidget {
                 const SizedBox(height: 8),
                 Text(
                   AppStrings.homeMenuSubtitle,
-                  style: GoogleFonts.inter(
+                  style: TextStyle(
+                    fontFamily: 'Inter',
                     fontSize: 16,
                     fontWeight: FontWeight.w400,
                     color: AppColors.secondaryTextColor,
@@ -61,7 +62,8 @@ class HomeMenuSheet extends StatelessWidget {
                 const SizedBox(height: 32),
                 Text(
                   AppStrings.homeMenuHowItWorks,
-                  style: GoogleFonts.inter(
+                  style: TextStyle(
+                    fontFamily: 'Inter',
                     fontSize: 18,
                     fontWeight: FontWeight.w800,
                     color: AppColors.charcoal,
@@ -96,7 +98,8 @@ class HomeMenuSheet extends StatelessWidget {
                 // About text
                 Text(
                   AppStrings.homeMenuAbout,
-                  style: GoogleFonts.inter(
+                  style: TextStyle(
+                    fontFamily: 'Inter',
                     fontSize: 12,
                     fontWeight: FontWeight.w400,
                     color: AppColors.hintTextColor,
@@ -121,7 +124,8 @@ class _HowItWorksStep extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: GoogleFonts.inter(
+      style: TextStyle(
+        fontFamily: 'Inter',
         fontSize: 14,
         fontWeight: FontWeight.w400,
         color: AppColors.secondaryTextColor,
@@ -178,7 +182,8 @@ class _MenuRow extends StatelessWidget {
             Expanded(
               child: Text(
                 title,
-                style: GoogleFonts.inter(
+                style: TextStyle(
+                  fontFamily: 'Inter',
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                   color: AppColors.charcoal,

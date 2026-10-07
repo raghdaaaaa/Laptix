@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:laptix/Core/Constants/app_colors.dart';
@@ -59,7 +58,8 @@ class SpecificationCard extends StatelessWidget {
           const SizedBox(height: 16),
           Text(
             label.toUpperCase(),
-            style: GoogleFonts.inter(
+            style: TextStyle(
+              fontFamily: 'Inter',
               fontSize: 10,
               fontWeight: FontWeight.w700,
               letterSpacing: 1.0,
@@ -69,7 +69,8 @@ class SpecificationCard extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             title,
-            style: GoogleFonts.inter(
+            style: TextStyle(
+              fontFamily: 'Inter',
               fontSize: 15.5,
               fontWeight: FontWeight.w900,
               height: 1.2,
@@ -80,7 +81,8 @@ class SpecificationCard extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             description,
-            style: GoogleFonts.inter(
+            style: TextStyle(
+              fontFamily: 'Inter',
               fontSize: 11,
               fontWeight: FontWeight.w500,
               height: 1.5,

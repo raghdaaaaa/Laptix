@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laptix/Core/Constants/app_colors.dart';
 import 'package:laptix/Core/Constants/app_icons.dart';
@@ -96,7 +95,8 @@ class BudgetOptionCard extends StatelessWidget {
                     children: [
                       Text(
                         label.toUpperCase(),
-                        style: GoogleFonts.inter(
+                        style: TextStyle(
+                          fontFamily: 'Inter',
                           fontSize: 11,
                           fontWeight: FontWeight.w700,
                           letterSpacing: 1,
@@ -108,7 +108,8 @@ class BudgetOptionCard extends StatelessWidget {
                       const SizedBox(height: 4),
                       Text(
                         price,
-                        style: GoogleFonts.inter(
+                        style: TextStyle(
+                          fontFamily: 'Inter',
                           fontSize: 20,
                           fontWeight: FontWeight.w800,
                           color: isSelected
@@ -155,7 +156,8 @@ class BudgetOptionCard extends StatelessWidget {
                 ),
                 child: Text(
                   badge!,
-                  style: GoogleFonts.inter(
+                  style: TextStyle(
+                    fontFamily: 'Inter',
                     fontSize: 10,
                     fontWeight: FontWeight.w700,
                     color: Colors.white,

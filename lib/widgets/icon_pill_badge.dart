@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laptix/Core/Constants/app_colors.dart';
 
@@ -56,7 +55,8 @@ class IconPillBadge extends StatelessWidget {
           const SizedBox(width: 8),
           Text(
             text.toUpperCase(),
-            style: GoogleFonts.inter(
+            style: TextStyle(
+              fontFamily: 'Inter',
               fontSize: 12,
               fontWeight: FontWeight.w700,
               letterSpacing: 0.05 * 12,

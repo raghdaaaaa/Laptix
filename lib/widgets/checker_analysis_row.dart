@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'package:laptix/Core/Constants/app_assets.dart';
 import 'package:laptix/Core/Constants/app_colors.dart';
@@ -63,7 +62,8 @@ class CheckerAnalysisRow extends StatelessWidget {
                 children: [
                   Text(
                     label.toUpperCase(),
-                    style: GoogleFonts.inter(
+                    style: TextStyle(
+                      fontFamily: 'Inter',
                       fontSize: 10,
                       fontWeight: FontWeight.w700,
                       letterSpacing: 1,
@@ -72,7 +72,8 @@ class CheckerAnalysisRow extends StatelessWidget {
                   ),
                   Text(
                     value,
-                    style: GoogleFonts.inter(
+                    style: TextStyle(
+                      fontFamily: 'Inter',
                       fontSize: 13,
                       fontWeight: FontWeight.w800,
                       color: AppColors.charcoal,
@@ -87,7 +88,8 @@ class CheckerAnalysisRow extends StatelessWidget {
               children: [
                 Text(
                   statusData.text,
-                  style: GoogleFonts.inter(
+                  style: TextStyle(
+                    fontFamily: 'Inter',
                     fontSize: 12,
                     fontWeight: FontWeight.w700,
                     color: statusData.color,
@@ -107,7 +109,8 @@ class CheckerAnalysisRow extends StatelessWidget {
                     child: statusData.isGood
                         ? Text(
                             '!',
-                            style: GoogleFonts.inter(
+                            style: TextStyle(
+                              fontFamily: 'Inter',
                               fontSize: 10,
                               fontWeight: FontWeight.w800,
                               color: Colors.white,

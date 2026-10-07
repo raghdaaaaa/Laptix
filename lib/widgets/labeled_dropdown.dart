@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:laptix/Core/Constants/app_colors.dart';
@@ -30,7 +29,8 @@ class LabeledDropdown<T> extends StatelessWidget {
       children: [
         Text(
           label.toUpperCase(),
-          style: GoogleFonts.inter(
+          style: TextStyle(
+            fontFamily: 'Inter',
             fontSize: 12,
             fontWeight: FontWeight.w700,
             letterSpacing: 1.2,
@@ -85,7 +85,8 @@ class LabeledDropdown<T> extends StatelessWidget {
                             itemText(item),
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
-                            style: GoogleFonts.inter(
+                            style: TextStyle(
+                              fontFamily: 'Inter',
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
                               color: AppColors.charcoal,
@@ -116,7 +117,8 @@ class LabeledDropdown<T> extends StatelessWidget {
                             child: Text(
                               itemText(item),
                               overflow: TextOverflow.ellipsis,
-                              style: GoogleFonts.inter(
+                              style: TextStyle(
+                                fontFamily: 'Inter',
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500,
                                 color: AppColors.charcoal,

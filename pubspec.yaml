@@ -11,7 +11,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-  google_fonts: ^6.3.2
   flutter_svg: ^2.0.10+1
 
 dev_dependencies:
@@ -34,7 +33,50 @@ flutter:
     - assets/images/icons/budget/
     - assets/images/icons/result/
     - assets/images/icons/checker/
-    - assets/google_fonts/
+
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Inter-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Inter-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Inter-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Inter-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Inter-Black.ttf
+          weight: 900
+    - family: InterTight
+      fonts:
+        - asset: assets/fonts/InterTight-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/InterTight-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/InterTight-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/InterTight-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/InterTight-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/InterTight-Black.ttf
+          weight: 900
+    - family: Urbanist
+      fonts:
+        - asset: assets/fonts/Urbanist-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Urbanist-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Urbanist-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Urbanist-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Urbanist-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Urbanist-Black.ttf
+          weight: 900
 
 flutter_launcher_icons:
   android: true

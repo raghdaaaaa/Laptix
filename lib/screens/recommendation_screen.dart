@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:laptix/widgets/spec_card.dart';
@@ -68,7 +67,8 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                                 ? 'Perfect '
                                 : 'Best Match ',
 
-                            style: GoogleFonts.inter(
+                            style: TextStyle(
+                              fontFamily: 'Inter',
                               fontSize: 26,
                               fontWeight: FontWeight.w700,
                               color: AppColors.charcoal,
@@ -79,7 +79,8 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                             text: _result.budgetWarning == null
                                 ? 'Match Found!'
                                 : 'for Your Budget!',
-                            style: GoogleFonts.inter(
+                            style: TextStyle(
+                              fontFamily: 'Inter',
                               fontSize: 26,
                               fontWeight: FontWeight.w700,
                               color: AppColors.primaryColor,
@@ -95,7 +96,8 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                     child: Text(
                       textAlign: TextAlign.center,
                       AppStrings.recResultSubtitle,
-                      style: GoogleFonts.inter(
+                      style: TextStyle(
+                        fontFamily: 'Inter',
                         fontSize: 16,
                         height: 1.5,
                         fontWeight: FontWeight.w400,
@@ -113,7 +115,8 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                   const SizedBox(height: 32),
                   Text(
                     'WHY THIS RECOMMENDATION?',
-                    style: GoogleFonts.inter(
+                    style: TextStyle(
+                      fontFamily: 'Inter',
                       fontSize: 12,
                       fontWeight: FontWeight.w900,
                       letterSpacing: 2.4,
@@ -310,7 +313,8 @@ class _SecondaryActionButton extends StatelessWidget {
             const SizedBox(width: 8),
             Text(
               'START OVER',
-              style: GoogleFonts.inter(
+              style: TextStyle(
+                fontFamily: 'Inter',
                 fontSize: 14,
                 fontWeight: FontWeight.w700,
                 color: AppColors.secondaryTextColor,

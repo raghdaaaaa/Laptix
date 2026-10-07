@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'package:laptix/widgets/app_bar_button.dart';
 import 'package:laptix/widgets/primary_button.dart';
@@ -77,7 +76,8 @@ class QuestionnaireScaffold extends StatelessWidget {
                 const SizedBox(height: 5),
                 Text(
                   'Step $stepNumber of $totalSteps'.toUpperCase(),
-                  style: GoogleFonts.inter(
+                  style: TextStyle(
+                    fontFamily: 'Inter',
                     fontSize: 10,
                     height: 1.5,
                     letterSpacing: 0.7,
@@ -124,19 +124,19 @@ class QuestionnaireScaffold extends StatelessWidget {
                     child: content,
                   ),
                   const SizedBox(height: 36),
-Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
-                      child: PrimaryButton(
-                        text: continueText,
-                        onTap: onContinue,
-                        height: continueButtonHeight,
-                        trailingIconSize: 17,
-                        trailingIconColor:
-                            continueTrailingIconColor ??
-                                Colors.white.withValues(alpha: 0.7),
-                        trailingIconPath: continueTrailingIconPath,
-                      ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    child: PrimaryButton(
+                      text: continueText,
+                      onTap: onContinue,
+                      height: continueButtonHeight,
+                      trailingIconSize: 17,
+                      trailingIconColor:
+                          continueTrailingIconColor ??
+                              Colors.white.withValues(alpha: 0.7),
+                      trailingIconPath: continueTrailingIconPath,
                     ),
+                  ),
                   const SizedBox(height: 24),
                 ],
               ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laptix/Core/Constants/app_colors.dart';
 import 'package:laptix/Core/Constants/app_assets.dart';
@@ -100,7 +99,8 @@ class OptionSelectionCard extends StatelessWidget {
                 Text(
                   label,
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.inter(
+                  style: TextStyle(
+                    fontFamily: 'Inter',
                     fontSize: isMajor ? 16 : 14,
                     height: 1.5,
                     fontWeight: FontWeight.w700,
@@ -134,8 +134,8 @@ class OptionSelectionCard extends StatelessWidget {
                     ),
                     child: SvgPicture.asset(
                       AppAssets.commonCheck,
-                      width: 1,
-                      height: 1,
+                      width: 12,
+                      height: 12,
                       colorFilter: const ColorFilter.mode(
                         Colors.white,
                         BlendMode.srcIn,
