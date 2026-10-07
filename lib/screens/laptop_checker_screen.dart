@@ -95,7 +95,7 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
         'Consider future-proofing: selecting a tier above your current needs extends laptop lifespan by 2-3 years.';
 
     if (gpuStatus == SpecStatus.good) {
-      tip = 'While the GPU is suitable, upgrading to an RTX 40-series would future-proof your 3D rendering tasks for the next 3 years.';
+      tip = 'While the GPU is suitable, a more powerful dedicated GPU would future-proof your 3D rendering and video editing tasks.';
     } else if (ramStatus == SpecStatus.good) {
       tip = 'Consider upgrading to 32 GB RAM for smoother multitasking with heavy creative workloads.';
     }
