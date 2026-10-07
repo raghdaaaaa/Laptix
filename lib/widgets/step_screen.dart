@@ -8,11 +8,7 @@ class StepOption {
   final String label;
   final String? badge;
 
-  const StepOption({
-    required this.icon,
-    required this.label,
-    this.badge,
-  });
+  const StepOption({required this.icon, required this.label, this.badge});
 }
 
 class StepScreen extends StatelessWidget {
@@ -55,7 +51,8 @@ class StepScreen extends StatelessWidget {
     final rows = (options.length / columns).ceil();
     return LayoutBuilder(
       builder: (context, constraints) {
-        final cardWidth = (constraints.maxWidth - horizontalGap * (columns - 1)) / columns;
+        final cardWidth =
+            (constraints.maxWidth - horizontalGap * (columns - 1)) / columns;
         return Column(
           children: List.generate(rows, (rowIndex) {
             final startIdx = rowIndex * columns;
@@ -75,7 +72,11 @@ class StepScreen extends StatelessWidget {
                   return SizedBox(
                     width: cardWidth,
                     child: Padding(
-                      padding: EdgeInsets.only(right: entry.key < rowOptions.length - 1 ? horizontalGap : 0),
+                      padding: EdgeInsets.only(
+                        right: entry.key < rowOptions.length - 1
+                            ? horizontalGap
+                            : 0,
+                      ),
                       child: OptionSelectionCard(
                         iconPath: option.icon,
                         label: option.label,
@@ -96,7 +97,11 @@ class StepScreen extends StatelessWidget {
                   final badge = badgeBuilder?.call(idx) ?? option.badge;
                   return Expanded(
                     child: Padding(
-                      padding: EdgeInsets.only(right: entry.key < rowOptions.length - 1 ? horizontalGap : 0),
+                      padding: EdgeInsets.only(
+                        right: entry.key < rowOptions.length - 1
+                            ? horizontalGap
+                            : 0,
+                      ),
                       child: OptionSelectionCard(
                         iconPath: option.icon,
                         label: option.label,

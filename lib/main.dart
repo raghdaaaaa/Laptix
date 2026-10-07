@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:laptix/screens/home_screen.dart';
 import 'package:laptix/screens/major_screen.dart';
 import 'package:laptix/screens/usage_screen.dart';
@@ -9,6 +10,7 @@ import 'package:laptix/Core/Constants/app_routes.dart';
 import 'package:laptix/models/student_profile.dart';
 
 void main() {
+  GoogleFonts.config.allowRuntimeFetching = false;
   runApp(const MyApp());
 }
 
@@ -42,7 +44,9 @@ class MyApp extends StatelessWidget {
               builder: (_) => RecommendationScreen(profile: profile!),
             );
           case AppRoutes.laptopChecker:
-            return MaterialPageRoute(builder: (_) => const LaptopCheckerScreen());
+            return MaterialPageRoute(
+              builder: (_) => const LaptopCheckerScreen(),
+            );
           default:
             return null;
         }

@@ -25,10 +25,7 @@ class CheckerAnalysisRow extends StatelessWidget {
     final statusData = _getStatusData(status);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 15,
-        vertical: 7,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 7),
       child: Container(
         decoration: BoxDecoration(
           color: AppColors.backgroundColor.withValues(alpha: 0.1),

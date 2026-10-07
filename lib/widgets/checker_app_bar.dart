@@ -28,10 +28,7 @@ class CheckerAppBar extends StatelessWidget {
                   color: AppColors.cardColor,
                   shape: BoxShape.circle,
                   boxShadow: [
-                    BoxShadow(
-                      color: AppColors.shadowColorBlack,
-                      blurRadius: 8,
-                    ),
+                    BoxShadow(color: AppColors.shadowColorBlack, blurRadius: 8),
                   ],
                 ),
                 child: Center(

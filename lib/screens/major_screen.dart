@@ -19,31 +19,13 @@ class MajorScreen extends StatefulWidget {
 class _MajorScreenState extends State<MajorScreen> {
   int? _selectedIndex;
 
-  static final List<StepOption> _majorOptions = [ 
-    StepOption(
-      icon: AppAssets.majorCs,
-      label: AppStrings.majorComputerScience,
-     ),
-    StepOption(
-      icon: AppAssets.majorEng,
-      label: AppStrings.majorEngineering,
-    ),
-    StepOption(
-      icon: AppAssets.majorBusiness,
-      label: AppStrings.majorBusiness,
-    ),
-    StepOption(
-      icon: AppAssets.majorDesign,
-      label: AppStrings.majorDesign,
-    ),
-    StepOption(
-      icon: AppAssets.majorMedia,
-      label: AppStrings.majorMedia,
-    ),
-    StepOption(
-      icon: AppAssets.majorOther,
-      label: AppStrings.majorOther,
-    ),
+  static final List<StepOption> _majorOptions = [
+    StepOption(icon: AppAssets.majorCs, label: AppStrings.majorComputerScience),
+    StepOption(icon: AppAssets.majorEng, label: AppStrings.majorEngineering),
+    StepOption(icon: AppAssets.majorBusiness, label: AppStrings.majorBusiness),
+    StepOption(icon: AppAssets.majorDesign, label: AppStrings.majorDesign),
+    StepOption(icon: AppAssets.majorMedia, label: AppStrings.majorMedia),
+    StepOption(icon: AppAssets.majorOther, label: AppStrings.majorOther),
   ];
 
   void _onSelectionChanged(int index) {
@@ -54,7 +36,9 @@ class _MajorScreenState extends State<MajorScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final selectedIndices = _selectedIndex == null ? <int>{} : {_selectedIndex!};
+    final selectedIndices = _selectedIndex == null
+        ? <int>{}
+        : {_selectedIndex!};
     return StepScreen(
       stepNumber: 1,
       totalSteps: 3,
@@ -65,14 +49,14 @@ class _MajorScreenState extends State<MajorScreen> {
       onContinue: _selectedIndex == null
           ? null
           : () => Navigator.pushNamed(
-                context,
-                AppRoutes.usage,
-                arguments: StudentProfile(
-                  major: _majorOptions[_selectedIndex!].label,
-                  usages: [],
-                  budget: '',
-                ),
+              context,
+              AppRoutes.usage,
+              arguments: StudentProfile(
+                major: _majorOptions[_selectedIndex!].label,
+                usages: [],
+                budget: '',
               ),
+            ),
       onSelectionChanged: _onSelectionChanged,
       cardHeight: 180,
       variant: OptionCardVariant.major,

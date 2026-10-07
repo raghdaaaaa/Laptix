@@ -63,7 +63,9 @@ class QuestionnaireScaffold extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: List.generate(totalSteps, (index) {
                     return Padding(
-                      padding: EdgeInsets.only(right: index < totalSteps - 1 ? 6 : 0),
+                      padding: EdgeInsets.only(
+                        right: index < totalSteps - 1 ? 6 : 0,
+                      ),
                       child: _stepDot(isActive: index == stepNumber - 1),
                     );
                   }),
@@ -118,16 +120,16 @@ class QuestionnaireScaffold extends StatelessWidget {
                     child: content,
                   ),
                   const SizedBox(height: 36),
-Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
-                      child: PrimaryButton(
-                        text: continueText,
-                        onTap: onContinue,
-                        height: continueButtonHeight,
-                        trailingIconSize: 17,
-                        trailingIconColor: Colors.white.withValues(alpha: 0.7),
-                      ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    child: PrimaryButton(
+                      text: continueText,
+                      onTap: onContinue,
+                      height: continueButtonHeight,
+                      trailingIconSize: 17,
+                      trailingIconColor: Colors.white.withValues(alpha: 0.7),
                     ),
+                  ),
                   const SizedBox(height: 24),
                 ],
               ),

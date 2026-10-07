@@ -20,10 +20,22 @@ void main() {
       expect(result.ram, 8);
       expect(result.storage, 256);
       expect(result.gpu, 'Integrated');
-      expect(result.cpuReason, 'A Basic CPU is enough for the selected usages.');
-      expect(result.ramReason, '8 GB of RAM is enough for the selected usages.');
-      expect(result.storageReason, '256 GB of storage is enough for the selected usages.');
-      expect(result.gpuReason, 'An Integrated GPU is enough for the selected usages.');
+      expect(
+        result.cpuReason,
+        'A Basic CPU is enough for the selected usages.',
+      );
+      expect(
+        result.ramReason,
+        '8 GB of RAM is enough for the selected usages.',
+      );
+      expect(
+        result.storageReason,
+        '256 GB of storage is enough for the selected usages.',
+      );
+      expect(
+        result.gpuReason,
+        'Integrated graphics are enough for the selected usages.',
+      );
     });
 
     test('recommend returns correct max CPU for Study only', () {
@@ -182,15 +194,18 @@ void main() {
       expect(result.budgetWarning, isNull);
     });
 
-    test('recommend shows no budget warning for basic needs with low budget', () {
-      final result = engine.recommend(
-        usages: ['Study'],
-        budget: 'Under \$800',
-        major: '',
-      );
+    test(
+      'recommend shows no budget warning for basic needs with low budget',
+      () {
+        final result = engine.recommend(
+          usages: ['Study'],
+          budget: 'Under \$800',
+          major: '',
+        );
 
-      expect(result.budgetWarning, isNull);
-    });
+        expect(result.budgetWarning, isNull);
+      },
+    );
 
     test('recommend shows budget warning for Gaming with mid-range budget', () {
       final result = engine.recommend(
@@ -215,19 +230,22 @@ void main() {
     });
 
     // NEW TESTS
-    test('Business + Study + \$1,800+ => Basic/8/256/Integrated, no warning', () {
-      final result = engine.recommend(
-        usages: ['Study'],
-        budget: '\$1,800+',
-        major: 'Business',
-      );
+    test(
+      'Business + Study + \$1,800+ => Basic/8/256/Integrated, no warning',
+      () {
+        final result = engine.recommend(
+          usages: ['Study'],
+          budget: '\$1,800+',
+          major: 'Business',
+        );
 
-      expect(result.cpu, 'Basic');
-      expect(result.ram, 8);
-      expect(result.storage, 256);
-      expect(result.gpu, 'Integrated');
-      expect(result.budgetWarning, isNull);
-    });
+        expect(result.cpu, 'Basic');
+        expect(result.ram, 8);
+        expect(result.storage, 256);
+        expect(result.gpu, 'Integrated');
+        expect(result.budgetWarning, isNull);
+      },
+    );
 
     test('Computer Science + Study + \$1,800+ => Medium/16/512/Integrated (major raises)', () {
       final result = engine.recommend(
@@ -254,20 +272,26 @@ void main() {
       expect(result.budgetWarning, isNull);
     });
 
-    test('Video Editing + Under \$800 => Medium/16/512/Integrated, budget warning', () {
-      final result = engine.recommend(
-        usages: ['Video Editing'],
-        budget: 'Under \$800',
-        major: '',
-      );
+    test(
+      'Video Editing + Under \$800 => Medium/16/512/Integrated, budget warning',
+      () {
+        final result = engine.recommend(
+          usages: ['Video Editing'],
+          budget: 'Under \$800',
+          major: '',
+        );
 
-      expect(result.cpu, 'Medium');
-      expect(result.ram, 16);
-      expect(result.storage, 512);
-      expect(result.gpu, 'Integrated');
-      expect(result.budgetWarning, isNotNull);
-      expect(result.budgetWarning, contains('Lowered: CPU, RAM, Storage, GPU'));
-    });
+        expect(result.cpu, 'Medium');
+        expect(result.ram, 16);
+        expect(result.storage, 512);
+        expect(result.gpu, 'Integrated');
+        expect(result.budgetWarning, isNotNull);
+        expect(
+          result.budgetWarning,
+          contains('Lowered: CPU, RAM, Storage, GPU'),
+        );
+      },
+    );
 
     test('Video Editing + \$1,800+ => High/32/1024/Dedicated, no warning', () {
       final result = engine.recommend(
@@ -283,18 +307,21 @@ void main() {
       expect(result.budgetWarning, isNull);
     });
 
-    test('Unknown major + unknown budget => defaults, no crash, no warning', () {
-      final result = engine.recommend(
-        usages: ['Study'],
-        budget: '',
-        major: '',
-      );
+    test(
+      'Unknown major + unknown budget => defaults, no crash, no warning',
+      () {
+        final result = engine.recommend(
+          usages: ['Study'],
+          budget: '',
+          major: '',
+        );
 
-      expect(result.cpu, 'Basic');
-      expect(result.ram, 8);
-      expect(result.storage, 256);
-      expect(result.gpu, 'Integrated');
-      expect(result.budgetWarning, isNull);
-    });
+        expect(result.cpu, 'Basic');
+        expect(result.ram, 8);
+        expect(result.storage, 256);
+        expect(result.gpu, 'Integrated');
+        expect(result.budgetWarning, isNull);
+      },
+    );
   });
 }

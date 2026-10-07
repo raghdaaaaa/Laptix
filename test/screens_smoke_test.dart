@@ -17,7 +17,10 @@ void main() {
   Widget buildTestApp(Widget child) {
     return MaterialApp(
       home: MediaQuery(
-        data: MediaQueryData(size: testSize, textScaler: TextScaler.linear(1.0)),
+        data: MediaQueryData(
+          size: testSize,
+          textScaler: TextScaler.linear(1.0),
+        ),
         child: child,
       ),
     );
@@ -31,7 +34,9 @@ void main() {
     );
   }
 
-  testWidgets('Home screen renders without errors, nav at bottom', (tester) async {
+  testWidgets('Home screen renders without errors, nav at bottom', (
+    tester,
+  ) async {
     await tester.pumpWidget(buildTestApp(const HomeScreen()));
     await tester.pumpAndSettle();
     expect(tester.takeException(), isNull);
@@ -42,26 +47,42 @@ void main() {
     expect(find.textContaining('Find the right'), findsOneWidget);
   });
 
-  testWidgets('Major screen renders without errors (questionnaire, no bottom nav)', (tester) async {
-    await tester.pumpWidget(buildTestApp(const MajorScreen()));
-    await tester.pumpAndSettle();
-    expect(tester.takeException(), isNull);
-    // Questionnaire screens don't have bottom nav
-    expect(find.byType(CustomBottomNavBar), findsNothing);
-    expect(find.textContaining('major'), findsOneWidget);
-  });
+  testWidgets(
+    'Major screen renders without errors (questionnaire, no bottom nav)',
+    (tester) async {
+      await tester.pumpWidget(buildTestApp(const MajorScreen()));
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull);
+      // Questionnaire screens don't have bottom nav
+      expect(find.byType(CustomBottomNavBar), findsNothing);
+      expect(find.textContaining('major'), findsOneWidget);
+    },
+  );
 
-  testWidgets('Usage screen renders without errors (questionnaire, no bottom nav)', (tester) async {
-    final profile = StudentProfile(major: 'Computer Science', usages: [], budget: '');
-    await tester.pumpWidget(buildTestApp(UsageScreen(profile: profile)));
-    await tester.pumpAndSettle();
-    expect(tester.takeException(), isNull);
-    expect(find.byType(CustomBottomNavBar), findsNothing);
-    expect(find.textContaining('laptop for'), findsOneWidget);
-  });
+  testWidgets(
+    'Usage screen renders without errors (questionnaire, no bottom nav)',
+    (tester) async {
+      final profile = StudentProfile(
+        major: 'Computer Science',
+        usages: [],
+        budget: '',
+      );
+      await tester.pumpWidget(buildTestApp(UsageScreen(profile: profile)));
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull);
+      expect(find.byType(CustomBottomNavBar), findsNothing);
+      expect(find.textContaining('laptop for'), findsOneWidget);
+    },
+  );
 
-  testWidgets('Budget screen renders without errors, single button at bottom', (tester) async {
-    final profile = StudentProfile(major: 'Computer Science', usages: ['Programming'], budget: '');
+  testWidgets('Budget screen renders without errors, single button at bottom', (
+    tester,
+  ) async {
+    final profile = StudentProfile(
+      major: 'Computer Science',
+      usages: ['Programming'],
+      budget: '',
+    );
     await tester.pumpWidget(buildTestApp(BudgetScreen(profile: profile)));
     await tester.pumpAndSettle();
     expect(tester.takeException(), isNull);
@@ -73,8 +94,12 @@ void main() {
     expect(find.text('Show Recommendations'), findsOneWidget);
   });
 
-  testWidgets('Recommendation screen renders without errors (no bottom nav)', (tester) async {
-    await tester.pumpWidget(buildTestApp(RecommendationScreen(profile: createTestProfile())));
+  testWidgets('Recommendation screen renders without errors (no bottom nav)', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      buildTestApp(RecommendationScreen(profile: createTestProfile())),
+    );
     await tester.pumpAndSettle();
     expect(tester.takeException(), isNull);
     // Recommendation screen doesn't have bottom nav
@@ -83,7 +108,9 @@ void main() {
     expect(find.textContaining('Match'), findsOneWidget);
   });
 
-  testWidgets('Laptop Checker screen renders without errors, nav at bottom', (tester) async {
+  testWidgets('Laptop Checker screen renders without errors, nav at bottom', (
+    tester,
+  ) async {
     await tester.pumpWidget(buildTestApp(const LaptopCheckerScreen()));
     await tester.pumpAndSettle();
     expect(tester.takeException(), isNull);

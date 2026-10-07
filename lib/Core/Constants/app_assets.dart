@@ -8,17 +8,21 @@ class AppAssets {
 
   static const String commonArrowBack = '$_iconsPath/common/arrow_forward.svg';
   static const String commonChevronLeft = '$_iconsPath/common/chevron_left.svg';
-  static const String commonChevronRight = '$_iconsPath/common/chevron_right.svg';
+  static const String commonChevronRight =
+      '$_iconsPath/common/chevron_right.svg';
   static const String commonChevronDown = '$_iconsPath/common/chevron_down.svg';
   static const String commonClose = '$_iconsPath/common/close.svg';
   static const String commonSearch = '$_iconsPath/common/search.svg';
   static const String commonCheck = '$_iconsPath/common/check.svg';
   static const String commonCheckDouble = '$_iconsPath/common/check_double.svg';
   static const String commonWarning = '$_iconsPath/common/warning.svg';
-  static const String commonLightningBolt = '$_iconsPath/common/lightning_bolt.svg';
-  static const String commonGraduationCap = '$_iconsPath/common/graduation_cap.svg';
+  static const String commonLightningBolt =
+      '$_iconsPath/common/lightning_bolt.svg';
+  static const String commonGraduationCap =
+      '$_iconsPath/common/graduation_cap.svg';
   static const String commonCheckMark = '$_iconsPath/common/check_mark.svg';
-  static const String commonWandSparkles = '$_iconsPath/common/wand_sparkles.svg';
+  static const String commonWandSparkles =
+      '$_iconsPath/common/wand_sparkles.svg';
 
   static const String navHome = '$_iconsPath/nav/home.svg';
   static const String navChecker = '$_iconsPath/nav/checker.svg';

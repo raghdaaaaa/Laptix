@@ -46,10 +46,22 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
     'High': 'Intel Core i7 / Ryzen 7',
   };
 
+  final Map<String, String> _cpuShort = {
+    'Basic': 'i3 / Ryzen 3',
+    'Medium': 'i5 / Ryzen 5',
+    'High': 'i7 / Ryzen 7',
+  };
+
   final Map<String, String> _gpuDisplay = {
     'Integrated': 'Integrated Graphics',
     'Entry-level Dedicated': 'Entry-level (RTX 3050)',
     'Dedicated': 'Dedicated (RTX 3050+)',
+  };
+
+  final Map<String, String> _gpuShort = {
+    'Integrated': 'Integrated',
+    'Entry-level Dedicated': 'RTX 3050',
+    'Dedicated': 'RTX 3050+',
   };
 
   bool _isChecking = false;
@@ -153,7 +165,6 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Processor field (full width)
                   LabeledDropdown<String>(
                     label: AppStrings.checkerLabelProcessor,
                     iconPath: AppAssets.checkerCpu,
@@ -163,8 +174,6 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
                     onChanged: (value) => setState(() => _selectedCpu = value!),
                   ),
                   const SizedBox(height: 20),
-
-                  // RAM and Storage side by side
                   Row(
                     children: [
                       Expanded(
@@ -174,7 +183,8 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
                           value: _selectedRam,
                           items: _ramOptions,
                           itemText: (item) => '$item GB',
-                          onChanged: (value) => setState(() => _selectedRam = value!),
+                          onChanged: (value) =>
+                              setState(() => _selectedRam = value!),
                         ),
                       ),
                       const SizedBox(width: 16),
@@ -192,8 +202,6 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
                     ],
                   ),
                   const SizedBox(height: 20),
-
-                  // GPU field (full width)
                   LabeledDropdown<String>(
                     label: AppStrings.checkerLabelGraphics,
                     iconPath: AppAssets.checkerGpu,
@@ -203,8 +211,6 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
                     onChanged: (value) => setState(() => _selectedGpu = value!),
                   ),
                   const SizedBox(height: 32),
-
-                  // Custom Check button with search icon on left, no chevron
                   _buildCheckButton(),
                   const SizedBox(height: 32),
 
@@ -251,9 +257,7 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
             borderRadius: BorderRadius.circular(16),
           ),
           shadowColor: Colors.transparent,
-        ).copyWith(
-          elevation: const WidgetStatePropertyAll(0),
-        ),
+        ).copyWith(elevation: const WidgetStatePropertyAll(0)),
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
@@ -298,7 +302,7 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
     final verdictIconPath = _verdictIconPathForLevel(result.level);
     final verdictText = _verdictTextForLevel(result.level);
 
-      return Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
@@ -315,7 +319,10 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
             const SizedBox(width: 60),
             Flexible(
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 4,
+                ),
                 decoration: BoxDecoration(
                   color: AppColors.successBackgroundColor,
                   borderRadius: BorderRadius.circular(999),
@@ -360,7 +367,7 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
               CheckerAnalysisRow(
                 iconPath: AppAssets.checkerCpu,
                 label: AppStrings.specProcessor,
-                value: _cpuDisplay[_selectedCpu] ?? _selectedCpu,
+                value: _cpuShort[_selectedCpu] ?? _selectedCpu,
                 status: result.cpuStatus,
               ),
               _buildDivider(),
@@ -381,7 +388,7 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
               CheckerAnalysisRow(
                 iconPath: AppAssets.checkerGpu,
                 label: AppStrings.specGraphics,
-                value: _gpuDisplay[_selectedGpu] ?? _selectedGpu,
+                value: _gpuShort[_selectedGpu] ?? _selectedGpu,
                 status: result.gpuStatus,
               ),
             ],
@@ -389,7 +396,13 @@ class _LaptopCheckerScreenState extends State<LaptopCheckerScreen> {
         ),
         const SizedBox(height: 24),
 
-        ExpertTipCard(tip: _pickExpertTip(result.cpuStatus, result.ramStatus, result.gpuStatus)),
+        ExpertTipCard(
+          tip: _pickExpertTip(
+            result.cpuStatus,
+            result.ramStatus,
+            result.gpuStatus,
+          ),
+        ),
         const SizedBox(height: 24),
 
         if (result.suitableFor.isNotEmpty) ...[

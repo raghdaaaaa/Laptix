@@ -5,10 +5,7 @@ import 'package:laptix/Core/Constants/app_strings.dart';
 import 'package:laptix/Core/Constants/app_colors.dart';
 
 class BudgetWarningCard extends StatelessWidget {
-  const BudgetWarningCard({
-    super.key,
-    required this.message,
-  });
+  const BudgetWarningCard({super.key, required this.message});
 
   final String message;
 

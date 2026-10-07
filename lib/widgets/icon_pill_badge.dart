@@ -22,14 +22,13 @@ class IconPillBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 8,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.circular(12),
-        border: borderColor != Colors.transparent ? Border.all(color: borderColor, width: 1) : null,
+        border: borderColor != Colors.transparent
+            ? Border.all(color: borderColor, width: 1)
+            : null,
         boxShadow: [
           BoxShadow(
             color: AppColors.shadowColorBlack,

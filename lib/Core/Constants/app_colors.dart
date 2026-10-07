@@ -28,7 +28,6 @@ class AppColors {
 
   static const Color warningColor = Color(0xFFF59E0B); // Amber 500
   static const Color warningBackgroundColor = Color(0xFFFFF8E1); // Amber 50
-  static const Color warningBorderColor = Color(0xFFFEF3C7); // Amber 100
   static const Color warningTextColor = Color(0xFF78350F); // Amber 900
 
   static const Color errorColor = Color(0xFFEF4444); // Red 500
@@ -42,7 +41,9 @@ class AppColors {
 
   // Shadow Colors
   static const Color shadowColorPrimary = Color(0x1E1E3A8A); // Primary 12%
-  static const Color shadowColorPrimaryMedium = Color(0x2E1E3A8A); // Primary 18%
+  static const Color shadowColorPrimaryMedium = Color(
+    0x2E1E3A8A,
+  ); // Primary 18%
   static const Color shadowColorBlack = Color(0x14000000); // Black 8%
   static const Color shadowColorBlackMedium = Color(0x1A000000); // Black 10%
 }

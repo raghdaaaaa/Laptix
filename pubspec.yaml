@@ -12,7 +12,6 @@ dependencies:
     sdk: flutter
 
   google_fonts: ^6.3.2
-  cupertino_icons: ^1.0.8
   flutter_svg: ^2.0.10+1
 
 dev_dependencies:
@@ -35,7 +34,7 @@ flutter:
     - assets/images/icons/budget/
     - assets/images/icons/result/
     - assets/images/icons/checker/
-    - assets/images/icons/
+    - assets/google_fonts/
 
 flutter_launcher_icons:
   android: true

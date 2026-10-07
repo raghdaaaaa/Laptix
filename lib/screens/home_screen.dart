@@ -33,7 +33,12 @@ class HomeScreen extends StatelessWidget {
       // App Bar
       appBar: CustomAppBar.home(onMenuTap: () => _openMenuSheet(context)),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.only(top: 24, left: 24, right: 24, bottom: 120),
+        padding: const EdgeInsets.only(
+          top: 24,
+          left: 24,
+          right: 24,
+          bottom: 120,
+        ),
         child: Column(
           children: [
             _WelcomeHeader(),
@@ -73,7 +78,8 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 16),
             SecondaryButton(
               text: AppStrings.btnCheckLaptop,
-              onTap: () => Navigator.pushNamed(context, AppRoutes.laptopChecker),
+              onTap: () =>
+                  Navigator.pushNamed(context, AppRoutes.laptopChecker),
             ),
           ],
         ),

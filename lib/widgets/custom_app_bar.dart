@@ -5,10 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laptix/Core/Constants/app_colors.dart';
 import 'package:laptix/Core/Constants/app_assets.dart';
 
-enum CustomAppBarVariant {
-  home,
-  defaultVariant,
-}
+enum CustomAppBarVariant { home, defaultVariant }
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final CustomAppBarVariant variant;
@@ -37,7 +34,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.onMenuTap,
   });
 
-  // Factory constructor for home variant
   const CustomAppBar.home({
     super.key,
     this.title,
@@ -52,8 +48,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize => Size.fromHeight(
-        variant == CustomAppBarVariant.home ? _heightHome : _heightStandard,
-      );
+    variant == CustomAppBarVariant.home ? _heightHome : _heightStandard,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +69,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // Logo
           Container(
             width: 40,
             height: 40,
@@ -117,7 +112,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
           ),
           const Spacer(),
-          // Menu button
           InkWell(
             onTap: onMenuTap,
             customBorder: const CircleBorder(),
@@ -212,10 +206,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           : null,
       actions: [
         if (trailing != null)
-          Padding(
-            padding: const EdgeInsets.only(right: 16),
-            child: trailing,
-          ),
+          Padding(padding: const EdgeInsets.only(right: 16), child: trailing),
       ],
     );
   }

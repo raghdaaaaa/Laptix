@@ -12,10 +12,7 @@ import 'package:laptix/models/student_profile.dart';
 class UsageScreen extends StatefulWidget {
   final StudentProfile profile;
 
-  const UsageScreen({
-    super.key,
-    required this.profile,
-  });
+  const UsageScreen({super.key, required this.profile});
 
   @override
   State<UsageScreen> createState() => _UsageScreenState();
@@ -26,41 +23,23 @@ class _UsageScreenState extends State<UsageScreen> {
 
   static final List<StepOption> _usageOptions = [
     StepOption(
+      icon: AppAssets.usageProgramming,
+      label: AppStrings.usageProgramming,
+    ),
+    StepOption(icon: AppAssets.usageWeb, label: AppStrings.usageWebDev),
+    StepOption(
       icon: AppAssets.usageAndroidDev,
       label: AppStrings.usageAndroidDev,
     ),
-    StepOption(
-      icon: AppAssets.usageGaming,
-      label: AppStrings.usageGaming,
-    ),
+    StepOption(icon: AppAssets.usageGaming, label: AppStrings.usageGaming),
     StepOption(
       icon: AppAssets.usageGraphic,
       label: AppStrings.usageGraphicDesign,
     ),
-    StepOption(
-      icon: AppAssets.usageVideo,
-      label: AppStrings.usageVideoEditing,
-    ),
-    StepOption(
-      icon: AppAssets.usageCad,
-      label: AppStrings.usage3DCAD,
-    ),
-    StepOption(
-      icon: AppAssets.usageStudy,
-      label: AppStrings.usageStudy,
-    ),
-    StepOption(
-      icon: AppAssets.usageProgramming,
-      label: AppStrings.usageProgramming,
-    ),
-    StepOption(
-      icon: AppAssets.usageWeb,
-      label: AppStrings.usageWebDev,
-    ),
-    StepOption(
-      icon: AppAssets.usageAi,
-      label: AppStrings.usageAIML,
-    ),
+    StepOption(icon: AppAssets.usageVideo, label: AppStrings.usageVideoEditing),
+    StepOption(icon: AppAssets.usageAi, label: AppStrings.usageAIML),
+    StepOption(icon: AppAssets.usageCad, label: AppStrings.usage3DCAD),
+    StepOption(icon: AppAssets.usageStudy, label: AppStrings.usageStudy),
   ];
 
   void _onSelectionChanged(int index) {
@@ -88,14 +67,14 @@ class _UsageScreenState extends State<UsageScreen> {
       onContinue: _selectedIndices.isEmpty
           ? null
           : () => Navigator.pushNamed(
-                context,
-                AppRoutes.budget,
-                arguments: StudentProfile(
-                  major: widget.profile.major,
-                  usages: _selectedUsages,
-                  budget: '',
-                ),
+              context,
+              AppRoutes.budget,
+              arguments: StudentProfile(
+                major: widget.profile.major,
+                usages: _selectedUsages,
+                budget: '',
               ),
+            ),
       onSelectionChanged: _onSelectionChanged,
       cardHeight: 160,
       columns: 2,

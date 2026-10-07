@@ -44,9 +44,7 @@ class PrimaryButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
           ),
           shadowColor: Colors.transparent,
-        ).copyWith(
-          elevation: const WidgetStatePropertyAll(0),
-        ),
+        ).copyWith(elevation: const WidgetStatePropertyAll(0)),
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
@@ -91,7 +89,8 @@ class PrimaryButton extends StatelessWidget {
               if (leadingIconPath == null) ...[
                 const SizedBox(width: 12),
                 AppIcons.iconChevronRight(
-                  color: trailingIconColor ?? Colors.white.withValues(alpha: 0.7),
+                  color:
+                      trailingIconColor ?? Colors.white.withValues(alpha: 0.7),
                   size: trailingIconSize,
                 ),
               ],

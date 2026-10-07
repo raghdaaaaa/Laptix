@@ -29,7 +29,6 @@ class HomeMenuSheet extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Drag handle
                 Center(
                   child: Container(
                     width: 40,
@@ -41,8 +40,6 @@ class HomeMenuSheet extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 24),
-
-                // Title
                 Text(
                   AppStrings.homeMenuTitle,
                   style: GoogleFonts.inter(
@@ -62,8 +59,6 @@ class HomeMenuSheet extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 32),
-
-                // How it works section
                 Text(
                   AppStrings.homeMenuHowItWorks,
                   style: GoogleFonts.inter(
@@ -73,20 +68,12 @@ class HomeMenuSheet extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 16),
-                _HowItWorksStep(
-                  text: AppStrings.homeMenuStep1,
-                ),
+                _HowItWorksStep(text: AppStrings.homeMenuStep1),
                 const SizedBox(height: 12),
-                _HowItWorksStep(
-                  text: AppStrings.homeMenuStep2,
-                ),
+                _HowItWorksStep(text: AppStrings.homeMenuStep2),
                 const SizedBox(height: 12),
-                _HowItWorksStep(
-                  text: AppStrings.homeMenuStep3,
-                ),
+                _HowItWorksStep(text: AppStrings.homeMenuStep3),
                 const SizedBox(height: 32),
-
-                // Navigation rows
                 _MenuRow(
                   iconPath: AppAssets.commonSearch,
                   title: AppStrings.homeMenuFindMyLaptop,

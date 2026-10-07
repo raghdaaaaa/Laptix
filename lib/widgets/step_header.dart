@@ -34,7 +34,7 @@ class StepHeader extends StatelessWidget {
 
     final words = title.split(highlight);
     final spans = <TextSpan>[];
-    
+
     for (int i = 0; i < words.length; i++) {
       spans.add(TextSpan(text: words[i], style: titleStyle));
       if (i < words.length - 1) {
@@ -45,9 +45,7 @@ class StepHeader extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text.rich(
-          TextSpan(children: spans),
-        ),
+        Text.rich(TextSpan(children: spans)),
         if (subtitle != null) ...[
           const SizedBox(height: 16),
           Text(

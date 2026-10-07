@@ -119,7 +119,9 @@ class _NavIcon extends StatelessWidget {
               style: GoogleFonts.urbanist(
                 fontSize: 10,
                 fontWeight: FontWeight.w700,
-                color: isActive ? AppColors.primaryColor : AppColors.hintTextColor,
+                color: isActive
+                    ? AppColors.primaryColor
+                    : AppColors.hintTextColor,
                 letterSpacing: 0.3,
               ),
             ),
@@ -165,10 +167,7 @@ class _CenterButton extends StatelessWidget {
             AppAssets.iconAdd,
             width: 24,
             height: 24,
-            colorFilter: const ColorFilter.mode(
-              Colors.white,
-              BlendMode.srcIn,
-            ),
+            colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
           ),
         ),
       ),

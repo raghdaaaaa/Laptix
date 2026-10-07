@@ -27,7 +27,8 @@ class WhyRecommendationCard extends StatelessWidget {
       } else if (names.length == 2) {
         usageText = '${names[0]} and ${names[1]}';
       } else {
-        usageText = '${names.sublist(0, names.length - 1).join(', ')}, and ${names.last}';
+        usageText =
+            '${names.sublist(0, names.length - 1).join(', ')}, and ${names.last}';
       }
     } else {
       usageText = '';
@@ -58,7 +59,7 @@ class WhyRecommendationCard extends StatelessWidget {
         ),
         child: Stack(
           children: [
-            // Decorative AI icon (bottom-right, behind content)
+            // brain icon decoration
             Positioned(
               right: -13,
               bottom: -30,
@@ -68,11 +69,13 @@ class WhyRecommendationCard extends StatelessWidget {
                   AppAssets.usageAi,
                   width: 120,
                   height: 120,
-                  colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                  colorFilter: const ColorFilter.mode(
+                    Colors.white,
+                    BlendMode.srcIn,
+                  ),
                 ),
               ),
             ),
-            // Content (non-positioned, sizes the card)
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

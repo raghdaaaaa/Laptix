@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'package:laptix/widgets/spec_card.dart'; 
+import 'package:laptix/widgets/spec_card.dart';
 import 'package:laptix/widgets/recommendation_app_bar.dart';
 import 'package:laptix/widgets/budget_warning_card.dart';
 import 'package:laptix/widgets/why_recommendation_card.dart';
@@ -20,10 +20,7 @@ import 'package:laptix/services/recommendation_engine.dart';
 class RecommendationScreen extends StatefulWidget {
   final StudentProfile profile;
 
-  const RecommendationScreen({
-    super.key,
-    required this.profile,
-  });
+  const RecommendationScreen({super.key, required this.profile});
 
   @override
   State<RecommendationScreen> createState() => _RecommendationScreenState();
@@ -59,21 +56,18 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Success badge 
-                  Center(
-                    child: _SuccessBadge(),
-                  ),
+                  Center(child: _SuccessBadge()),
                   const SizedBox(height: 30),
-
-                  // Title
                   Center(
                     child: Text.rich(
                       textAlign: TextAlign.center,
                       TextSpan(
                         children: [
                           TextSpan(
-                            text: _result.budgetWarning == null ? 'Perfect ' : 'Best Match ',
-                            
+                            text: _result.budgetWarning == null
+                                ? 'Perfect '
+                                : 'Best Match ',
+
                             style: GoogleFonts.inter(
                               fontSize: 26,
                               fontWeight: FontWeight.w700,
@@ -82,7 +76,9 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                             ),
                           ),
                           TextSpan(
-                            text: _result.budgetWarning == null ? 'Match Found!' : 'for Your Budget!',
+                            text: _result.budgetWarning == null
+                                ? 'Match Found!'
+                                : 'for Your Budget!',
                             style: GoogleFonts.inter(
                               fontSize: 26,
                               fontWeight: FontWeight.w700,
@@ -108,17 +104,13 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                     ),
                   ),
                   const SizedBox(height: 37),
-
-                  // Spec cards (2 rows)
                   _buildSpecCards(),
-
                   // Budget Warning
                   if (_result.budgetWarning != null) ...[
                     const SizedBox(height: 16),
                     BudgetWarningCard(message: _result.budgetWarning!),
                   ],
                   const SizedBox(height: 32),
-                  // Why this recommendation
                   Text(
                     'WHY THIS RECOMMENDATION?',
                     style: GoogleFonts.inter(
@@ -138,7 +130,8 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
                   // Action Buttons
                   PrimaryButton(
                     text: 'Check a Laptop',
-                    onTap: () => Navigator.pushNamed(context, AppRoutes.laptopChecker),
+                    onTap: () =>
+                        Navigator.pushNamed(context, AppRoutes.laptopChecker),
                     height: 64,
                     trailingIconSize: 18,
                     trailingIconColor: AppColors.secondaryColor,
@@ -168,7 +161,6 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
 
     return Column(
       children: [
-        // Row 1: CPU + RAM
         IntrinsicHeight(
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -196,7 +188,6 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
           ),
         ),
         const SizedBox(height: 16),
-        // Row 2: Storage + GPU
         IntrinsicHeight(
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.stretch,

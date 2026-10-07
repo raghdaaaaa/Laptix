@@ -5,14 +5,22 @@ import 'package:laptix/Core/Constants/app_assets.dart';
 class AppIcons {
   AppIcons._();
 
-  static Widget _buildSvg(String path, {Color? color, double? width, double? height, double? size}) {
+  static Widget _buildSvg(
+    String path, {
+    Color? color,
+    double? width,
+    double? height,
+    double? size,
+  }) {
     final w = size ?? width;
     final h = size ?? height;
     return SvgPicture.asset(
       path,
       width: w,
       height: h,
-      colorFilter: color != null ? ColorFilter.mode(color, BlendMode.srcIn) : null,
+      colorFilter: color != null
+          ? ColorFilter.mode(color, BlendMode.srcIn)
+          : null,
     );
   }
 
@@ -31,9 +39,12 @@ class AppIcons {
   static Widget check({Color? color, double size = 18}) =>
       _buildSvg(AppAssets.commonCheck, color: color, size: size);
 
-  static Widget arrowBackIos({Color? color, double size = 20}) => chevronLeft(color: color, size: size);
+  static Widget arrowBackIos({Color? color, double size = 20}) =>
+      chevronLeft(color: color, size: size);
 
-  static Widget iconChevronRight({Color? color, double size = 20}) => chevronRight(color: color, size: size);
+  static Widget iconChevronRight({Color? color, double size = 20}) =>
+      chevronRight(color: color, size: size);
 
-  static Widget iconSearch({Color? color, double size = 20}) => search(color: color, size: size);
+  static Widget iconSearch({Color? color, double size = 20}) =>
+      search(color: color, size: size);
 }

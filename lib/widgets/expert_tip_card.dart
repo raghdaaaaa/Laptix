@@ -6,18 +6,18 @@ import 'package:laptix/Core/Constants/app_assets.dart';
 import 'package:laptix/Core/Constants/app_colors.dart';
 
 class ExpertTipCard extends StatelessWidget {
-  const ExpertTipCard({
-    super.key,
-    required this.tip,
-  });
+  const ExpertTipCard({super.key, required this.tip});
 
   final String tip;
 
   @override
   Widget build(BuildContext context) {
+    final highlight = 'RTX 40-series';
+    final parts = tip.split(highlight);
+
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: AppColors.charcoal,
         borderRadius: BorderRadius.circular(40),
@@ -37,11 +37,14 @@ class ExpertTipCard extends StatelessWidget {
                 AppAssets.checkerTips,
                 width: 24,
                 height: 24,
-                colorFilter: const ColorFilter.mode(AppColors.secondaryColor, BlendMode.srcIn),
+                colorFilter: const ColorFilter.mode(
+                  AppColors.secondaryColor,
+                  BlendMode.srcIn,
+                ),
               ),
             ),
           ),
-          const SizedBox(width: 14),
+          const SizedBox(width: 16),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,15 +55,29 @@ class ExpertTipCard extends StatelessWidget {
                     fontSize: 14,
                     fontWeight: FontWeight.w700,
                     color: Colors.white,
+                    height: 1.2,
                   ),
                 ),
-                const SizedBox(height: 4),
-                Text(
-                  tip,
-                  style: GoogleFonts.inter(
-                    fontSize: 12,
-                    height: 1.625,
-                    color: AppColors.hintTextColor,
+                const SizedBox(height: 8),
+                Text.rich(
+                  TextSpan(
+                    style: GoogleFonts.inter(
+                      fontSize: 12,
+                      height: 1.5,
+                      color: AppColors.hintTextColor,
+                    ),
+                    children: [
+                      for (int i = 0; i < parts.length; i++) ...[
+                        if (parts[i].isNotEmpty) TextSpan(text: parts[i]),
+                        if (i < parts.length - 1)
+                          TextSpan(
+                            text: highlight,
+                            style: const TextStyle(
+                              color: AppColors.secondaryColor,
+                            ),
+                          ),
+                      ],
+                    ],
                   ),
                 ),
               ],

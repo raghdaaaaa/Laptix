@@ -11,10 +11,7 @@ import 'package:laptix/models/student_profile.dart';
 class BudgetScreen extends StatefulWidget {
   final StudentProfile profile;
 
-  const BudgetScreen({
-    super.key,
-    required this.profile,
-  });
+  const BudgetScreen({super.key, required this.profile});
 
   @override
   State<BudgetScreen> createState() => _BudgetScreenState();
@@ -78,7 +75,9 @@ class _BudgetScreenState extends State<BudgetScreen> {
         children: List.generate(_options.length, (index) {
           final option = _options[index];
           return Padding(
-            padding: EdgeInsets.only(bottom: index < _options.length - 1 ? 16 : 0),
+            padding: EdgeInsets.only(
+              bottom: index < _options.length - 1 ? 16 : 0,
+            ),
             child: BudgetOptionCard(
               iconPath: option.iconPath,
               label: option.label,

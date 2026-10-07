@@ -51,8 +51,8 @@ class LaptopCheckerService {
     final level = matchedUsages == totalUsages
         ? SuitabilityLevel.high
         : (matchedUsages >= totalUsages ~/ 2
-            ? SuitabilityLevel.moderate
-            : SuitabilityLevel.limited);
+              ? SuitabilityLevel.moderate
+              : SuitabilityLevel.limited);
 
     int maxReqCpu = 1, maxReqRam = 0, maxReqStorage = 0, maxReqGpu = 1;
     for (final entry in requirements.entries) {

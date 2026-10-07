@@ -1,8 +1,4 @@
 /// Centralized route names for the app.
-///
-/// Keep every route name here instead of typing raw strings in
-/// Navigator calls, so screens can be renamed/moved without hunting
-/// through the codebase.
 class AppRoutes {
   AppRoutes._();
 

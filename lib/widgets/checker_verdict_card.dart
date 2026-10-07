@@ -78,7 +78,7 @@ class CheckerVerdictCard extends StatelessWidget {
             '$matchedUsages of $totalUsages use cases supported',
             style: GoogleFonts.inter(
               fontSize: 14,
-              color:  color.withValues(alpha: 0.8),
+              color: color.withValues(alpha: 0.8),
             ),
           ),
         ],
