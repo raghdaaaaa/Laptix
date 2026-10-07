@@ -84,7 +84,7 @@ class HomeMenuSheet extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 _MenuRow(
-                  iconPath: AppAssets.commonLightningBolt,
+                  iconPath: AppAssets.navChecker,
                   title: AppStrings.homeMenuCheckLaptop,
                   onTap: () {
                     Navigator.pop(context);

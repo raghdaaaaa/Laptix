@@ -5,6 +5,7 @@ import 'package:laptix/widgets/questionnaire_scaffold.dart';
 import 'package:laptix/Core/Constants/app_assets.dart';
 import 'package:laptix/Core/Constants/app_strings.dart';
 import 'package:laptix/Core/Constants/app_routes.dart';
+import 'package:laptix/Core/Constants/app_colors.dart';
 
 import 'package:laptix/models/student_profile.dart';
 
@@ -71,6 +72,8 @@ class _BudgetScreenState extends State<BudgetScreen> {
       onContinue: _selectedIndex == -1 ? null : _continue,
       continueText: AppStrings.btnShowRecommendations,
       continueButtonHeight: 64,
+      continueTrailingIconPath: AppAssets.commonWandSparkles,
+      continueTrailingIconColor: AppColors.secondaryColor,
       content: Column(
         children: List.generate(_options.length, (index) {
           final option = _options[index];

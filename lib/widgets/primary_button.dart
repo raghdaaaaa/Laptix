@@ -13,6 +13,7 @@ class PrimaryButton extends StatelessWidget {
   final String? leadingIconPath;
   final double leadingIconSize;
   final Color? leadingIconColor;
+  final String? trailingIconPath;
 
   const PrimaryButton({
     super.key,
@@ -24,6 +25,7 @@ class PrimaryButton extends StatelessWidget {
     this.leadingIconPath,
     this.leadingIconSize = 20,
     this.leadingIconColor,
+    this.trailingIconPath,
   });
 
   @override
@@ -48,20 +50,22 @@ class PrimaryButton extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.shadowColorPrimary,
-                offset: const Offset(0, 8),
-                blurRadius: 10,
-                spreadRadius: -6,
-              ),
-              BoxShadow(
-                color: AppColors.shadowColorPrimaryMedium,
-                offset: const Offset(0, 20),
-                blurRadius: 25,
-                spreadRadius: -5,
-              ),
-            ],
+            boxShadow: onTap != null
+                ? [
+                    BoxShadow(
+                      color: AppColors.shadowColorPrimary,
+                      offset: const Offset(0, 8),
+                      blurRadius: 10,
+                      spreadRadius: -6,
+                    ),
+                    BoxShadow(
+                      color: AppColors.shadowColorPrimaryMedium,
+                      offset: const Offset(0, 20),
+                      blurRadius: 25,
+                      spreadRadius: -5,
+                    ),
+                  ]
+                : [],
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -88,11 +92,22 @@ class PrimaryButton extends StatelessWidget {
               ),
               if (leadingIconPath == null) ...[
                 const SizedBox(width: 12),
-                AppIcons.iconChevronRight(
-                  color:
-                      trailingIconColor ?? Colors.white.withValues(alpha: 0.7),
-                  size: trailingIconSize,
-                ),
+                if (trailingIconPath != null)
+                  SvgPicture.asset(
+                    trailingIconPath!,
+                    width: trailingIconSize,
+                    height: trailingIconSize,
+                    colorFilter: ColorFilter.mode(
+                      trailingIconColor ?? Colors.white,
+                      BlendMode.srcIn,
+                    ),
+                  )
+                else
+                  AppIcons.iconChevronRight(
+                    color:
+                        trailingIconColor ?? Colors.white.withValues(alpha: 0.7),
+                    size: trailingIconSize,
+                  ),
               ],
             ],
           ),
